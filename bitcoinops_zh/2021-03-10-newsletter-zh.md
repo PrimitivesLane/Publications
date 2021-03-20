@@ -1,6 +1,6 @@
 ---
 title: 'Bitcoin Optech Newsletter #139'
-permalink: /zh/newsletters/2021/03/03/
+permalink: /zh/newsletters/2021/03/10/
 name: 2021-03-10-newsletter-zh 
 slug: 2021-03-10-newsletter-zh 
 type: newsletter
