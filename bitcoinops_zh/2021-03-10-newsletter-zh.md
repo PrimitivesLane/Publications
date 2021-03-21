@@ -1,6 +1,6 @@
 ---
 title: 'Bitcoin Optech Newsletter #139'
-permalink: /zh/newsletters/2021/03/03/
+permalink: /zh/newsletters/2021/03/10/
 name: 2021-03-10-newsletter-zh 
 slug: 2021-03-10-newsletter-zh 
 type: newsletter
@@ -10,20 +10,25 @@ lang: zh
 
 
 
-本周的 Newsletter总结了有关激活taproot的建议的方法和到对建立在taproot的现有软件的记录工作的链接。同时也包括我们的常规部分，其中包括比特币核心PR审查俱乐部（Bitcoin Core PR Review Club）会议的总结，releases的公告和release候选，以及对受关注的比特币基础设施项目的重大更改的描述。
+本周的 Newsletter总结了有关激活taproot的建议的方法和到对建立在taproot的现有软件的记录工作的链接。同时也包括我们的常规部分，其中包括比特币核心PR审查俱乐部（Bitcoin Core PR Review Club）会议的总结，新版本和可用的候选版本以及对常见比特币基础设施软件的重要更新。
 
-# News
+# 新闻
 
-- *Taproot 激活讨论：看到了不同的人群反对[BIP8](https://github.com/bitcoin/bips/blob/master/bip-0008.mediawiki) `LockinOnTimeout=true`（`LOT=true`）或`LOT=false`，因此本周邮件列表上的大多数讨论都集中在可供替代的激活机制上。一些建议包括：
+- Taproot 激活讨论：看到了不同的人群反对[BIP8](https://github.com/bitcoin/bips/blob/master/bip-0008.mediawiki) `LockinOnTimeout=true`（`LOT=true`）或`LOT=false`，因此本周邮件列表上的大多数讨论都集中在可供替代的激活机制上。一些建议包括：
   - 用户激活的软分叉（UASF）：正在讨论的用来在比特币内核的软分叉中实现BIP8 `LOT=true`的一个计划，这个计划授权矿工在2022年7月之前为taproot的激活发送信号（广泛建议），但也允许矿工更早地激活它。
   - 标记日（Flag day）： 若干提案（[1](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-February/018495.html)，[2](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018538.html)）在特定块的高度或时间将程序写入节点，是从taproot激活的时候开始（建议）大致18个月。矿工发送信号不需要引起激活，也不能引起较早的激活。Anthony Towns编写了[实施草案](https://github.com/bitcoin/bitcoin/issues/21378)。
+
+- Taproot 激活讨论：看到了不同的人群反对[BIP8](https://github.com/bitcoin/bips/blob/master/bip-0008.mediawiki) `LockinOnTimeout=true`（`LOT=true`）或`LOT=false`，因此本周邮件列表上的大多数讨论都集中在可供替代的激活机制上。一些建议包括：
+  - 用户激活的软分叉（UASF）：正在讨论的用来在比特币内核的软分叉中实现BIP8 `LOT=true`的一个计划，这个计划授权矿工在2022年7月之前为taproot的激活发送信号（广泛建议），但也允许矿工更早地激活它。
+  - 标记日（Flag day）： 若干提案（[1](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-February/018495.html)，[2](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018538.html)）将程序写入节点，在特定块的高度或时间，从taproot激活的时候开始（建议）大致18个月。矿工发送信号不需要引起激活，也不能引起较早的激活。Anthony Towns编写了[实施草案](https://github.com/bitcoin/bitcoin/issues/21378)。
+
   - 降低门槛：若干提案（[1](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-February/018476.html)， [2](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018587.html)）逐步减少区块的数量，这些区块必须表明矿工准备好在新的共识规则锁定之前执行taproot。另见安东尼·唐斯去年描述的提案 [Newsletter #107](https://bitcoinops.org/en/newsletters/2020/07/22/#mailing-list-thread)。
   - 可配置的`LOT`：除了前面讨论的使BIP8的`LOT`值成为配置选项的提案（请参阅[Newsletter #137](https://bitcoinops.org/en/newsletters/2021/02/24/#taproot-activation-discussion)）之外，还[发布](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018514.html)了简单的代码， 显示了`LOT=true`如何通过调用RPC命令的外部脚本来实施。另外还[创建](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018512.html)了额外的代码显示`LOT=true`如何也会被节点操作员反对，他们担心这会导致区块链不稳定。
   - 矿工激活的短期尝试：给矿工大约三个月的时间来锁定taproot的一个更新的[提案](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018583.html)，将从矿工实现激活逻辑的完整节点发布后不久后开始。如果尝试失败，将鼓励社区继续使用其他激活方法。如果尝试成功，在taproot激活之前将会有几个月的时间来允许大多数经济体更新他们的节点。该提案[基于Bitcoin Core现有BIP9代码](https://github.com/bitcoin/bitcoin/issues/21377)并[先前提出的BIP8实现](https://github.com/bitcoin/bitcoin/issues/21392)的草案实施分别由Anthony Towns和Andrew Chow编写。
 
 
 
-似乎所有提案都不大可能成为每个人的首选，但似乎很多人都[愿意接受](https://gist.github.com/michaelfolkson/92899f27f1ab30aa2ebee82314f8fe7f)以*Speedy Trial*为名的短时尝试 (the short-duration attempt )。这里仍然存在一些问题，包括：
+似乎所有提案都不大可能成为每个人的首选，但似乎很多人都[愿意接受](https://gist.github.com/michaelfolkson/92899f27f1ab30aa2ebee82314f8fe7f)以Speedy Trial为名的短时尝试 (the short-duration attempt )。这里仍然存在一些问题，包括：
 
 - 可以选择强制性激活：尽管该提议明确鼓励如果矿工没有迅速表示对taroot的充分支持，就进行其他激活尝试，但有人[担心](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018596.html)可能会被寻求快速激活的一组用户选择强制激活，尽管有人[指出](http://gnusha.org/taproot-activation/2021-03-06.log)，以前没有人表达过在如此危险的较短时间线上尝试强制激活的愿望。
 - 使用基于高度或基于时间参数：该提案描述了使用时间戳(基于前11个块的中值)或块高度设置其`start`，`timeout`和`minimum_activation`参数之间的权衡。使用时间戳将导致比特币核心的最小和最容易审查的补丁。使用heights可以提供更多的可预测性，特别是对于矿工来说，并且可以与其他使用BIP8的尝试兼容。
@@ -39,31 +44,56 @@ lang: zh
 
 
 
-## Bitcoin Core PR Review Club
+## 比特币核心PR审查俱乐部
 
 在本月度部分中，我们总结了最近的[比特币核心PR审查俱乐部（Bitcoin Core PR Review Club）](https://bitcoincore.reviews/) 会议，重点介绍了一些重要的问题和答案。单击下面的问题以查看会议答案的摘要。
 
 [Erlay：高效带宽的事务中继协议](https://bitcoincore.reviews/18261)是Gleb Naumenko的PR（[＃18261](https://github.com/bitcoin/bitcoin/issues/18261)），提议在Bitcoin Core中实现[BIP330](https://github.com/bitcoin/bips/blob/master/bip-0330.mediawiki)。
 
-评论俱乐部的讨论重点在于权衡，实施和和[Erlay](https://bitcoinops.org/en/topics/erlay/)相关的潜在的新攻击媒介。在随后的会议中，Review俱乐部讨论了[Minisketch](https://bitcoinops.org/en/topics/minisketch/)，这是一个实现PinSketch*集协调算法的 [库](https://github.com/sipa/minisketch)，该算法是Erlay中高效中继协议的基础。
+评论俱乐部的讨论重点在于权衡，实施和和[Erlay](https://bitcoinops.org/en/topics/erlay/)相关的潜在的新攻击媒介。在随后的会议中，Review俱乐部讨论了[Minisketch](https://bitcoinops.org/en/topics/minisketch/)，这是一个实现PinSketch集协调算法的 [库](https://github.com/sipa/minisketch)，该算法是Erlay中高效中继协议的基础。
 
-- 什么是*Erlay*？
-- Erlay有什么优点？
-- Erlay的一些权衡是什么？
-- 为什么设置由Erlay引入的对帐的规模要比泛洪更好？
-- 现有P2P消息类型的变换频率将发生什么变化？
-- 2个peer节点将如何使用Erlay的对帐达成协议？
+<details>
+<summary>什么是Erlay？</summary>
+<pre><code>一种新的交易中继方法，该方法基于洪泛和集合对帐的组合（当前事务中继仅是洪泛），以提高带宽效率，可伸缩性和网络安全性。该想法在2019年的论文<a href="(https://arxiv.org/abs/1905.10518)">《比特币的带宽高效交易中继》</a>中提出，并在<a href="https://github.com/bitcoin/bips/blob/master/bip-0330.mediawiki">BIP330</a>中进行了指定 。  </code></pre>
+</details>
 
-## Releases and release candidates
+<details>
+<summary>Erlay有什么优点？</summary>
+<pre><code><a href="https://bitcoincore.reviews/18261#l-94">交易中继使用的带宽较低</a>，大约包括操作节点所需带宽的一半，以及<a href="https://bitcoincore.reviews/18261#l-97">peer节点连接的可伸缩性</a>，从而使网络对分区攻击更健壮，而<a href="https://bitcoincore.reviews/18261#l-99">单个节点对Eclipse攻击的抵抗力更强</a>。   </code></pre>
+</details>
+
+<details>
+<summary>Erlay的一些权衡是什么？</summary>
+<pre><code>交易传播延迟稍有增加。据估计，Erlay将在所有节点之间中继未确认事务的时间从3.15s增加到5.75s，仅占整个事务处理时间约10分钟的一小部分。另一个权衡是额外的代码和计算复杂性。 </code></pre>
+</details>
+
+<details>
+<summary>为什么设置由Erlay引入的对帐的规模要比泛洪更好？</summary>
+<pre><code>通过泛洪传播交易（每个节点向每个peer节点宣布它收到的每个事务）具有较差的带宽效率和较高的冗余性。随着网络连接的增加，这种情况会变得越来越明显，这对于网络的增长和安全性来说是不可以接受的。Erlay通过减少效率低下的泛洪发送的事务数据并将其替换为更有效的集合对帐来提高可拓展性。  </code></pre>
+</details>
+
+
+<details>
+<summary>现有P2P消息类型的变换频率将发生什么变化？</summary>
+<pre><code>使用Erlay，inv消息发送的频率将降低。getdata并且tx 消息频率将保持不变。 </code></pre>
+</details>
+
+<details>
+<summary>2个peer节点将如何使用Erlay的对帐达成协议？</summary>
+<pre><code>通过sendrecon在版本Verack握手期间交换的新对等消息。 </code></pre>
+</details>
+
+
+## 新版本和候选版本发布
 
 新版本和流行的比特币基础设施项目的候选版本。请考虑升级到新版本或帮助测试候选版本。
 
 - [Eclair 0.5.1](https://github.com/ACINQ/eclair/releases/tag/v0.5.1)是此LN节点的最新版本，包括对启动速度的改进，在同步网络图时减少了带宽消耗，以及在准备支持[锚定输出](https://bitcoinops.org/en/topics/anchor-outputs/)方面的一系列小改进。
 - [HWI 2.0.0RC2](https://github.com/bitcoin-core/HWI/releases/tag/2.0.0-rc.2)是[HWI](https://github.com/bitcoin-core/HWI/releases/tag/2.0.0-rc.2)的下一个主要版本的发行候选版本。
 
-## 显着的代码和文档更改
+## 重要代码和文档更新
 
-本周重大改变[比特币核心](https://github.com/bitcoin/bitcoin)， [C-Lightning](https://github.com/ElementsProject/lightning)，[Eclair](https://github.com/ACINQ/eclair)，[LND](https://github.com/lightningnetwork/lnd/)， [Rust-Lightning](https://github.com/rust-bitcoin/rust-lightning)，[libsecp256k1](https://github.com/bitcoin-core/secp256k1)，[硬件钱包接口（HWI）](https://github.com/bitcoin-core/HWI)， [Rust比特币](https://github.com/rust-bitcoin/rust-bitcoin)，[BTCPay服务器](https://github.com/btcpayserver/btcpayserver/)， [比特币改进提案（BIP）](https://github.com/bitcoin/bips/)和[Lightning BOLTs](https://github.com/lightningnetwork/lightning-rfc/).
+*本周 [Bitcoin Core](https://github.com/bitcoin/bitcoin)、[C-Lightning](https://github.com/ElementsProject/lightning)、[Eclair](https://github.com/ACINQ/eclair)、[LND](https://github.com/lightningnetwork/lnd/)、[Rust-Lightning](https://github.com/rust-bitcoin/rust-lightning)、[libsecp256k1](https://github.com/bitcoin-core/secp256k1)、[硬件钱包接口 (HWI)](https://github.com/bitcoin-core/HWI)、[Rust 比特币](https://github.com/rust-bitcoin/rust-bitcoin)、[BTCPay 服务器](https://github.com/btcpayserver/btcpayserver/)、[比特币改进提案 (BIPs)](https://github.com/bitcoin/bips/) 和 [Lightning BOLTs](https://github.com/lightningnetwork/lightning-rfc/) 的重要更新。*
 
 - [Bitcoin Core＃20685](https://github.com/bitcoin/bitcoin/issues/20685)通过使用[I2P SAM协议](https://geti2p.net/en/docs/api/samv3)增加了对I2P隐私网络的支持 。[长期以来一直要求使用](https://github.com/bitcoin/bitcoin/issues/2091)此功能，直到最近才通过添加[addr v2](https://bitcoinops.org/en/topics/addr-v2/)使该功能成为可能。尽管仍在为希望运行I2P的节点运营商创建文档，但[比特币StackExchange Q＆A](https://bitcoin.stackexchange.com/questions/103402/how-can-i-use-bitcoin-core-with-the-anonymous-network-protocol-i2p)提供了入门指南。
 - [C-Lightning＃4407](https://github.com/ElementsProject/lightning/issues/4407)使用新字段更新RPC`listpeers`，该字段提供有关每个渠道当前单边平仓交易的信息，包括其费用（以总费用条款和费用率计）。
