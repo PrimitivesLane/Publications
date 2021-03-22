@@ -6,7 +6,6 @@ slug: 2021-03-10-newsletter-zh
 type: newsletter
 layout: newsletter
 lang: zh
-Markdown.styles: ./newsletter.css
 ---
 
 
