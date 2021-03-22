@@ -6,6 +6,7 @@ slug: 2021-03-10-newsletter-zh
 type: newsletter
 layout: newsletter
 lang: zh
+Markdown.styles: ./newsletter.css
 ---
 
 
@@ -52,35 +53,35 @@ lang: zh
 
 评论俱乐部的讨论重点在于权衡，实施和和[Erlay](https://bitcoinops.org/en/topics/erlay/)相关的潜在的新攻击媒介。在随后的会议中，Review俱乐部讨论了[Minisketch](https://bitcoinops.org/en/topics/minisketch/)，这是一个实现PinSketch集协调算法的 [库](https://github.com/sipa/minisketch)，该算法是Erlay中高效中继协议的基础。
 
-<details>
+<details class="details-1">
 <summary>什么是Erlay？</summary>
-<pre><code>一种新的交易中继方法，该方法基于洪泛和集合对帐的组合（当前事务中继仅是洪泛），以提高带宽效率，可伸缩性和网络安全性。该想法在2019年的论文<a href="(https://arxiv.org/abs/1905.10518)">《比特币的带宽高效交易中继》</a>中提出，并在<a href="https://github.com/bitcoin/bips/blob/master/bip-0330.mediawiki">BIP330</a>中进行了指定 。  </code></pre>
+一种新的交易中继方法，该方法基于洪泛和集合对帐的组合（当前事务中继仅是洪泛），以提高带宽效率，可伸缩性和网络安全性。该想法在2019年的论文<a href="(https://arxiv.org/abs/1905.10518)">《比特币的带宽高效交易中继》</a>中提出，并在<a href="https://github.com/bitcoin/bips/blob/master/bip-0330.mediawiki">BIP330</a>中进行了指定 。  
 </details>
 
 <details>
 <summary>Erlay有什么优点？</summary>
-<pre><code><a href="https://bitcoincore.reviews/18261#l-94">交易中继使用的带宽较低</a>，大约包括操作节点所需带宽的一半，以及<a href="https://bitcoincore.reviews/18261#l-97">peer节点连接的可伸缩性</a>，从而使网络对分区攻击更健壮，而<a href="https://bitcoincore.reviews/18261#l-99">单个节点对Eclipse攻击的抵抗力更强</a>。   </code></pre>
+<a href="https://bitcoincore.reviews/18261#l-94">交易中继使用的带宽较低</a>，大约包括操作节点所需带宽的一半，以及<a href="https://bitcoincore.reviews/18261#l-97">peer节点连接的可伸缩性</a>，从而使网络对分区攻击更健壮，而<a href="https://bitcoincore.reviews/18261#l-99">单个节点对Eclipse攻击的抵抗力更强</a>。  
 </details>
 
 <details>
 <summary>Erlay的一些权衡是什么？</summary>
-<pre><code>交易传播延迟稍有增加。据估计，Erlay将在所有节点之间中继未确认事务的时间从3.15s增加到5.75s，仅占整个事务处理时间约10分钟的一小部分。另一个权衡是额外的代码和计算复杂性。 </code></pre>
+交易传播延迟稍有增加。据估计，Erlay将在所有节点之间中继未确认事务的时间从3.15s增加到5.75s，仅占整个事务处理时间约10分钟的一小部分。另一个权衡是额外的代码和计算复杂性。 
 </details>
 
 <details>
 <summary>为什么设置由Erlay引入的对帐的规模要比泛洪更好？</summary>
-<pre><code>通过泛洪传播交易（每个节点向每个peer节点宣布它收到的每个事务）具有较差的带宽效率和较高的冗余性。随着网络连接的增加，这种情况会变得越来越明显，这对于网络的增长和安全性来说是不可以接受的。Erlay通过减少效率低下的泛洪发送的事务数据并将其替换为更有效的集合对帐来提高可拓展性。  </code></pre>
+通过泛洪传播交易（每个节点向每个peer节点宣布它收到的每个事务）具有较差的带宽效率和较高的冗余性。随着网络连接的增加，这种情况会变得越来越明显，这对于网络的增长和安全性来说是不可以接受的。Erlay通过减少效率低下的泛洪发送的事务数据并将其替换为更有效的集合对帐来提高可拓展性。  
 </details>
 
 
 <details>
 <summary>现有P2P消息类型的变换频率将发生什么变化？</summary>
-<pre><code>使用Erlay，inv消息发送的频率将降低。getdata并且tx 消息频率将保持不变。 </code></pre>
+使用Erlay，inv消息发送的频率将降低。getdata并且tx 消息频率将保持不变。 
 </details>
 
 <details>
 <summary>2个peer节点将如何使用Erlay的对帐达成协议？</summary>
-<pre><code>通过sendrecon在版本Verack握手期间交换的新对等消息。 </code></pre>
+通过sendrecon在版本Verack握手期间交换的新对等消息。 
 </details>
 
 
