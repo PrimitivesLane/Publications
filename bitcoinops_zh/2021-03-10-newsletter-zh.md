@@ -40,7 +40,7 @@ lang: zh
 
 - 记录使用和建立在taproot上的意图：在讨论激活方法时，克里斯·贝尔彻（Chris Belcher）[表示](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018538.html)，已经编译了大量软件，其开发人员在围绕激活该软分叉的辩论中表示了实现隔离见证的意图。他建议可以创建一个类似的列表，以记录taproot提供的支持数量以供以后使用。这样一来，很明显，无论经济最终如何被激活，大部分经济体都希望拥有主根。
 
-  杰里米·鲁宾[贴](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018604.html)到Bitcoin-dev邮件列表一个链接到一个有点相关的[维基页面](https://en.bitcoin.it/wiki/Taproot_Uses)，开发者可以张贴链接到他们在taproot的新提议的功能上建设的项目。这可以确保taproot提供人们真正想要的解决方案，并且其设计方式将使其功能得以使用。
+  Jeremy Rubin[贴](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018604.html)到Bitcoin-dev邮件列表一个链接到一个有点相关的[维基页面](https://en.bitcoin.it/wiki/Taproot_Uses)，开发者可以张贴链接到他们在taproot的新提议的功能上建设的项目。这可以确保taproot提供人们真正想要的解决方案，并且其设计方式将使其功能得以使用。
 
 
 
