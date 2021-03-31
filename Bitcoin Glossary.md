@@ -68,14 +68,14 @@
 | BOINC open grid computing                                 | BOINC开放式网格计算               |
 | brain wallet                                              | 脑钱包                        |
 | broad casting to network                                  | 全网广播                       |
-| broad casting transactions to                             | 广播交易到                      |
+| broad casting transactions to                             | 广播事务到                      |
 | bytes                                                     | 字节                         |
 | Byzantine fault-tolerant                                  | 拜占庭容错                      |
 | C                                                         |                            |
 | call                                                      | 调用                         |
 | CCVM（Cross Chain Virtual Machine）                         | 跨链交易的虚拟机                   |
 | centralized control                                       | 中心化控制                      |
-| chaining transactions                                     | 交易链条                       |
+| chaining transactions                                     | 事务链条                       |
 | chainwork                                                 | 区块链上工作量总值                  |
 | Check Block function(Bitcoin Coreclient)                  | 区块检查功能(BitcoinCore客户端)     |
 | CHECKMULTISIG implementation                              | CHECKMULTISIG实现            |
@@ -86,7 +86,7 @@
 | Child Pays For Parent，CPFP                                | 父子支付方案                     |
 | coinbase reward calculating                               | coinbase奖励计算               |
 | coinbase rewards                                          | coinbase奖励                 |
-| coinbase transaction                                      | coinbase交易                 |
+| coinbase transaction                                      | coinbase事务                 |
 | cold-storage wallets                                      | 冷钱包                        |
 | Compact block                                             | 致密区块                       |
 | Compact block relay                                       | 致密区块中继                     |
@@ -101,7 +101,7 @@
 | consensus attacks                                         | 一致性功能攻击                    |
 | consensus innovation                                      | 一致性的创新                     |
 | consensus plugin                                          | 共识算法                       |
-| Confidential Transactions                                 | 保密交易                       |
+| Confidential Transactions                                 | 保密事务                       |
 | constant                                                  | 常数                         |
 | constructing                                              | 建造                         |
 | constructing block headers with                           | 通过...构造区块头部                |
@@ -130,7 +130,7 @@
 | decoding Base58Check to/from hex                          | Base58Check编码与16进制的相互转换    |
 | decoding to hex                                           | 解码为16进制                    |
 | deep web                                                  | 深网                         |
-| Decode Raw Transaction                                    | 解码原始交易                     |
+| Decode Raw Transaction                                    | 解码原始事务                     |
 | deflationary money                                        | 通缩货币                       |
 | delegated proof of stake                                  | 授权股权证明机制                   |
 | demurrage currency                                        | 滞期费                        |
@@ -192,7 +192,7 @@
 | full nodes                                                | 完整节点;全节点                   |
 | G                                                         |                            |
 | generating                                                | 生成                         |
-| generation transaction                                    | 区块创始交易                     |
+| generation transaction                                    | 区块创始事务                     |
 | generator point                                           | 生成点                        |
 | genesis block                                             | 创始区块                       |
 | GetBlock Template(GBT)mining protocol                     | GetBlockTemplate(GBT)挖矿协议  |
@@ -297,7 +297,7 @@
 | OP_RETURN operator                                        | OP_RETURN操作符               |
 | OpenSSL cryptographiclibrary                              | OpenSSL密码库                 |
 | open source of bitcoin                                    | 比特币的开源性                    |
-| open transaction（OT)                                      | 开放交易                       |
+| open transaction（OT)                                      | 开放事务                       |
 | orphan block                                              | 孤儿块                        |
 | Oracles                                                   | 价值中介                       |
 | OWAS                                                      | 单向聚合签名                     |
@@ -321,13 +321,13 @@
 | POI: proof of importance                                  | 重要性证明（ NEM提出来的一种共识算法）      |
 | Ppcoin                                                    | 点点币                        |
 | Premine                                                   | 预挖                         |
-| priority of transactions                                  | 交易优先级                      |
+| priority of transactions                                  | 事务优先级                      |
 | Primecoin                                                 | 素数币                        |
 | proof of stake                                            | 权益证明                       |
 | proof of work                                             | 工作量证明                      |
 | proof-of-work algorithm                                   | 工作量证明算法                    |
 | proof-of-work chain                                       | 工作量证明链                     |
-| propagating transactions on                               | 交易广播                       |
+| propagating transactions on                               | 事务广播                       |
 | protein folding algorithms                                | 蛋白质折叠算法                    |
 | public child key derivation                               | 公钥子钥派生                     |
 | public key derivation                                     | 公钥推导                       |
@@ -390,7 +390,7 @@
 | soft fork                                                 | 软分叉                        |
 | spilt                                                     | 分割                         |
 | Stellar                                                   | 恒星币                        |
-| stateless verification of transactions                    | 交易状态验证                     |
+| stateless verification of transactions                    | 事务状态验证                     |
 | statelessness                                             | 无状态                        |
 | state machine replication                                 | 状态机原理                      |
 | storage                                                   | 存储                         |
@@ -407,16 +407,16 @@
 | TeleHash                                                  | p2p信息发送系统                  |
 | timeline                                                  | 时间轴                        |
 | timestamping blocks                                       | 带时间戳的区块                    |
-| txids                                                     | 缩短交易标识符                    |
+| txids                                                     | 缩短事务标识符                    |
 | token                                                     | 代币                         |
 | token system                                              | 代币系统                       |
 | token-less blockchain                                     | 无代币区块链=私链                  |
-| transaction fees                                          | 交易费；矿工费                    |
-| transaction pools                                         | 交易池                        |
-| transaction processing                                    | 交易处理                       |
-| transaction validation                                    | 交易验证                       |
-| transactions independent verification                     | 独立验证交易                     |
-| transaction malleability                                  | 交易延展性                      |
+| transaction fees                                          | 事务费；矿工费                    |
+| transaction pools                                         | 事务池                        |
+| transaction processing                                    | 事务处理                       |
+| transaction validation                                    | 事务验证                       |
+| transactions independent verification                     | 独立验证事务                     |
+| transaction malleability                                  | 事务延展性                      |
 | tree structure                                            | 树结构                        |
 | Trezor wallet                                             | Trezor钱包                   |
 | Turing Complete                                           | 图灵完备                       |
@@ -425,24 +425,24 @@
 | Type-0 nondeterministic wallet                            | 原始随机钱包                     |
 | U                                                         |                            |
 | uncompressed keys                                         | 解密钥                        |
-| unconfirmed transactions                                  | 未确认交易                      |
+| unconfirmed transactions                                  | 未确认事务                      |
 | unspent outputs                                           | 未花费输出                      |
 | user security                                             | 用户安全性                      |
 | User Token                                                | 用户代币                       |
 | UTXO pool                                                 | UTXO池                      |
 | UTXO set                                                  | UTXO集合                     |
-| UTXOs                                                     | 未交易输出                      |
+| UTXOs                                                     | 未花费事务输出                      |
 | V                                                         |                            |
 | validating new blocks                                     | 验证新区块                      |
 | validation                                                | 验证条件                       |
-| validation(transaction)                                   | 校验(交易)                     |
+| validation(transaction)                                   | 校验(事务)                     |
 | vanity                                                    | 靓号                         |
 | vanity addresses                                          | 靓号地址                       |
 | vanity-miners                                             | 靓号挖掘程序                     |
 | verification                                              | 验证                         |
 | verification criteria                                     | 验证条件                       |
 | version message                                           | 版本信息                       |
-| Visualise Transaction                                     | 可视化交易                      |
+| Visualise Transaction                                     | 可视化事务                      |
 | W                                                         |                            |
 | Wallet Import Format(WIF)                                 | 钱包导入格                      |
 | wallets                                                   | 钱包                         |
