@@ -14,7 +14,7 @@ lang: zh
 
 # 新闻
 
-- *根据现有的共识规则签署授权：*想象 Alice想让Bob有能力使用她的一个UTXO，而无需立即创建链上交易或给Bob她的私钥。这就是所谓的*授权*，已经被讨论了很多年，也许是最值得注意的是最近作为[graftroot提案的](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2018-February/015700.html)一部分。上周，Jeremy Rubin在Bitcoin-Dev邮件列表中[发表](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018615.html)了一篇文章，描述了一种使用比特币实现委托的技术。
+- **根据现有的共识规则签署授权：** 想象 Alice想让Bob有能力使用她的一个UTXO，而无需立即创建链上交易或给Bob她的私钥。这就是所谓的*授权*，已经被讨论了很多年，也许是最值得注意的是最近作为[graftroot提案的](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2018-February/015700.html)一部分。上周，Jeremy Rubin在Bitcoin-Dev邮件列表中[发表](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018615.html)了一篇文章，描述了一种使用比特币实现委托的技术。
 
   假设Alice`UTXO_A`和Bob有`UTXO_B`。Alice建立了一个部分签署的交易，同时花费`UTXO_A`和`UTXO_B`。Alice使用Sighash标志[SIGHASH_NONE](https://btcinformation.org/en/developer-guide#term-sighash-none)为她的UTXO签名，这可以防止签名提交到事务的任何输出。这使交易中其他输入的所有者Bob可以对输出选择进行单方面控制，使用他的签名和正常`SIGHASH_ALL`标志来提交那些输出，并防止其他任何人修改事务。通过使用这种双重输入`SIGHASH_NONE`技巧，Alice将鲍Bob的签名权委托给了Bob。
 
@@ -39,25 +39,25 @@ lang: zh
 
   - 在没有链上成本的情况下改善QC后恢复中的Taproot： 如果比特币人了解到或即将出现强大的QC（量子计算机），他们可以拒绝任何形式的Taproot密钥途径支出，即仅使用单个签名的支出类型。但是，在创建自己的主根地址时提前做好准备的用户也可以使用脚本路径花费接收到该地址的比特币。在这种情况下，taproot地址将提交给用户想要使用的[tapscript](https://bitcoinops.org/en/topics/tapscript/)的哈希值 。该哈希承诺（ hash commitment ）可以作为[方案的](https://gist.github.com/harding/bfd094ab488fd3932df59452e5ec753f)一部分，转换为可以抵御QC攻击的新密码算法，或者-如果这种算法在QC成为威胁之前已针对比特币进行了标准化，则可以允许比特币的持有者立即转换到新方案。这仅在以下情况下有效：单个用户创建备份tapscript支出路径，如果他们不共享这些备份路径所涉及的任何公钥（包括BIP32 xpubs），并且在未对比特币造成太大损害之前就察觉到了强大的QC。
 
-  - *攻击是否现实？* 一位受访者认为，到本世纪末，快速的量子计算[是](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018658.html)“对预计进度太过乐观”。另一位受访者 [指出](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018649.html)，将单个慢速QC的设计转变为可以并行工作的QC系统是“相当简单的工程挑战”，仅需一小段时间即可获得结果-攻破任何针对P2PKH样式的哈希间接访问的保护。第三位受访者 [建议](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018648.html)构建特殊的比特币地址，只有在快速QC方面取得进展的人才能使用该地址。用户可以自愿将比特币捐赠给这些地址，以创建激励性的预警系统。
+  - **攻击是否现实？** 一位受访者认为，到本世纪末，快速的量子计算[是](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018658.html)“对预计进度太过乐观”。另一位受访者 [指出](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018649.html)，将单个慢速QC的设计转变为可以并行工作的QC系统是“相当简单的工程挑战”，仅需一小段时间即可获得结果-攻破任何针对P2PKH样式的哈希间接访问的保护。第三位受访者 [建议](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018648.html)构建特殊的比特币地址，只有在快速QC方面取得进展的人才能使用该地址。用户可以自愿将比特币捐赠给这些地址，以创建激励性的预警系统。
 
-  - *在激活taproot之后，我们可以添加哈希样式的地址：*如果大量用户确实认为突然出现强大的QC 会构成威胁，则可以使用后续的软分叉添加另一种使用散列的p2pkh风格的taproot地址类型。但是，这导致了一些受访者反对它的后果：
+  - **在激活taproot之后，我们可以添加哈希样式的地址：** 如果大量用户确实认为突然出现强大的QC 会构成威胁，则可以使用后续的软分叉添加另一种使用散列的p2pkh风格的taproot地址类型。但是，这导致了一些受访者反对它的后果：
 
     - 会造成混乱
     - 将使用更多的块空间
     - 可以直接或在使用诸如[环签名成员证明](https://twitter.com/n1ckler/status/1334240709814136833)或[Provisions](https://eprint.iacr.org/2015/1008)之类的协议时，[减小](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018667.html)taproot匿名集的大小
 
-  - *带宽/存储成本与CPU成本：*它通过从签名及其签名的事务数据中派生公钥，有[可能](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018643.html)消除哈希间接方式带来的额外32字节存储开销，这种技术称为密钥恢复。这再次遭到了反对。密钥恢复需要[占有大量的CPU资源](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018644.html)，这会减慢节点速度，同时也阻止了schnorr批处理验证的使用，而schnorr批处理验证可以使历史块验证速度提高三倍。这也[使](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018667.html)匿名成员身份证明和相关技术既难以开发，也占用大量CPU资源。也有[可能](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018646.html)是[专利](https://patents.google.com/patent/US7215773B1/en)的问题。
+  - **带宽/存储成本与CPU成本：** 它通过从签名及其签名的事务数据中派生公钥，有[可能](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018643.html)消除哈希间接方式带来的额外32字节存储开销，这种技术称为密钥恢复。这再次遭到了反对。密钥恢复需要[占有大量的CPU资源](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018644.html)，这会减慢节点速度，同时也阻止了schnorr批处理验证的使用，而schnorr批处理验证可以使历史块验证速度提高三倍。这也[使](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018667.html)匿名成员身份证明和相关技术既难以开发，也占用大量CPU资源。也有[可能](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018646.html)是[专利](https://patents.google.com/patent/US7215773B1/en)的问题。
 
     截至本文撰写之时，邮件列表的讨论似乎已经结束，并没有明显失去社区对taroot的支持。随着研究人员和企业不断提高量子计算的技术水平，我们预计未来会看到关于如何最好地维护比特币安全的讨论。
 
-- *每周主根激活会议：*[＃taprootroot-activation](https://webchat.freenode.net/##taproot-activation) IRC频道计划举办十次周会，时间在每个星期二UTC 19:00 ，讨论与激活[主根](https://bitcoinops.org/en/topics/taproot/)有关的细节，第一次[会议](http://gnusha.org/taproot-activation/2021-03-23.log)于昨天（3月23日）举行。
+- **每周主根激活会议：** [＃taprootroot-activation](https://webchat.freenode.net/##taproot-activation) IRC频道计划举办十次周会，时间在每个星期二UTC 19:00 ，讨论与激活[主根](https://bitcoinops.org/en/topics/taproot/)有关的细节，第一次[会议](http://gnusha.org/taproot-activation/2021-03-23.log)于昨天（3月23日）举行。
 
   
 
 ## 服务和客户端软件的变更
 
-*在本月度功能中，我们重点介绍了比特币钱包和服务的有趣更新。*
+**在本月度功能中，我们重点介绍了比特币钱包和服务的有趣更新。**
 
 - *OKCoin发布闪电存款和取款：* 一个[博客文章](https://blog.okcoin.com/2021/03/04/how-to-use-bitcoin-lightning-network/)概要OKCoin的闪电存款和取款的支持。结果，他们还将最低存款/取款限制从0.001 BTC降低到0.000001 BTC。而当前使用LN进行交易时，OKCoin的限制为0.05 BTC。
 - *BitMEX宣布支持bech32：* 在[博客中](https://blog.bitmex.com/introducing-bech32-deposits-on-bitmex-to-deepen-bitcoin-integration-lower-fees/)，BitMEX详细介绍了[bech32](https://bitcoinops.org/en/topics/bech32/)存款支持的启动计划 。BitMEX之前[已经](https://bitcoinops.org/en/newsletters/2019/12/18/#bitmex-bech32-send-support)推出了bech32提取（发送）的功能支持。
