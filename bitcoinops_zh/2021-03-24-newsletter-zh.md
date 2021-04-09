@@ -14,9 +14,9 @@ lang: zh
 
 # 新闻
 
-- **根据现有的共识规则签署授权：**想象 Alice想让Bob有能力使用她的一个UTXO，而无需立即创建链上交易或给Bob她的私钥。这就是所谓的*授权*，已经被讨论了很多年，也许是最值得注意的是最近作为[graftroot提案的](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2018-February/015700.html)一部分。上周，Jeremy Rubin在Bitcoin-Dev邮件列表中[发表](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018615.html)了一篇文章，描述了一种使用比特币实现委托的技术。
+- *根据现有的共识规则签署授权：*想象 Alice想让Bob有能力使用她的一个UTXO，而无需立即创建链上交易或给Bob她的私钥。这就是所谓的*授权*，已经被讨论了很多年，也许是最值得注意的是最近作为[graftroot提案的](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2018-February/015700.html)一部分。上周，Jeremy Rubin在Bitcoin-Dev邮件列表中[发表](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018615.html)了一篇文章，描述了一种使用比特币实现委托的技术。
 
-  假设Alice`UTXO_A`和Bob有`UTXO_B`。Alice建立了一个部分签署的交易，同时花费`UTXO_A`和`UTXO_B`。Alice使用Sighash标志[SIGHASH_NONE](https://btcinformation.org/en/developer-guide#term-sighash-none)为她的UTXO签名，这可以防止签名提交到事务的任何输出。这使交易中其他输入的所有者Bob可以对输出选择进行单方面控制，使用他的签名和正常`SIGHASH_ALL`标志来提交那些输出，并防止其他任何人修改事务。通过使用这种双重输入`SIGHASH_NONE`技巧，Alice将鲍Bob的签名权委托给了Bob。
+  假设Alice`UTXO_A`和Bob有`UTXO_B`。Alice建立了一个部分签署的交易，同时花费`UTXO_A`和`UTXO_B`。Alice使用Sighash标志[SIGHASH_NONE](https://btcinformation.org/en/developer-guide#term-sighash-none)为她的UTXO签名，这可以防止签名提交到事务的任何输出。这使交易中其他输入的所有者Bob可以对输出选择进行单方面控制，使用他的签名和正常`SIGHASH_ALL`标志来提交那些输出，并防止其他任何人修改交易事务。通过使用这种双重输入`SIGHASH_NONE`技巧，Alice将Bob的签名权委托给了Bob。
 
   这项技术似乎主要还是在理论上可行。还有其他建议的授权技术，包括graftroot， [ OP_CHECKTEMPLATEVERIFY](https://bitcoinops.org/en/topics/op_checktemplateverify/)和 [OP_CHECKSIGFROMSTACK](https://bitcoinops.org/en/topics/op_checksigfromstack/) -这些可能在几个方面都更优越，但目前只有这种技术在主网上可用，任何人都可以尝试使用它。
 
@@ -27,7 +27,7 @@ lang: zh
 
   Nakamoto从来没有描述过为什么要实现这两种方法，但是人们普遍认为，他添加了哈希间接方法是为了使比特币地址更小，从而可以更轻松地进行通信。原始比特币实现中的公钥为65字节，但地址哈希仅为20字节。
 
-  ​	此后的十年中，出现了许多发展。为了使某些multisig协议[在默认情况下简单并且安全](https://bitcoinops.org/en/bech32-sending-support/#address-security)，已确定多方协议的脚本必须遵循32字节的设定。比特币开发人员还了解了以前已知的技术，该技术可以将公钥压缩为33个字节---稍后介绍如何将其[优化](https://bitcoinops.org/en/newsletters/2019/05/29/#move-the-oddness-byte)为32个字节。最后，[taproot的主要创新](https://bitcoinops.org/en/newsletters/2018/12/28/#taproot)表明，一个32字节的公钥可以提交给脚本同时保证[安全性](https://bitcoinops.org/en/newsletters/2020/03/04/#taproot-in-the-generic-group-model)等同于32字节的哈希。所有这些都意味着人们必须通信的地址数据量不会再改变，无论他们使用哈希还是公钥---如果他们想要一种普遍适用的地址格式，无论使用哪种方式，都是32字节。但是，直接使用公钥仍然消除了哈希间接导致的额外带宽和存储。如果每次付款都使用公钥而不是32字节的哈希，那么每年将节省约13 GB的区块链空间。 该[BIP341](https://github.com/bitcoin/bips/blob/master/bip-0341.mediawiki) taproot的规范将空间节省的原因归结为它使用P2PK风格的公钥支付，而不是P2PKH风格的哈希。
+  ​	此后的十年中，有了许多的进展。为了使某些multisig协议[在默认情况下简单并且安全](https://bitcoinops.org/en/bech32-sending-support/#address-security)，已确定多方协议的脚本必须遵循32字节的设定。比特币开发人员还了解了以前已知的技术，该技术可以将公钥压缩为33个字节---稍后介绍如何将其[优化](https://bitcoinops.org/en/newsletters/2019/05/29/#move-the-oddness-byte)为32个字节。最后，[taproot的主要创新](https://bitcoinops.org/en/newsletters/2018/12/28/#taproot)表明，一个32字节的公钥可以提交给脚本同时保证[安全性](https://bitcoinops.org/en/newsletters/2020/03/04/#taproot-in-the-generic-group-model)等同于32字节的哈希。所有这些都意味着人们必须通信的地址数据量不会再改变，无论他们使用哈希还是公钥---如果他们想要一种普遍适用的地址格式，无论使用哪种方式，都是32字节。但是，直接使用公钥仍然消除了哈希间接导致的额外带宽和存储。如果每次付款都使用公钥而不是32字节的哈希，那么每年将节省约13 GB的区块链空间。 该[BIP341](https://github.com/bitcoin/bips/blob/master/bip-0341.mediawiki) taproot的规范将空间节省的原因归结为它使用P2PK风格的公钥支付，而不是P2PKH风格的哈希。
 
   ​	但是P2PKH哈希间接寻址确实具有一个优点：它可以在公共视图中隐藏密钥，直到需要对开销进行授权为止。这意味着有能力破坏公钥安全性的对手可能要等到事务被广播才能重新开始使用P2PKH哈希间接寻址,而且一旦交易被确认到一定的深度，他们可能就失去了窃取由这个密钥控制的资金的能力。这限制了它们攻击的时间，也就意味着慢速攻击可能无法奏效。虽然之前已经在taproot内容长度的选择上讨论过直接使用P2PK风格下的公钥（见[1](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2018-January/015620.html)，[2](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2018-December/016556.html)，和newsletters [＃70](https://bitcoinops.org/en/newsletters/2019/10/30/#why-does-hashing-public-keys-not-actually-provide-any-quantum-resistance)和[＃86](https://bitcoinops.org/en/newsletters/2020/02/26/#could-taproot-create-larger-security-risks-or-hinder-future-protocol-adjustments-re-quantum-threats)），这是本周比特币开发者邮件列表上[重新讨论](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018641.html)的话题，此前，一份反对taroot的电子邮件被公开，反对原因是出于考虑到我们可能会看到一台强大到足以“在这个十年结束时”攻击比特币式公钥的量子计算机。
 
