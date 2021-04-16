@@ -55,25 +55,25 @@ lang: zh
 
 - [如何将Bitcoin Core和匿名网络协议I2P配合使用？](https://bitcoin.stackexchange.com/a/103402)
 
-  随着Bitcoin Core＃20685的合并，比特币支持I2P网络。Michael Folkson总结了Jon Atack的关于如何配置比特币核心以使用I2P的原始**线程**。
+  随着 [Bitcoin Core #20685](https://bitcoinops.org/en/newsletters/2021/03/10/#bitcoin-core-20685)的合并，比特币开始支持I2P网络。Michael Folkson总结了Jon Atack关于如何配置比特币核心以使用I2P的[原始思路](https://twitter.com/jonatack/status/1366764964896075776?s=20)。
 
   
 
 - [比默认内存池更大的节点是否会重新传输那些从较小的内存池中被删除了的交易？](https://bitcoin.stackexchange.com/a/103104)
 
-  Pieter Wuille指出，目前交易的重新广播是[钱包的职责](https://bitcoin.stackexchange.com/questions/103261/does-my-node-rebroadcast-its-mempool-transactions-on-startup/103262#103262)，或许节点也应该重新广播未确认交易，并指出 [Bitcoin Core #21061](https://github.com/bitcoin/bitcoin/issues/21061) 正在朝着这个目标努力。
+  Pieter Wuille指出，交易的重新广播目前是[钱包的必要功能](https://bitcoin.stackexchange.com/questions/103261/does-my-node-rebroadcast-its-mempool-transactions-on-startup/103262#103262)，或许节点也应该重新广播未确认交易，并指出 [Bitcoin Core #21061](https://github.com/bitcoin/bitcoin/issues/21061) 正在朝着这个目标努力。
 
   
 
 - [在软分叉激励机制中应该使用区块高度、中位时间过去（MTP ）或者这两者的混合产物吗？](https://bitcoin.stackexchange.com/a/103854)
 
-  David A. Harding概述了中位时间过去（MTP）和区块高度两者作为比特币内的计时机制的优缺点。 MTP大致对应于时钟时间，但可以由矿工操纵以跳过**信令周期。**区块高度不一致，但也无法像MTP一样具有**可玩性。（miner-gameable）**
+  David A. Harding概述了中位时间过去（MTP）和区块高度两者作为比特币内的计时机制的优缺点。 MTP大致对应于时钟时间，但可以由矿工操纵以跳过信号周期。区块高度不是时间连贯的（是离散的），但也无法像MTP一样具有那么强的矿工可操作性。
 
   
 
-- 为什么建议“付款时不要发送**整数金额**”以增加隐私？（round number）
+- [为什么建议“付款时不要发送整数金额”以增加隐私？](https://bitcoin.stackexchange.com/a/103260) 
 
-User chytrik 提供了不同的示例来说明**整数试探**以及避免支付整数金额会更好地保护隐私的原因。
+  使用者 chytrik 提供了不同的示例来说明[整数试探](https://en.bitcoin.it/wiki/Privacy#Round_numbers) 以及避免支付整数金额会更好地保护隐私的原因。
 
 
 
@@ -85,7 +85,7 @@ User chytrik 提供了不同的示例来说明**整数试探**以及避免支付
 
 [●](https://bitcoinops.org/en/newsletters/2021/03/31/#hwi-2-0-1) [HWI 2.0.1](https://github.com/bitcoin-core/HWI/releases/tag/2.0.1) 是补丁修正的版本，该版本解决hwi-qt用户界面中Trezor T密码输入和键盘快捷键的小问题。
 
-[●](https://bitcoinops.org/en/newsletters/2021/03/31/#c-lightning-0-10-0-rc2) [C-Lightning 0.10.0-rc2](https://github.com/ElementsProject/lightning/releases/tag/v0.10.0rc2) 是此**LN节点软件**的下一个主要版本的候选版本。
+[●](https://bitcoinops.org/en/newsletters/2021/03/31/#c-lightning-0-10-0-rc2) [C-Lightning 0.10.0-rc2](https://github.com/ElementsProject/lightning/releases/tag/v0.10.0rc2) 是此闪电网络（LN）节点软件的下一个主要版本的候选版本。
 
 
 
@@ -95,15 +95,13 @@ User chytrik 提供了不同的示例来说明**整数试探**以及避免支付
 
 *[Bitcoin Core](https://github.com/bitcoin/bitcoin), [C-Lightning](https://github.com/ElementsProject/lightning), [Eclair](https://github.com/ACINQ/eclair), [LND](https://github.com/lightningnetwork/lnd/), [Rust-Lightning](https://github.com/rust-bitcoin/rust-lightning), [libsecp256k1](https://github.com/bitcoin-core/secp256k1), [Hardware Wallet Interface (HWI)](https://github.com/bitcoin-core/HWI), [Rust Bitcoin](https://github.com/rust-bitcoin/rust-bitcoin), [BTCPay Server](https://github.com/btcpayserver/btcpayserver/), [Bitcoin Improvement Proposals (BIPs)](https://github.com/bitcoin/bips/), and [Lightning BOLTs](https://github.com/lightningnetwork/lightning-rfc/).*
 
-[Bitcoin Core #17227](https://github.com/bitcoin/bitcoin/issues/17227) 添加了一个新的make apk目标到构建系统，**该目标**将用于Android操作系统的bitcoin-qt打包。 这将继续之前的工作，即为打包Android NDK增加支持。 还包括用于构建Android版本的Bitcoin Core的文档以及用于测试Android构建系统的持续集成工作。
+- [Bitcoin Core #17227](https://github.com/bitcoin/bitcoin/issues/17227) 添加了一个新的`make apk`指令来构建系统，用于Android操作系统的bitcoin-qt打包。 这将继续之前的工作，即为打包Android NDK增加支持。 还包括用于构建Android版本的Bitcoin Core的文档以及用于测试Android构建系统的持续集成工作。
 
-[Rust-Lightning #849](https://github.com/rust-bitcoin/rust-lightning/issues/849) 
+- [Rust-Lightning #849](https://github.com/rust-bitcoin/rust-lightning/issues/849) 使信道的`cltv_expiry_delta`可配置，并将默认值从72个块减少到36个块。 该参数设置了一个节点在从其下游节点获悉是否支付成功后必须与上游节点进行支付尝试的截止时间。它必须足够长，使其在必要时确认链上事务，但也应足够短，以使其与试图减小延误可能性的其他节点相比有竞争性。 另请参阅[Newsletter #40](https://bitcoinops.org/en/newsletters/2019/04/02/#lnd-2759)，其中LND将其值减小到40个区块。
 
-使信道的cltv_expiry_delta可配置，并将默认值从72个块减少到36个块。 该参数把一个节点在从其下游节点获悉是否支付成功后必须与上游节点结算付款尝试设置为截止时间。它必须足够长，使其在必要时确认链上交易，但也应足够短，以使其与试图减小延误可能性的其他节点相比有竞争性。 另请参阅Newsletter#40，其中LND将其值减小到40个区块。
+- [C-Lightning #4427](https://github.com/ElementsProject/lightning/issues/4427) 通过使用配置选项`--experimental-dual-fund`，可以尝试使用[双重注资(dual funded)](https://bitcoinops.org/en/topics/dual-funding/) 的支付渠道。双重注资允许初始通道余额的资金由初始化通道的节点和接受通道的节点共同出资，这对于希望在通道完成开放后立即开始接收付款的商家和其他用户很有用。
 
-[C-Lightning #4427](https://github.com/ElementsProject/lightning/issues/4427) 通过使用配置选项--experimental-dual-fund，可以尝试使用双重资助的支付渠道。双重注资允许初始**渠道**余额的资金由初始渠道的节点和接收渠道的节点共同出资，这对于希望在渠道完成开放后立即开始接收付款的商家和其他用户很有用。
+- [Eclair #1738](https://github.com/ACINQ/eclair/issues/1738) 更新在使用[锚定输出](https://bitcoinops.org/en/topics/anchor-outputs/)时对被撤销的[HTLCs](https://bitcoinops.org/en/topics/htlc/)的惩罚执行机制。这是一个和锚定输出无关的更改，但是在将它们添加到协议中的同时生效（introduced),就可以将多个`SIGHASH_SINGLE | SIGHASH_ANYONECANPAY HTLC`输出到单个交易中（请参阅[Newsletter #128](https://bitcoinops.org/en/newsletters/2020/12/16/#bolts-803)。该PR确保在每笔交易中，所有有撤销密钥可以使用的输出都可以索赔而不是每笔交易只能索赔一个）。
 
-[Eclair #1738](https://github.com/ACINQ/eclair/issues/1738) 更新在使用输出锚点时对已撤销的HTLCs的惩罚机制。一个无关输出锚的更改，但是在将它们添加到协议中的同时**生效**（introduced),就可以将多个SIGHASH_SINGLE | SIGHASH_ANYONECANPAY HTLC输出到单个交易中（请参阅Newsletter#128）。**该PR确保在每笔交易中，所有有撤销密钥可以使用的输出都可以索赔而不是每笔交易只能索赔一个。**
-
-[●](https://bitcoinops.org/en/newsletters/2021/03/31/#bips-1080) [BIPs #1080](https://github.com/bitcoin/bips/issues/1080) 更新BIP8中的一个nimum_activation_height参数，**该参数将延迟节点开始执行锁定的软分叉的时间，直到超过指定高度。**
+- [BIPs #1080](https://github.com/bitcoin/bips/issues/1080) 更新 [BIP8](https://github.com/bitcoin/bips/blob/master/bip-0008.mediawiki) 中的一个`nimum_activation_height`参数，该参数将延迟节点开始执行锁定的软分叉的时间，直到超过指定高度。这使得BIP8与快速试验提案(见 [Newsletter #139](https://bitcoinops.org/en/newsletters/2021/03/10/#a-short-duration-attempt-at-miner-activation))兼容，该提案允许矿工激活 [taproot](https://bitcoinops.org/en/topics/taproot/)，但直到实施快速试验的软件发布大约6个月后才开始执行taproot的规则。
 
