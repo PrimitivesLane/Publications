@@ -14,7 +14,7 @@ lang: zh
 
 ## 行动项目
 
-- **BTCPay Server 升级至1.0.7.1:**根据项目的发行说明， [该版本](https://github.com/btcpayserver/btcpayserver/releases/tag/v1.0.7.1)修复了“影响
+- **BTCPay Server 升级至1.0.7.1:** 根据项目的发行说明， [该版本](https://github.com/btcpayserver/btcpayserver/releases/tag/v1.0.7.1)修复了“影响
 
   BTCPay Server 1.0.7.0版本甚至更早期的版本中存在的一个关键漏洞和几个影响较小的漏洞”。
 
