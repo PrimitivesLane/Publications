@@ -22,7 +22,7 @@ lang: zh
 
 ## 新闻
 
-**关于概率路径选择（probabilistic path selection）的论文：**René Pickhardt在Lightning-Dev 的邮件列表里 [上传](https://lists.linuxfoundation.org/pipermail/lightning-dev/2021-March/002984.html) 了一篇其与Sergei Tikhomirov, Alex Biryukov, and Mariusz Nowostawski一起合著的 [论文](https://arxiv.org/abs/2103.08576) 。这篇文章建立了在信道容量范围内余额均衡分布的信道网络模型。例如，在Alice 和Bob之间有一个容量是1亿聪的信道，该论文假设以下所有状态均相同，在网络上的所有其他信道也是如此：
+**关于概率路径选择（probabilistic path selection）的论文：**René Pickhardt在Lightning-Dev 的邮件列表里 [发表](https://lists.linuxfoundation.org/pipermail/lightning-dev/2021-March/002984.html) 了一篇其与Sergei Tikhomirov, Alex Biryukov, and Mariusz Nowostawski一起合著的 [论文](https://arxiv.org/abs/2103.08576) 。这篇文章建立了在信道容量范围内余额均衡分布的信道网络模型。例如，在Alice 和Bob之间有一个容量是1亿聪的信道，该论文假设以下所有状态均相同，在网络上的所有其他信道也是如此：
 
 | Alice           | Bob             |
 | --------------- | --------------- |
@@ -31,9 +31,9 @@ lang: zh
 | …               | …               |
 | 100,000,000 sat | 0 sat           |
 
-做该假设可以使得作者们基于交易额和其所需经历的跳数（通道数）得出支付成功的概率。这使作者能够证明几种已知启发式算法的好处----例如保持路径短，并使用[多路径支付](https://bitcoinops.org/en/topics/multipath-payments/)将较大的交易分成较小的交易（在某些其他假设下）。他们还使用该模型评估新提案，如通过 [bolts #780](https://github.com/lightningnetwork/lightning-rfc/issues/780)来保证[Just-In-Time (JIT)再平衡](https://bitcoinops.org/en/topics/jit-routing/)。
+做该假设可以使得作者们基于交易额和其所需经历的跳数（通道数）得出支付成功的概率。这使作者能够证明几种已知启发式算法的好处----例如保持路径短，并使用[多路径支付](https://bitcoinops.org/en/topics/multipath-payments/)将较大的交易分成较小的交易（在某些其他假设下）。他们还使用该模型评估新提案，如通过 [bolts #780](https://github.com/lightningnetwork/lightning-rfc/issues/780)来保证[即时 (JIT)再平衡](https://bitcoinops.org/en/topics/jit-routing/)。
 
-这篇论文利用其结论提供了一种路由算法，此算法声称与简化现有的路由算法相比，它可以将支付重试次数减少20%。新算法更倾向于计算成功率更高的路由，而现有算法则使用启发式方法。结合JIT再平衡，他们估计可以提高48％。 鉴于每次重试通常需要几秒钟，并且在某些情况下可能需要更长的时间，因此该算法可以提供更好的用户体验。 **该算法针对多个示例网络进行了测试**，其中包括从近1,000个活跃信道的快照中提取的网络。
+这篇论文利用其结论提供了一种路由算法，此算法声称与简化现有的路由算法相比，它可以将支付重试次数减少20%。新算法更倾向于计算成功率更高的路由，而现有算法则使用启发式方法。结合即时再平衡，他们估计可以提高48％。 鉴于每次重试通常需要几秒钟，并且在某些情况下可能需要更长的时间，因此该算法可以提供更好的用户体验。 **该算法针对多个示例网络进行了测试**，其中包括从近1,000个活跃信道的快照中提取的网络。
 
 该论文有意不考虑路由费，邮件列表上的大多数回复都集中在如何使用该成果上，同时仍得确保用户不会支付过多的费用。关于 [支付批处理文章](https://bitcoinops.org/en/payment-batching/)的更新：Optech发布过一篇关于支付批处理的文章，该文章是对我们在 [Newsletter #37](https://bitcoinops.org/en/newsletters/2019/03/12/#optech-publishes-book-chapter-about-payment-batching) 公告原文的更新。 支付批处理是一项可以帮助付款方节省多达80％交易手续费的技术。
 
@@ -49,7 +49,7 @@ lang: zh
 
 - [如何计算98%的比特币在何时被挖完？](https://bitcoin.stackexchange.com/a/103159)
 
-  Murch预估98%的比特币将于2030年至2031年被挖完，同时他也链接了一个附有额外量度的[奖励计划表](https://docs.google.com/spreadsheets/d/12tR_9WrY0Hj4AQLoJYj9EDBzfA38XIVLQSOOOVePNm0/edit#gid=0)。
+  Murch预估98%的比特币将于2030年至2031年被挖完，同时他也给出了一个附有额外指标的[奖励计划表](https://docs.google.com/spreadsheets/d/12tR_9WrY0Hj4AQLoJYj9EDBzfA38XIVLQSOOOVePNm0/edit#gid=0)。
 
   
 
@@ -59,9 +59,9 @@ lang: zh
 
   
 
-- [比默认内存池更大的节点是否会重新传输那些从较小的内存池中被删除了的交易？](https://bitcoin.stackexchange.com/a/103104)
+- [比默认内存池更大的节点是否会重新传输那些从较小的内存池中被删除了的事务？](https://bitcoin.stackexchange.com/a/103104)
 
-  Pieter Wuille指出，交易的重新广播目前是[钱包的必要功能](https://bitcoin.stackexchange.com/questions/103261/does-my-node-rebroadcast-its-mempool-transactions-on-startup/103262#103262)，或许节点也应该重新广播未确认交易，并指出 [Bitcoin Core #21061](https://github.com/bitcoin/bitcoin/issues/21061) 正在朝着这个目标努力。
+  Pieter Wuille指出，事务的重新广播目前是[钱包的必要功能](https://bitcoin.stackexchange.com/questions/103261/does-my-node-rebroadcast-its-mempool-transactions-on-startup/103262#103262)，或许节点也应该重新广播未确认事务，并指出 [Bitcoin Core #21061](https://github.com/bitcoin/bitcoin/issues/21061) 正在朝着这个目标努力。
 
   
 
@@ -83,7 +83,7 @@ lang: zh
 
 [●](https://bitcoinops.org/en/newsletters/2021/03/31/#btcpay-server-1-0-7-1) [BTCPay Server 1.0.7.1](https://github.com/btcpayserver/btcpayserver/releases/tag/v1.0.7.1) 修复了几个安全漏洞。 它还包括一系列改进和非安全性漏洞的修复。
 
-[●](https://bitcoinops.org/en/newsletters/2021/03/31/#hwi-2-0-1) [HWI 2.0.1](https://github.com/bitcoin-core/HWI/releases/tag/2.0.1) 是补丁修正的版本，该版本解决hwi-qt用户界面中Trezor T密码输入和键盘快捷键的小问题。
+[●](https://bitcoinops.org/en/newsletters/2021/03/31/#hwi-2-0-1) [HWI 2.0.1](https://github.com/bitcoin-core/HWI/releases/tag/2.0.1) 是补丁修正的版本，该版本解决 hwi-qt 用户界面中Trezor T 密码输入和键盘快捷键的小问题。
 
 [●](https://bitcoinops.org/en/newsletters/2021/03/31/#c-lightning-0-10-0-rc2) [C-Lightning 0.10.0-rc2](https://github.com/ElementsProject/lightning/releases/tag/v0.10.0rc2) 是此闪电网络（LN）节点软件的下一个主要版本的候选版本。
 
@@ -101,7 +101,7 @@ lang: zh
 
 - [C-Lightning #4427](https://github.com/ElementsProject/lightning/issues/4427) 通过使用配置选项`--experimental-dual-fund`，可以尝试使用[双重注资(dual funded)](https://bitcoinops.org/en/topics/dual-funding/) 的支付渠道。双重注资允许初始通道余额的资金由初始化通道的节点和接受通道的节点共同出资，这对于希望在通道完成开放后立即开始接收付款的商家和其他用户很有用。
 
-- [Eclair #1738](https://github.com/ACINQ/eclair/issues/1738) 更新在使用[锚定输出](https://bitcoinops.org/en/topics/anchor-outputs/)时对被撤销的[HTLCs](https://bitcoinops.org/en/topics/htlc/)的惩罚执行机制。这是一个和锚定输出无关的更改，但是在将它们添加到协议中的同时生效（introduced),就可以将多个`SIGHASH_SINGLE | SIGHASH_ANYONECANPAY HTLC`输出到单个交易中（请参阅[Newsletter #128](https://bitcoinops.org/en/newsletters/2020/12/16/#bolts-803)。该PR确保在每笔交易中，所有有撤销密钥可以使用的输出都可以索赔而不是每笔交易只能索赔一个）。
+- [Eclair #1738](https://github.com/ACINQ/eclair/issues/1738) 更新在使用[锚定输出](https://bitcoinops.org/en/topics/anchor-outputs/)时对被撤销的[HTLCs](https://bitcoinops.org/en/topics/htlc/)的惩罚执行机制。这是一个和锚定输出无关的更改，但是在将它们添加到协议中的同时生效（introduced),就可以将多个`SIGHASH_SINGLE | SIGHASH_ANYONECANPAY HTLC`输出到单个交易中（请参阅[Newsletter #128](https://bitcoinops.org/en/newsletters/2020/12/16/#bolts-803)。该PR确保在每笔交易中，所有可以使用撤销密钥支付的输出都可以索赔而不是每笔交易只能索赔一个）。
 
 - [BIPs #1080](https://github.com/bitcoin/bips/issues/1080) 更新 [BIP8](https://github.com/bitcoin/bips/blob/master/bip-0008.mediawiki) 中的一个`nimum_activation_height`参数，该参数将延迟节点开始执行锁定的软分叉的时间，直到超过指定高度。这使得BIP8与快速试验提案(见 [Newsletter #139](https://bitcoinops.org/en/newsletters/2021/03/10/#a-short-duration-attempt-at-miner-activation))兼容，该提案允许矿工激活 [taproot](https://bitcoinops.org/en/topics/taproot/)，但直到实施快速试验的软件发布大约6个月后才开始执行taproot的规则。
 
