@@ -14,7 +14,7 @@ lang: zh
 
 ## 新闻
 
-- **关于激活Taproot 的探讨** 自我们上次在 [Newsletter #139](https://bitcoinops.org/en/newsletters/2021/03/10/#taproot-activation-discussion)中更新关于探讨Taproot软分叉的激活方式之后，快速试验（Speedy Trial ）方案已成为那些对激活Taproot感兴趣的人所关注的焦点。从这个方案展开出来两个方向的PRs：[PR#21377](https://github.com/bitcoin/bitcoin/issues/21377) （使用在[BIP9](https://github.com/bitcoin/bips/blob/master/bip-0009.mediawiki) 中的一个变体）和[PR#21392](https://github.com/bitcoin/bitcoin/issues/21392) （使用已成为[BIP8](https://github.com/bitcoin/bips/blob/master/bip-0008.mediawiki) 一部分的一个变体）。这些PR之间的主要技术差异是在于规定其起点和终点的方式。 PR＃21377使用的是时间戳中位数([MTP](https://bitcoin.stackexchange.com/a/67622/21052))； PR＃21392使用的是当前区块的高度。
+**关于激活Taproot 的探讨** 自我们上次在 [Newsletter #139](https://bitcoinops.org/en/newsletters/2021/03/10/#taproot-activation-discussion)中更新关于探讨Taproot软分叉的激活方式之后，快速试验（Speedy Trial ）方案已成为那些对激活Taproot感兴趣的人所关注的焦点。从这个方案展开出来两个方向的PRs：[PR#21377](https://github.com/bitcoin/bitcoin/issues/21377) （使用在[BIP9](https://github.com/bitcoin/bips/blob/master/bip-0009.mediawiki) 中的一个变体）和[PR#21392](https://github.com/bitcoin/bitcoin/issues/21392) （使用已成为[BIP8](https://github.com/bitcoin/bips/blob/master/bip-0008.mediawiki) 一部分的一个变体）。这些PR之间的主要技术差异是在于规定其起点和终点的方式。 PR＃21377使用的是时间戳中位数([MTP](https://bitcoin.stackexchange.com/a/67622/21052))； PR＃21392使用的是当前区块的高度。
 
 比特币的主网（mainnet）及其各种测试网（例如testnet，默认的 [signet](https://bitcoinops.org/en/topics/signet/)网络和各种独立的signet网络）的MTP（时间戳中位数）基本一致。这使得多个网络即使有截然不同的区块高度，它们也可以共享一组激活参数，从而最大程度地减少了保持网络用户与主网的共识更改同步时产生的工作量。
 
