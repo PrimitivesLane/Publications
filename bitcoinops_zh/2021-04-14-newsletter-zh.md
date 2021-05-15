@@ -22,7 +22,7 @@ lang: zh
 
 在两项提案之间以及其他顾虑间的这些权衡取舍造成了一种僵局，一些开发人员认为这种僵局阻碍了两项PR获得额外的审计，并且最终其中一方将合并到Bitcoin Core中。这一僵局最终得到了解决，给了激活讨论的一些参与者满意的结果，因为两个PRs的作者同意达成妥协了:
 
-1.用MTP(时间戳中位数）表示在节点开始对软分叉的块信令进行计数的时间，并且计数会从开始时间之后的下一个2,016块重定向目标周期的开始处进行。这与[BIP9](https://github.com/bitcoin/bips/blob/master/bip-0009.mediawiki) （versionbits模块）和 [BIP148](https://github.com/bitcoin/bips/blob/master/bip-0148.mediawiki) （UASF 用户激活软分叉）开始为其帮助激活过的软分叉做区块计数的方式相同。
+1. 用MTP(时间戳中位数）表示在节点开始对软分叉的块信令进行计数的时间，并且计数会从开始时间之后的下一个2,016块重定向目标周期的开始处进行。这与[BIP9](https://github.com/bitcoin/bips/blob/master/bip-0009.mediawiki) （versionbits模块）和 [BIP148](https://github.com/bitcoin/bips/blob/master/bip-0148.mediawiki) （UASF 用户激活软分叉）开始为其帮助激活过的软分叉做区块计数的方式相同。
 
 2. 也用MTP(时间戳中位数）表示在节点终止对尚未被锁定的软分叉的块信令进行计数的时间。但与BIP9不同的是，只有在执行计数的重定向目标周期结束时才会检查 MTP终止时间。这取消了从启动直接变成失败的激活尝试功能，简化了分析过程，并确保至少有一个完整的2,016个区块周期，使得矿工可以在这期间发出激活信号。
 
