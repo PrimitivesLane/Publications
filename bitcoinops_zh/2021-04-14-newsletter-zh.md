@@ -8,7 +8,7 @@ layout: newsletter
 lang: zh
 ```
 
-本周简报将总结关于激活Taproot的代码方面的最新进展 ，还包括我们的常规板块，即最近Bitcoin Core PR Review Club（Bitcoin Core审查俱乐部）会议的介绍，以及比特币基础软件的重要更新。
+本周简报总结了关于激活Taproot的代码方面的最新进展 ，还包括我们的常规板块，即最近Bitcoin Core PR Review Club（Bitcoin Core审查俱乐部）会议的介绍，以及比特币基础软件的重要更新。
 
 
 
