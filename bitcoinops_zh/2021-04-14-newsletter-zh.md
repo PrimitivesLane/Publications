@@ -8,7 +8,7 @@ layout: newsletter
 lang: zh
 ```
 
-本周简报总结了关于激活Taproot的代码方面的最新进展 ，还包括我们的常规板块，即最近Bitcoin Core PR Review Club（Bitcoin Core审查俱乐部）会议的介绍，以及比特币基础软件的重要更新。
+本周简报总结了关于激活Taproot的代码方面的最新进展 ，还包括我们的常规板块，即最近Bitcoin Core PR Review Club（Bitcoin Core 审核俱乐部）会议的介绍，以及比特币基础软件的重要更新。
 
 
 
@@ -38,11 +38,11 @@ lang: zh
 
 [Introduce deploymentstatus](https://bitcoincore.reviews/19438)（介绍部署状态）是Anthony Towns的PR([#19438](https://github.com/bitcoin/bitcoin/issues/19438))，他提出的3个辅助函数，以便 [更容易地隐藏(bury)未来的部署，而无需更改检查软分叉激活状态的所有代码路径](https://github.com/bitcoin/bitcoin/pull/11398#issuecomment-335599326) ：`DeploymentEnabled`测试部署是否可以活跃，`DeploymentActiveAt`检查是否应在给定的区块中强制执行部署，`DeploymentActiveAfter`了解是否应在后面的区块中强制执行部署，这3个函数对嵌入式部署和version bits部署都有效。
 
-审查俱乐部的讨论集中在理解这些变更和其潜在的好处。
+审核俱乐部的讨论集中在理解这些变更和其潜在的好处。
 
 <details >
 <summary>与<a href='https://github.com/bitcoin/bips/blob/master/bip-0090.mediawiki'> BIP9</a>版本位部署相比，<a href='https://github.com/bitcoin/bips/blob/master/bip-0090.mediawiki'>BIP90</a>埋藏式部署(Buried Deployments)有哪些优势？</summary>
-埋藏式部署(Buried Deployments)通过用简单的块高检查代替控制执行的测试来简化部署的逻辑，从而减小与部署这些共识更改相关的技术负担。 
+埋藏式部署(Buried Deployments)通过用简单的块高检查代替控制执行的测试来简化部署的逻辑，从而减小与部署这些共识更改相关的技术债。 
 </details>
 
 <details >
@@ -79,7 +79,7 @@ lang: zh
 ## 附注：
 
 1. 如果区块链上的每个区块都具有相同的单独工作量证明（PoW），那么累积的PoW最大的有效链也将是最长的链，即最新区块的高度最大的链。但是，比特币协议每产生2016个区块就会调整新区块需要包含的PoW的难度值，从而增加或减少需要证明的工作，以使区块间隔的平均时间保持在10分钟左右。 这意味着，具有较少区块的的链可能比具有较多区块的链具有更大的工作量证明。
-- 比特币用户使用PoW最多（拥有最大工作量证明）的链（而不是区块最多）来确定他们是否收到了钱。 当用户看到该链上的有效变体，变体末端的某些区块已被不同的区块替换时，如果该重组链包含的PoW比其当前链更多，则他们将使用该重组链。 因为重组链可能包含更少的块，但是有更多的累积PoW，所以它的链的高度还是可能降低。
+- 比特币用户使用PoW最多（拥有最大工作量证明）的链（而不是区块最多）来确定他们是否收到了钱。 当用户看到一条末端的某些区块被不同的区块替换的变种的链时，如果该重组链包含的工作量证明比其当前链更多，则他们将使用该重组链。 因为重组链可能包含更少的块，但是有更多的累积工作量证明，所以链的高度可能降低。
 
-- 虽然这是一个理论上的顾虑，但通常不是实际应用中的问题。 只有在重组部分越过一组2016个块和另一组2016个块之间的重定目标边界中的至少一个时，才有可能降低高度。 涉及大量区块或最近所需的PoW量发生重大变化时链也需要被重组（即预示着算力最近大幅上升或下降，或矿工进行了可观察到的操纵）。 在[BIP8](https://github.com/bitcoin/bips/blob/master/bip-0008.mediawiki)的文章中，我们不认为在激活时已降低高度的重组链对用户的影响会比更常规的重组链更大。
+- 虽然这是一个理论上的顾虑，但通常不是实际应用中的问题。 只有在重组部分越过一组2016个块和另一组2016个块之间的重定目标边界中的至少一个时，才有可能降低高度。 涉及大量区块或最近所需的PoW量发生重大变化时链也需要被重组（即预示着算力最近大幅上升或下降，或矿工进行了可观察到的操纵）。 在[BIP8](https://github.com/bitcoin/bips/blob/master/bip-0008.mediawiki)的语境下，我们不认为在激活时降低高度的重组对用户的影响会比更常规的重组行为更大。
 
