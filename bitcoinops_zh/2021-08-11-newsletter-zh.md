@@ -7,6 +7,7 @@ type: newsletter
 layout: newsletter
 lang: zh
 ```
+
 本周的简报继续了之前对JoinMarket中fidelity bonds的介绍，还包含了我们常规的Bitcoin Core PR Review Club会议的总结，学习taproot的建议，发布和候选发布功能的公布，以及一些对主流基础设施项目更新的介绍。
 
 ## News
@@ -21,26 +22,31 @@ lang: zh
 
 <details><summary>GetTransaction从磁盘上获取交易有哪些不同方式？
 </summary>
+
 交易可以从mempool中获取（如果未确认），或者通过从磁盘中获取整个块并搜索交易，或者使用txindex从磁盘中直接获取交易。[➚](https://bitcoincore.reviews/22383#l-33)
 </details>
 
 <details><summary>为什么你认为使用区块哈希值（启用txindex时）的方式性能会变差？
 </summary>
+
 与会者猜测，瓶颈在于区块的反序列化。另一个问题也是使用这个方式独有的--尽管不那么耗时--是对整个交易列表的线性搜索。[➚](https://bitcoincore.reviews/22383#l-42)
 </details>
 
 <details><summary>如果我们按区块哈希查找交易会有哪些步骤？有多少数据是被反序列化的？
 </summary>
+
 我们首先使用区块索引来找到访问区块所需的文件和字节偏移。然后我们获取并反序列化整个区块，在交易列表中扫描，直到找到匹配的交易。这涉及到对大约1-2MB的数据进行反序列化。[➚](https://bitcoincore.reviews/22383#l-56)
 </details>
 
 <details><summary>如果我们使用txindex来查询交易会有哪些步骤？有多少数据是被反序列化的？
 </summary>
+
 txindex将交易id映射到文件、块的位置（类似于块索引）以及blk*.dat文件中的交易开始位置的偏移量。我们获取并反序列化块头和交易。区块头是80B，可以用于向用户返回区块哈希（这是不存储在txindex中的信息）。交易可以是任何大小，但通常比区块小几千倍。[➚](https://bitcoincore.reviews/22383#l-88)
 </details>
 
 <details><summary>这个PR的第一个版本包括一个行为改变：当提供给GetTransaction的block_index不正确时，用txindex找到并返回tx。你认为这个变化是一个改进么？是否应该包括在这个PR中？
 </summary>
+
 与会者同意，这可能是有帮助的，但会产生误导。通知用户错误的区块哈希被输入会更好。他们还指出，性能改进和行为改变最好分成单独的PR。[➚](https://bitcoincore.reviews/22383#l-128)
 </details>
 
