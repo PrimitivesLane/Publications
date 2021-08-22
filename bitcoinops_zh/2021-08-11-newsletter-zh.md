@@ -8,7 +8,7 @@ layout: newsletter
 lang: zh
 ```
 
-本周的简报继续了之前对JoinMarket中忠诚保证保险的介绍，还包含了我们常规的比特币核心PR审核俱乐部会议的总结，学习taproot的建议，发布和候选发布功能的公布，以及一些对主流基础设施项目更新的介绍。
+本周的Newsletter继续了之前对JoinMarket中忠诚保证保险的介绍，还包含了我们常规的比特币核心PR审核俱乐部会议的总结，学习taproot的建议，发布和候选发布功能的公布，以及一些对主流基础设施项目更新的介绍。
 
 ## 新闻
 - **实现忠诚保证保险**：[JoinMarket 0.9.0](https://github.com/JoinMarket-Org/joinmarket-clientserver/releases/tag/v0.9.0)对[coinjoin](https://bitcoinops.org/en/topics/coinjoin/)的实现包含了对[忠诚保证保险](https://gist.github.com/chris-belcher/18ea0e6acdb885a2bfbdee43dcd6b5af/)的[支持](https://github.com/JoinMarket-Org/joinmarket-clientserver/blob/master/docs/release-notes/release-notes-0.9.0.md#fidelity-bond-for-improving-sybil-attack-resistance)。如之前在[Newsletter#57](https://bitcoinops.org/en/newsletters/2019/07/31/#fidelity-bonds-for-improved-sybil-resistance)中的介绍，忠诚保证保险提升了JoinMarket系统抵抗女巫攻击的能力，提升了coinjoin的发起者（takers）选择独特的流动性提供者（makers）的能力。在发布后的几天内，超过50个BTC（目前价值超过200万美元）已经被放在带时间锁定的忠诚保证保险里。
