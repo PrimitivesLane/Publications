@@ -20,7 +20,7 @@ lang: zh
 ## 服务和客户端软件更新
 *在这个月的专题中，我们重点介绍比特币钱包和服务的有趣更新。*
 
-- **Spark Lightning Wallet增加了对BOLT12<sup>[1](#myfootnote1)</sup>
+- **Spark Lightning Wallet增加了对BOLT12<sup>[[1]](#myfootnote1)</sup>
 的支持**：[Spark](https://github.com/shesek/spark-wallet)的[v0.3.0rc版本](https://github.com/shesek/spark-wallet/releases/tag/v0.3.0rc)增加了对BOLT12 [offers](https://bitcoinops.org/en/topics/offers/)的部分支持。
 
 - **Blockstream宣发非托管LN云服务，Greenlight**：在最近的一篇[博客文章](https://blockstream.com/2021/07/21/en-greenlight-by-blockstream-lightning-made-easy/)中，Blockstream详细介绍了他们的C-Lightning-nodes-in-the-cloud服务，将节点运营方（Blockstream）与节点的资金控制（用户）分开。[Sphinx](https://sphinx.chat/)和[Lastbit](https://gl.striga.com/)目前都使用Greenlight服务。
