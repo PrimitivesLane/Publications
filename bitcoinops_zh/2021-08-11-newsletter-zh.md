@@ -8,7 +8,7 @@ layout: newsletter
 lang: zh
 ```
 
-本周的Newsletter继续了之前对JoinMarket中忠诚保证保险的介绍，还包含了我们常规的比特币核心PR审核俱乐部会议的总结，学习taproot的建议，发布和候选发布功能的公布，以及一些对主流基础设施项目更新的介绍。
+本周的 Newsletter 继续了之前对 JoinMarket 中忠诚保证保险的介绍，还包含了我们常规的比特币核心 PR 审核俱乐部会议的总结，学习 taproot 的建议，发布和候选发布功能的公布，以及一些对主流基础设施项目更新的介绍。
 
 ## 新闻
 - **实现忠诚保证保险**：[JoinMarket 0.9.0](https://github.com/JoinMarket-Org/joinmarket-clientserver/releases/tag/v0.9.0)对[coinjoin](https://bitcoinops.org/en/topics/coinjoin/)的实现包含了对[忠诚保证保险](https://gist.github.com/chris-belcher/18ea0e6acdb885a2bfbdee43dcd6b5af/)的[支持](https://github.com/JoinMarket-Org/joinmarket-clientserver/blob/master/docs/release-notes/release-notes-0.9.0.md#fidelity-bond-for-improving-sybil-attack-resistance)。如之前在[Newsletter#57](https://bitcoinops.org/en/newsletters/2019/07/31/#fidelity-bonds-for-improved-sybil-resistance)中的介绍，忠诚保证保险提升了JoinMarket系统抵抗女巫攻击的能力，提升了coinjoin的发起者（takers）选择独特的流动性提供者（makers）的能力。在发布后的几天内，超过50个BTC（目前价值超过200万美元）已经被放在带时间锁定的忠诚保证保险里。
@@ -51,7 +51,7 @@ txindex将交易id映射到文件、块的位置（类似于块索引）以及bl
 </details>
 
 ## 为 taproot 做准备#8: 多重签名 nonce
-*关于开发者和服务提供者如何为即将在区块高度709,632处激活的taproot做准备的每周[系列](https://bitcoinops.org/en/preparing-for-taproot/)文章。*
+*关于开发者和服务提供者如何为即将在区块高度709,632处激活的 taproot 做准备的每周[系列](https://bitcoinops.org/en/preparing-for-taproot/)文章。*
 
 在[上周的专栏](https://bitcoinops.org/en/preparing-for-taproot/#multisignature-overview)中，我们谈到了[多重签名](https://bitcoinops.org/en/topics/multisignature/)，并举了一个使用[MuSig2](https://bitcoinops.org/en/topics/musig/)的例子。我们的描述似乎在技术上是正确的，但几个为MuSig2作出贡献的密码学家[担心](https://gnusha.org/secp256k1/2021-08-04.log)我们建议的使用方式是危险的。我们[更新](https://github.com/bitcoinops/bitcoinops.github.io/pull/622)了我们的描述以解决他们的担忧，然后开始更深入地研究这个问题。在这篇文章中，我们将讨论我们了解到的可能是安全实现多签名的最大挑战：避免nonce重复使用。
 
