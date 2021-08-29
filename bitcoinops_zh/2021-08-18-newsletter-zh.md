@@ -13,14 +13,15 @@ lang: zh
 ## 新闻
 - **粉尘限制讨论**：Bitcoin Core和其他节点软件默认拒绝中继或挖掘任何输出值低于一定金额的交易，即[粉尘限制](https://bitcoinops.org/en/topics/uneconomical-outputs/)（具体限制金额因输出类型而异）。这使得用户更难创造出*不经济*的输出——UTXO，这类UTXO的花费的费用会比其持有的价值更高。
 
-  本周，Jeremy Rubin在Bitcoin-Dev邮件列表中[发布](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-August/019307.html)了关于取消粉尘限制的五点论据，并表示认为限制的原因是为了防止 "垃圾邮件 "和 "[粉尘指纹攻击](https://bitcoinops.org/en/topics/output-linking/)"。其他人[回复](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-August/019308.html)了[反驳](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-August/019310.html)，并指出限制的存在不是为了防止垃圾邮件，而是为了防止用户创建的UTXO永久浪费全节点运营商的资源，而用户又没有动力去花费这些UTXO。部分讨论还[描述](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-August/019327.html)了dust limit和不经济的产出对LN的[影响](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-August/019333.html)。
+  本周，Jeremy Rubin在Bitcoin-Dev邮件列表中[发布](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-August/019307.html)了关于取消粉尘限制的五点论据，并表示认为限制的原因是为了防止 "垃圾邮件 "和 "[粉尘指纹攻击](https://bitcoinops.org/en/topics/output-linking/)"。其他人[回复](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-August/019308.html)了[反驳](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-August/019310.html)，并指出限制的存在不是为了防止垃圾邮件，而是为了防止用户创建的UTXO永久浪费全节点运营商的资源，而用户又没有动力去花费这些UTXO。部分讨论还[描述](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-August/019327.html)了粉尘限制和不经济的产出对LN的[影响](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-August/019333.html)。
 
   截至本文写作时，似乎没有可能达成一致。至少在短期内，我们预计dust limit将继续存在。
 
 ## 服务和客户端软件更新
 *在这个月的专题中，我们重点介绍比特币钱包和服务的有趣更新。*
 
-- **Spark Lightning Wallet增加了对BOLT12的支持**：[Spark](https://github.com/shesek/spark-wallet)的[v0.3.0rc版本](https://github.com/shesek/spark-wallet/releases/tag/v0.3.0rc)增加了对BOLT12 [offers](https://bitcoinops.org/en/topics/offers/)的部分支持。
+- **Spark Lightning Wallet增加了对BOLT12<sup>[1](#myfootnote1)</sup>
+的支持**：[Spark](https://github.com/shesek/spark-wallet)的[v0.3.0rc版本](https://github.com/shesek/spark-wallet/releases/tag/v0.3.0rc)增加了对BOLT12 [offers](https://bitcoinops.org/en/topics/offers/)的部分支持。
 
 - **Blockstream宣发非托管LN云服务，Greenlight**：在最近的一篇[博客文章](https://blockstream.com/2021/07/21/en-greenlight-by-blockstream-lightning-made-easy/)中，Blockstream详细介绍了他们的C-Lightning-nodes-in-the-cloud服务，将节点运营方（Blockstream）与节点的资金控制（用户）分开。[Sphinx](https://sphinx.chat/)和[Lastbit](https://gl.striga.com/)目前都使用Greenlight服务。
 
@@ -31,7 +32,7 @@ lang: zh
 ## 为 taproot 做准备#9: 签名适配器
 *关于开发者和服务提供者如何为即将在区块高度709,632处激活的taproot做准备的每周[系列](https://bitcoinops.org/en/preparing-for-taproot/)文章。*
 
-想象一下，如果有一个人提出向某个特定的慈善机构捐赠1000个BTC，只要有人能猜出这个人最喜欢的一个非常大的数字。对于这个捐赠者来说，一个简单方法是创建一个没有签名的交易，支付1000个BTC，然后发布一个加密的交易签名副本，将他最喜欢的数字作为解密密钥。
+想象一下，有一个人提出向某个特定的慈善机构捐赠1000个BTC，条件是有人能猜出他最喜欢的一个非常大的数字。对于这个捐赠者来说，一个简单方法是创建一个没有签名的交易，支付1000个BTC，然后发布一个加密的交易签名副本，将他最喜欢的数字作为解密密钥。
 
 从理论上讲，任何猜到这个数字的人都可以解密签名，然后广播交易，将钱支付给慈善机构。但是，如果捐赠者使用了像AES这样的标准加密方案，在解密之前第三方就没有简单的办法知道签名对该交易确实有效。任何想尝试猜测数字的人，都只能选择相信捐赠者是真诚的，不是一个骗子。
 
@@ -40,7 +41,7 @@ lang: zh
 ### 神奇的适配器
 [签名适配器](https://bitcoinops.org/en/topics/adaptor-signatures/)，通常也被称为*适配器签名*和*一次性可验证的加密签名*，是前述问题以及目前在比特币生产系统中实际面临的许多其他问题的解决方案。虽然可以使用比特币现有的ECDSA签名方案，但是将适配器和应用了基于[BIP340](https://github.com/bitcoin/bips/blob/master/bip-0340.mediawiki)实现的[schnorr签名](https://bitcoinops.org/en/topics/schnorr-signatures/)的taproot结合，会更加简单和经济。让我们看看如果我们使用适配器，上面的例子会有什么变化。
 
-和以前一样，捐赠者准备了一笔1000BTC的交易。他还是以正常的方式签名，唯一不同的是，他分两部分生成nonce：一个真正随机的nonce，并且会永远被保持私密；另一部分是他们最喜欢的数字——他们在一开始会保持私密，但之后可以被其他人揭示。捐赠者使用这两个值生成分别完全有效的签名，然后把它们加在一起，结果就像是用一整个的nonce生成的一样。
+和以前一样，捐赠者准备了一笔1000BTC的交易。他还是以正常的方式签名，唯一不同的是，他分两部分生成nonce：一个真正随机的nonce，并且会永远被保持私密；另一部分是他们最喜欢的数字——他们在一开始会保持私密，但之后可以被其他人揭示。捐赠者使用这两个值生成分别完全有效的签名，然后把它们组合在一起，结果就像是用单个的nonce生成的一样。
 
 BIP340签名承诺使用两种形式的nonce：一种是数字表示（称为*标量*），通常只有签名者知道；另一种是椭圆曲线（EC）上的一个*点*，它被公布出来以进行验证。
 
@@ -84,3 +85,6 @@ BIP340签名承诺使用两种形式的nonce：一种是数字表示（称为*�
   这一变化是为[拟议](https://github.com/lightningnetwork/lightning-rfc/issues/873)的`option_dusty_htlcs_uncounted`功能位做准备，该功能位表示节点不希望将 "粉尘HTLC"计入`max_accepted_htlcs`。节点运营商可能希望采用这个特征位，因为`max_accepted_htlcs`主要用于限制链上交易的潜在规模，如果发生强制关闭，"粉尘HTLC"在链上不会被认可，也绝不会影响最终的交易规模。
 
   新增加的`max_dust_htlc_exposure_msat`通道配置选项确保即使`option_dusty_htlcs_uncounted`被打开，用户仍然可以限制 "粉尘 HTLC"的总余额，因为这个余额会在强制关闭时丢失，也就是支付给矿工。
+
+
+<a name="myfootnote1">[1]</a>译者注：更多关于bolt12的资料可参考[bitcoinmagazine](https://bitcoinmagazine.com/technical/explaining-bolt-12)和[官方资料](https://bolt12.org/)
