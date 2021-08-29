@@ -82,7 +82,7 @@ txindex将交易id映射到文件、块的位置（类似于块索引）以及bl
 
 - [C-Lightning 0.10.1](https://github.com/ElementsProject/lightning/releases/tag/v0.10.1)包含一些新功能，一些错误的修复，以及一些开发协议的更新（包括[dual funding](https://bitcoinops.org/en/topics/dual-funding/)和[offers](https://bitcoinops.org/en/topics/offers/)）。
 
-- [Bitcoin Core 22.0rc2](https://bitcoincore.org/bin/bitcoin-core-22.0/)是下一个主要版本的全节点实现及其相关钱包和其他软件的的候选发布版本。这个新版本的主要变化包括支持[I2P](https://bitcoinops.org/en/topics/anonymity-networks/)连接，取消了对[第二版Tor](https://bitcoinops.org/en/topics/anonymity-networks/)连接的支持，并加强了对硬件钱包的支持。
+- [Bitcoin Core 22.0rc2](https://bitcoincore.org/bin/bitcoin-core-22.0/)是下一个主要版本的全节点实现及其相关钱包和其他软件的候选发布版本。这个新版本的主要变化包括支持[I2P](https://bitcoinops.org/en/topics/anonymity-networks/)连接，取消了对[第二版Tor](https://bitcoinops.org/en/topics/anonymity-networks/)连接的支持，并加强了对硬件钱包的支持。
 
 ## 重大代码和文档更新
 *本周[Bitcoin Core](https://github.com/bitcoin/bitcoin)、[C-Lightning](https://github.com/ElementsProject/lightning)、[Eclair](https://github.com/ACINQ/eclair)、[LND](https://github.com/lightningnetwork/lnd/)、[Rust-Lightning](https://github.com/rust-bitcoin/rust-lightning)、[libsecp256k1](https://github.com/bitcoin-core/secp256k1)、[Hardware Wallet Interface(HWI)](https://github.com/bitcoin-core/HWI)、[Rust Bitcoin](https://github.com/rust-bitcoin/rust-bitcoin)、[BTCPay Server](https://bitcoinops.org/en/newsletters/2021/08/11/)、[Bitcoin Improvement Proposals(BIPs)](https://github.com/bitcoin/bips/)和[Lightning BOLTs](https://github.com/lightningnetwork/lightning-rfc/)中值得注意的变更。*
@@ -96,4 +96,3 @@ txindex将交易id映射到文件、块的位置（类似于块索引）以及bl
 - [Rust-Lightning #1004](https://github.com/rust-bitcoin/rust-lightning/issues/1004)为`PaymentForwarded`增加了一个新的事件，允许追踪付款被成功转发的时间。由于成功的转发可以为节点赚取费用，这个功能可以用来记录对用户的收入。
 
 - [BTCPay Server #2730](https://github.com/btcpayserver/btcpayserver/pull/2730)使生成invoice时的金额成为可选项。这简化了运营商委托用户选择金额的情况下的支付流程，例如在给账户充值的时候。
-
