@@ -20,8 +20,13 @@ lang: zh
 
 *作者：[ZmnSCPxj](https://zmnscpxj.github.io/about.html)，LN 协议开发者*
 
+<<<<<<< HEAD
 在这篇文章中，我们将介绍 [taproot](https://bitcoinops.org/en/topics/taproot/) 支持 LN<sup>[[1]](#myfootnote1)</sup> 实现的两个隐私功能。
 - LN 上的 [PTLC](https://bitcoinops.org/en/topics/ptlc/)<sup>[[2]](#myfootnote2)</sup>。
+=======
+在这篇文章中，我们将介绍 [taproot](https://bitcoinops.org/en/topics/taproot/) 支持 LN 实现的两个隐私功能。
+- LN 上的 [PTLC](https://bitcoinops.org/en/topics/ptlc/)。
+>>>>>>> 164
 - P2TR 通道。
 
 ### LN 上的 PTLC
@@ -92,3 +97,4 @@ Taproot 通过使用 [schnorr 签名](https://bitcoinops.org/en/topics/schnorr-s
 <a name="myfootnote1">[1]</a>译者注：[lightning-rfc](https://github.com/lightningnetwork/lightning-rfc/blob/master/00-introduction.md)文档供开发者参考。
 
 <a name="myfootnote1">[2]</a>译者注：PTLC 是基于 HTLC 的升级，更多信息可参考 [Optech 的介绍](https://bitcoinops.org/en/topics/ptlc/)和 [往期 Newsletter](https://bitcoinops.org/en/newsletters/2021/08/25/)。
+

@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7d105e0b-4210-4422-b5ce-92615092ee64" name="Default Changelist" comment="修改表达" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1x2BSsg1TuG9K1BHbDrR9LR756U" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7d105e0b-4210-4422-b5ce-92615092ee64" name="Default Changelist" comment="" />
+      <created>1629543306309</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1629543306309</updated>
+    </task>
+    <task id="LOCAL-00001" summary="#161">
+      <created>1629549558003</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1629549558003</updated>
+    </task>
+    <task id="LOCAL-00002" summary="format modify">
+      <created>1629551633519</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1629551633519</updated>
+    </task>
+    <task id="LOCAL-00003" summary="trans modify according to review">
+      <created>1629616171013</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1629616171013</updated>
+    </task>
+    <task id="LOCAL-00004" summary="newsletter">
+      <created>1629616494552</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1629616494552</updated>
+    </task>
+    <task id="LOCAL-00005" summary="newsletter #162 and modify typo in #161">
+      <created>1630137985581</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1630137985581</updated>
+    </task>
+    <task id="LOCAL-00006" summary="modify expression and add footnote">
+      <created>1630224701860</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1630224701860</updated>
+    </task>
+    <task id="LOCAL-00007" summary="[]">
+      <created>1630225073120</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1630225073120</updated>
+    </task>
+    <task id="LOCAL-00008" summary="test pr">
+      <created>1630225657380</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1630225657380</updated>
+    </task>
+    <task id="LOCAL-00009" summary="1. delete line">
+      <created>1630229323070</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1630229323070</updated>
+    </task>
+    <task id="LOCAL-00010" summary="2. add line">
+      <created>1630229373804</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1630229373804</updated>
+    </task>
+    <task id="LOCAL-00011" summary="3. delete line">
+      <created>1630229392924</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1630229392924</updated>
+    </task>
+    <task id="LOCAL-00012" summary="4. add line">
+      <created>1630229768839</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1630229768839</updated>
+    </task>
+    <task id="LOCAL-00013" summary="delete line">
+      <created>1630233705551</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1630233705551</updated>
+    </task>
+    <task id="LOCAL-00014" summary="draft">
+      <created>1630234564525</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1630234564525</updated>
+    </task>
+    <task id="LOCAL-00015" summary="line">
+      <created>1630234712615</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1630234712615</updated>
+    </task>
+    <task id="LOCAL-00016" summary="#163">
+      <created>1630852544739</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1630852544739</updated>
+    </task>
+    <task id="LOCAL-00017" summary="#163">
+      <created>1630853346263</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1630853346263</updated>
+    </task>
+    <task id="LOCAL-00018" summary="delete &quot;v&quot;">
+      <created>1630854391725</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1630854391725</updated>
+    </task>
+    <task id="LOCAL-00019" summary="revise terminology">
+      <created>1630975458245</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1630975458245</updated>
+    </task>
+    <task id="LOCAL-00020" summary="#164">
+      <created>1631435089757</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1631435089757</updated>
+    </task>
+    <task id="LOCAL-00021" summary="空格">
+      <created>1631493173031</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1631493173031</updated>
+    </task>
+    <task id="LOCAL-00022" summary="revise according to comments">
+      <created>1631632080923</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1631632080924</updated>
+    </task>
+    <task id="LOCAL-00023" summary="revise according to comments">
+      <created>1631632298045</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1631632298045</updated>
+    </task>
+    <task id="LOCAL-00024" summary="#165">
+      <created>1632018034129</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1632018034130</updated>
+    </task>
+    <task id="LOCAL-00025" summary="#165">
+      <created>1632141540238</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1632141540238</updated>
+    </task>
+    <task id="LOCAL-00026" summary="修改表达">
+      <created>1632142010812</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1632142010812</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="#161" />
+    <MESSAGE value="format modify" />
+    <MESSAGE value="trans modify according to review" />
+    <MESSAGE value="newsletter" />
+    <MESSAGE value="newsletter #162 and modify typo in #161" />
+    <MESSAGE value="newsletter #162 and modify typo in #161&#10;merge conflict resolve" />
+    <MESSAGE value="modify expression and add footnote" />
+    <MESSAGE value="[]" />
+    <MESSAGE value="test pr" />
+    <MESSAGE value="1. delete line" />
+    <MESSAGE value="2. add line" />
+    <MESSAGE value="3. delete line" />
+    <MESSAGE value="4. add line" />
+    <MESSAGE value="delete line" />
+    <MESSAGE value="draft" />
+    <MESSAGE value="line" />
+    <MESSAGE value="#163" />
+    <MESSAGE value="delete &quot;v&quot;" />
+    <MESSAGE value="revise terminology" />
+    <MESSAGE value="#164" />
+    <MESSAGE value="空格" />
+    <MESSAGE value="revise according to comments" />
+    <MESSAGE value="#165" />
+    <MESSAGE value="修改表达" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改表达" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="327" y="123" width="1200" height="787" key="DiffContextDialog" timestamp="1632142799757">
+      <screen x="44" y="23" width="1636" height="1027" />
+    </state>
+    <state x="327" y="123" width="1200" height="787" key="DiffContextDialog/44.23.1636.1027@44.23.1636.1027" timestamp="1632142799757" />
+    <state x="596" y="234" key="RollbackChangesDialog" timestamp="1630225059828">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="596" y="234" key="RollbackChangesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1630225059828" />
+    <state x="436" y="155" key="SettingsEditor" timestamp="1629549713624">
+      <screen x="44" y="23" width="1636" height="1027" />
+    </state>
+    <state x="436" y="155" key="SettingsEditor/44.23.1636.1027@44.23.1636.1027" timestamp="1629549713624" />
+  </component>
+</project>
