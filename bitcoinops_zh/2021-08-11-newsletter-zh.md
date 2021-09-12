@@ -50,8 +50,8 @@ txindex将交易id映射到文件、块的位置（类似于块索引）以及bl
 与会者同意，这可能是有帮助的，但会产生误导。通知用户错误的区块哈希被输入会更好。他们还指出，性能改进和行为改变最好分成单独的PR。[➚](https://bitcoincore.reviews/22383#l-128)
 </details>
 
-## 为 taproot 做准备#8: 多重签名 nonce
-*关于开发者和服务提供者如何为即将在区块高度709,632处激活的 taproot 做准备的每周[系列](https://bitcoinops.org/en/preparing-for-taproot/)文章。*
+## 为 taproot 做准备 #8: 多重签名 nonce
+*关于开发者和服务提供者如何为即将在区块高度 709,632 处激活的 taproot 做准备的每周[系列](https://bitcoinops.org/en/preparing-for-taproot/)文章。*
 
 在[上周的专栏](https://bitcoinops.org/en/preparing-for-taproot/#multisignature-overview)中，我们谈到了[多重签名](https://bitcoinops.org/en/topics/multisignature/)，并举了一个使用[MuSig2](https://bitcoinops.org/en/topics/musig/)的例子。我们的描述似乎在技术上是正确的，但几个为MuSig2作出贡献的密码学家[担心](https://gnusha.org/secp256k1/2021-08-04.log)我们建议的使用方式是危险的。我们[更新](https://github.com/bitcoinops/bitcoinops.github.io/pull/622)了我们的描述以解决他们的担忧，然后开始更深入地研究这个问题。在这篇文章中，我们将讨论我们了解到的可能是安全实现多签名的最大挑战：避免nonce重复使用。
 
@@ -85,7 +85,7 @@ txindex将交易id映射到文件、块的位置（类似于块索引）以及bl
 - [Bitcoin Core 22.0rc2](https://bitcoincore.org/bin/bitcoin-core-22.0/)是下一个主要版本的全节点实现及其相关钱包和其他软件的候选发布版本。这个新版本的主要变化包括支持[I2P](https://bitcoinops.org/en/topics/anonymity-networks/)连接，取消了对[第二版Tor](https://bitcoinops.org/en/topics/anonymity-networks/)连接的支持，并加强了对硬件钱包的支持。
 
 ## 重大代码和文档更新
-*本周[Bitcoin Core](https://github.com/bitcoin/bitcoin)、[C-Lightning](https://github.com/ElementsProject/lightning)、[Eclair](https://github.com/ACINQ/eclair)、[LND](https://github.com/lightningnetwork/lnd/)、[Rust-Lightning](https://github.com/rust-bitcoin/rust-lightning)、[libsecp256k1](https://github.com/bitcoin-core/secp256k1)、[Hardware Wallet Interface(HWI)](https://github.com/bitcoin-core/HWI)、[Rust Bitcoin](https://github.com/rust-bitcoin/rust-bitcoin)、[BTCPay Server](https://bitcoinops.org/en/newsletters/2021/08/11/)、[Bitcoin Improvement Proposals(BIPs)](https://github.com/bitcoin/bips/)和[Lightning BOLTs](https://github.com/lightningnetwork/lightning-rfc/)中值得注意的变更。*
+*本周 [Bitcoin Core](https://github.com/bitcoin/bitcoin)、[C-Lightning](https://github.com/ElementsProject/lightning)、[Eclair](https://github.com/ACINQ/eclair)、[LND](https://github.com/lightningnetwork/lnd/)、[Rust-Lightning](https://github.com/rust-bitcoin/rust-lightning)、[libsecp256k1](https://github.com/bitcoin-core/secp256k1)、[Hardware Wallet Interface(HWI)](https://github.com/bitcoin-core/HWI)、[Rust Bitcoin](https://github.com/rust-bitcoin/rust-bitcoin)、[BTCPay Server](https://bitcoinops.org/en/newsletters/2021/08/11/)、[Bitcoin Improvement Proposals(BIPs)](https://github.com/bitcoin/bips/) 和 [Lightning BOLTs](https://github.com/lightningnetwork/lightning-rfc/) 中值得注意的变更。*
 
 - [Bitcoin Core #21528](https://github.com/bitcoin/bitcoin/issues/21528)旨在改善全节点监听地址的p2p传播。为了避免诸如[日蚀攻击](https://bitcoinops.org/en/topics/eclipse-attacks/)的网络恶意分区类攻击，保护比特币节点同非固定地址集合的通信尤为重要。具体来说，当比特币核心节点接收到一个包含了不多于10个地址的消息时，节点会将该消息转发至1到2个节点。针对这一用于自我广播地址的技术，如果相应的消息广播发送给了那些不再继续转发消息的节点，则会在网络中阻断消息的进一步传播，形成“黑洞”。尽管在恶意场景下，消息传播的失效仍然无法避免，但是该补丁能够在诚实节点参与的场景下（如，仅用于区块中继转发的网络连接或轻节点）有效提高地址的传播能力。
 

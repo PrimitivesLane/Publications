@@ -11,7 +11,7 @@ lang: zh
 本周的 Newsletter 总结了关于将 LN 通固定费用设置为零的讨论，还包括我们的常规部分，介绍了 Bitcoin Stack Exchange 中的热门问题和答案，如何为 taproot 做准备，新版本和候选版本，以及主流的比特币基础设施软件中值得注意的变更。
 
 ## 新闻
-- **零固定费用 LN 讨论**：在 LN 协议中，花费者可以选择向每个帮助成功将付款路由到最终目的地的节点支付多少钱。反过来，路由节点可以选择拒绝任何没有为他们提供足够费用的付款尝试。为了使这种机制发挥作用，路由节点需要告知花费者他们期望的费用。[BOLT7] (https://github.com/lightningnetwork/lightning-rfc/blob/master/07-routing-gossip.md)使路由节点可以公布两个与费用有关的参数，即 `fee_base_msat` （固定费用）和 `fee_proportional_millionths` （比例费用）。
+- **零固定费用 LN 讨论**：在 LN 协议中，花费者可以选择向每个帮助成功将付款路由到最终目的地的节点支付多少钱。反过来，路由节点可以选择拒绝任何没有为他们提供足够费用的付款尝试。为了使这种机制发挥作用，路由节点需要告知花费者他们期望的费用。[BOLT7](https://github.com/lightningnetwork/lightning-rfc/blob/master/07-routing-gossip.md)使路由节点可以公布两个与费用有关的参数，即 `fee_base_msat` （固定费用）和 `fee_proportional_millionths` （比例费用）。
 
   René Pickhardt 和 Stefan Richter 最近发表的一篇[论文](https://arxiv.org/abs/2107.05322)提出了一种新的寻路技术，付款人将能够使用这种技术来尽量减少他们的费用和他们成功发送付款所需的付款尝试次数（以及一些其他好处）。但当前在网络上部署该技术会遇到两个与 LN 固定费用和[多路径支付](https://bitcoinops.org/en/topics/multipath-payments/)有关的问题。
 
@@ -45,10 +45,10 @@ lang: zh
 
 - [在 ECDSA 和 Schnorr 签名中使用相同的私钥是否存在风险？](https://bitcoin.stackexchange.com/questions/107924/are-there-risks-to-using-the-same-private-key-for-both-ecdsa-and-schnorr-signatu) Pieter Wuille 指出，虽然没有已知的跨 [schnorr](https://bitcoinops.org/en/topics/schnorr-signatures/) 和 ECDSA 的密钥重用攻击，但 "为了保持在可证明的安全范围内，最好确保 ECDSA 密钥和 schnorr 密钥使用不同的硬化衍生步骤。"
 
-## 为 taproot 做准备#10: PTLCs
-*关于开发者和服务提供者如何为即将在区块高度709,632处激活的 taproot 做准备的每周[系列](https://bitcoinops.org/en/preparing-for-taproot/)文章。*
+## 为 taproot 做准备 #10: PTLC
+*关于开发者和服务提供者如何为即将在区块高度 709,632 处激活的 taproot 做准备的每周[系列](https://bitcoinops.org/en/preparing-for-taproot/)文章。*
 
-在[上周的专栏](https://bitcoinops.org/en/preparing-for-taproot/#signature-adaptors)中，我们探讨了[签名适配器](https://bitcoinops.org/en/topics/adaptor-signatures/)，以及带有 [schnorr](https://bitcoinops.org/en/topics/schnorr-signatures/) 签名的 [taproot](https://bitcoinops.org/en/topics/taproot/) 的使用将如何使适配器的使用变得更加隐私、容易和高效。有几种方法可以在比特币上使用签名适配器，但最直接有益的是使用在时间点锁定合约（[PTLCs](https://bitcoinops.org/en/topics/ptlc/)）中，它可以取代多年来一直被使用的[古老的](https://bitcoinops.org/en/topics/htlc/#history)哈希时间锁定合约（[HTLCs](https://bitcoinops.org/en/topics/htlc/)）。他会带来一些优势，但也带来了一些挑战。为了理解这些优势和挑战，我们首先从一个简化的 HTLCs 使用的例子开始；下面的例子可以是链下 LN 支付，链上代币交换，或者是像闪电环一样的链上/链下混合系统——正是这种灵活性使得 HTLCs 得到了广泛的使用。
+在[上周的专栏](https://bitcoinops.org/en/preparing-for-taproot/#signature-adaptors)中，我们探讨了[签名适配器](https://bitcoinops.org/en/topics/adaptor-signatures/)，以及带有 [schnorr](https://bitcoinops.org/en/topics/schnorr-signatures/) 签名的 [taproot](https://bitcoinops.org/en/topics/taproot/) 的使用将如何使适配器的使用变得更加隐私、容易和高效。有几种方法可以在比特币上使用签名适配器，但最直接有益的是使用在时间点锁定合约（[PTLC](https://bitcoinops.org/en/topics/ptlc/)）中，它可以取代多年来一直被使用的[古老的](https://bitcoinops.org/en/topics/htlc/#history)哈希时间锁定合约（[HTLC](https://bitcoinops.org/en/topics/htlc/)）。他会带来一些优势，但也带来了一些挑战。为了理解这些优势和挑战，我们首先从一个简化的 HTLC 使用的例子开始；下面的例子可以是链下 LN 支付，链上代币交换，或者是像闪电环一样的链上/链下混合系统——正是这种灵活性使得 HTLC 得到了广泛的使用。
 
 Alice 想通过 Bob 来支付给 Carol，但 Alice 和 Carol 都不想信任鲍勃。Carol 创建了一个随机的原像，并用 SHA256 算法对其进行哈希。Carol 把哈希值给了 Alice，并对原像保密。Alice 开始向 Bob 付款，他可以用他公钥对应的签名和原像来获得付款；或者，Alice 可以在10个区块后通过用她的公钥签名将交易退回给她自己来获得退款。下面是用 Minsc 语言描述的这个[过程](https://min.sc/#c=%2F%2F%20Traditional%20preimage-based%20HTLC%0A%24alice%20%3D%20A%3B%0A%24bob%20%3D%20B%3B%0A%24carol%20%3D%20C%3B%0A%24preimage%20%3D%20H%3B%0A%0A%28pk%28%24bob%29%20%26%26%20sha256%28%24preimage%29%29%20%7C%7C%20%28pk%28%24alice%29%20%26%26%20older%2810%29%29)。
 
@@ -62,7 +62,7 @@ Bob 现在可以用基本相同的脚本向 Carol 发起相同金额的付款（
 ```
 现在，Carol 可以通过使用原像在五个区块内向 Bob 获取付款，同时也向 Bob 透露了原像。这使得 Bob 可以在五个区块内向 Alice 索取付款。
 
-### HTLCs 的隐私问题
+### HTLC 的隐私问题
 如果上面的脚本是在链上发布的，重复使用相同的哈希值和原像会让人立即明白 A 通过 B 支付 C，这对于同一条链以及跨链的代币互换操作来说可能会成为一个重大的问题。不太明显的是，这也是 LN 等链下路由协议的一个问题。如果我们想象一个较长的路由路径，一个人控制了路径上的多个节点，他们可以看到重复使用相同的哈希和原像，从而可以确定一些节点是路由节点，增加推测出其余节点是花费者或接收者的概率。这是*可链接*问题的一个部分，并且可能是 LN 目前最大的隐私弱点。
 
 ![alt 属性文本](./image/2021-08-25-newsletter-zh-p1.png)
@@ -90,7 +90,7 @@ Bob 现在可以用基本相同的脚本向 Carol 发起相同金额的付款（
 
 像以前一样，Carol 给了 Alice 标量的点，但不同的是 Alice 也向 Bob 请求一个点。Alice 使用 Carol 的点和 Bob 的点的集合来构建她给 Bob 的适配器。Bob 知道他的点，所以他能够从 Alice 那里收到的适配器中减去这个点。使用结果点（Bob 不知道现在的结果是 Alice 最初从 Carol 那里得到的点），Bob 构建了他给 Carol 的适配器。Carol 知道最终点的标量，因此将 Bob 的适配器转换为一个有效的签名。像以前一样，Bob 从 Carol 的签名中恢复了她的标量，并使用它和他自己的标量将 Alice 的适配器转换成有效的签名。
 
-在这条路径的两个跳中，Alice→Bob 和 Bob→Carol，使用了两个不同的 EC 点和标量，消除了可链接性。我们可以将此扩展到我们在使用 HTLCs 时会遇到的较长的路径，看看在这种场景下如何改善隐私。
+在这条路径的两个跳中，Alice→Bob 和 Bob→Carol，使用了两个不同的 EC 点和标量，消除了可链接性。我们可以将此扩展到我们在使用 HTLC 时会遇到的较长的路径，看看在这种场景下如何改善隐私。
 
 ![alt 属性文本](./image/2021-08-25-newsletter-zh-p2.png)
 
@@ -106,7 +106,7 @@ pk($carol_with_bob_adaptor) || (pk($bob) && older(5) )
 
 通过 taproot，左边的分支可以成为 keypath，右边的分支可以成为 tapleaf。如果该路径支付成功，Bob 和 Carol 可以直接在链上结算，而不需要他们的对手方参与，这使得这种路由支付与单签名支付、正常的多重签名支付以及需要合作完成的合约没有区别。它还最大限度地减少了对区块空间的使用。如果其中一个退款情况需要被执行，也仍然会是非常高效和私密的—— `pk(x) && older(n)` 与[降级多签](https://github.com/bitcoinops/taproot-workshop/blob/master/3.1-degrading-multisig-case-study.ipynb)、[强制持仓](https://bitcoin.stackexchange.com/questions/69809/op-checklocktimeverify-op-hodl-script)和其他各种可能的脚本没有区别。
 
-在下周的专栏中，我们最喜欢的 LN 开发者之一的客座文章将讨论 LN 采用 keypath spends、multisignatures、PTLCs 和其他基于 taproot 实现的功能所需的一些变更。
+在下周的专栏中，我们最喜欢的 LN 开发者之一的客座文章将讨论 LN 采用 keypath spend、multisignature、PTLC 和其他基于 taproot 实现的功能所需的一些变更。
 
 ## 发布和候选发布
 *主流的比特币基础设施项目的新版本和候选版本。请考虑升级到新版本或帮助测试候选版本。*
@@ -118,7 +118,7 @@ pk($carol_with_bob_adaptor) || (pk($bob) && older(5) )
 - [Bitcoin Core 0.21.2rc1](https://bitcoincore.org/bin/bitcoin-core-0.21.2/) 是 Bitcoin Core的维护版本的一个候选发布版本，包含了若干代码中的缺陷修复以及小规模的实现优化。
 
 ## 重大代码和文档更新
-*本周[Bitcoin Core](https://github.com/bitcoin/bitcoin)、[C-Lightning](https://github.com/ElementsProject/lightning)、[Eclair](https://github.com/ACINQ/eclair)、[LND](https://github.com/lightningnetwork/lnd/)、[Rust-Lightning](https://github.com/rust-bitcoin/rust-lightning)、[libsecp256k1](https://github.com/bitcoin-core/secp256k1)、[Hardware Wallet Interface(HWI)](https://github.com/bitcoin-core/HWI)、[Rust Bitcoin](https://github.com/rust-bitcoin/rust-bitcoin)、[BTCPay Server](https://bitcoinops.org/en/newsletters/2021/08/11/)、[Bitcoin Improvement Proposals(BIPs)](https://github.com/bitcoin/bips/)和[Lightning BOLTs](https://github.com/lightningnetwork/lightning-rfc/)中值得注意的变更。*
+*本周 [Bitcoin Core](https://github.com/bitcoin/bitcoin)、[C-Lightning](https://github.com/ElementsProject/lightning)、[Eclair](https://github.com/ACINQ/eclair)、[LND](https://github.com/lightningnetwork/lnd/)、[Rust-Lightning](https://github.com/rust-bitcoin/rust-lightning)、[libsecp256k1](https://github.com/bitcoin-core/secp256k1)、[Hardware Wallet Interface(HWI)](https://github.com/bitcoin-core/HWI)、[Rust Bitcoin](https://github.com/rust-bitcoin/rust-bitcoin)、[BTCPay Server](https://bitcoinops.org/en/newsletters/2021/08/11/)、[Bitcoin Improvement Proposals(BIPs)](https://github.com/bitcoin/bips/) 和 [Lightning BOLTs](https://github.com/lightningnetwork/lightning-rfc/) 中值得注意的变更。*
 
 - [Bitcoin Core #22541](https://github.com/bitcoin/bitcoin/issues/22541) 添加了一个新的 `restorewallet` RPC 命令，可用于加载一个钱包备份。 `restorewallet` 补充了现有的 `backupwallet` 命令，而后者用于导出当前加载的钱包的副本。需要注意的是，`backupwallet` 和 `restorewallet` 是旧的 `dumpwallet` 和 `importwallet` RPC 的替代品，而这两个旧命令会使用单​​独的文件。[Bitcoin Core #22523](https://github.com/bitcoin/bitcoin/issues/22523) 中备份和恢复钱包文档的更新中有对这项工作的详尽说明。
 
