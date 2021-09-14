@@ -60,7 +60,7 @@ BIP340签名承诺使用两种形式的nonce：一种是数字表示（称为*�
 
 这就使签名适配器具备了一般多签名的所有优点：它们看起来和单个签名一样，使用的空间也一样大，最大限度地减少了费用，最大限度地提高了隐私和灵活性。
 
-在下周的*为taproot做准备*的专栏中，我们将探讨我们期望看到的签名适配器的主要使用方式之一。时间点锁定合约（[PTLCs](https://bitcoinops.org/en/topics/ptlc/)），他是对被广泛使用在LN、coinswaps和其他一些协议中的哈希时间锁定合约（[HTLCs](https://bitcoinops.org/en/topics/htlc/)）的升级。
+在下周的*为taproot做准备*的专栏中，我们将探讨我们期望看到的签名适配器的主要使用方式之一。时间点锁定合约（[PTLC](https://bitcoinops.org/en/topics/ptlc/)），他是对被广泛使用在LN、coinswaps和其他一些协议中的哈希时间锁定合约（[HTLC](https://bitcoinops.org/en/topics/htlc/)）的升级。
 
 ## 发布和候选发布
 *主流的比特币基础设施项目的新版本和候选版本。请考虑升级到新版本或帮助测试候选版本。*
