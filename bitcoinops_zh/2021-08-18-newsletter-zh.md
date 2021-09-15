@@ -29,8 +29,8 @@ lang: zh
 
 - **Blockstream Green桌面0.1.10版发布**：[0.1.10版本](https://github.com/Blockstream/green_qt/releases/tag/release_0.1.10)增加了segwit-by-default单签名钱包和手动[选币](https://bitcoinops.org/en/topics/coin-selection/)功能。
 
-## 为 taproot 做准备#9: 签名适配器
-*关于开发者和服务提供者如何为即将在区块高度709,632处激活的 taproot 做准备的每周[系列](https://bitcoinops.org/en/preparing-for-taproot/)文章。*
+## 为 taproot 做准备 #9: 签名适配器
+*关于开发者和服务提供者如何为即将在区块高度 709,632 处激活的 taproot 做准备的每周[系列](https://bitcoinops.org/en/preparing-for-taproot/)文章。*
 
 想象一下，有一个人提出向某个特定的慈善机构捐赠1000个BTC，条件是有人能猜出他最喜欢的一个非常大的数字。对于这个捐赠者来说，一个简单方法是创建一个没有签名的交易，支付1000个BTC，然后发布一个加密的交易签名副本，将他最喜欢的数字作为解密密钥。
 
@@ -60,7 +60,7 @@ BIP340签名承诺使用两种形式的nonce：一种是数字表示（称为*�
 
 这就使签名适配器具备了一般多签名的所有优点：它们看起来和单个签名一样，使用的空间也一样大，最大限度地减少了费用，最大限度地提高了隐私和灵活性。
 
-在下周的*为taproot做准备*的专栏中，我们将探讨我们期望看到的签名适配器的主要使用方式之一。时间点锁定合约（[PTLCs](https://bitcoinops.org/en/topics/ptlc/)），他是对被广泛使用在LN、coinswaps和其他一些协议中的哈希时间锁定合约（[HTLCs](https://bitcoinops.org/en/topics/htlc/)）的升级。
+在下周的*为taproot做准备*的专栏中，我们将探讨我们期望看到的签名适配器的主要使用方式之一。时间点锁定合约（[PTLC](https://bitcoinops.org/en/topics/ptlc/)），他是对被广泛使用在LN、coinswaps和其他一些协议中的哈希时间锁定合约（[HTLC](https://bitcoinops.org/en/topics/htlc/)）的升级。
 
 ## 发布和候选发布
 *主流的比特币基础设施项目的新版本和候选版本。请考虑升级到新版本或帮助测试候选版本。*
@@ -70,7 +70,7 @@ BIP340签名承诺使用两种形式的nonce：一种是数字表示（称为*�
 - [Bitcoin Core 0.21.2rc1](https://bitcoincore.org/bin/bitcoin-core-0.21.2/)是Bitcoin Core当前维护版本的候选发布版本。它包含几个错误的修复和小的改进。
 
 ## 重大代码和文档更新
-*本周[Bitcoin Core](https://github.com/bitcoin/bitcoin)、[C-Lightning](https://github.com/ElementsProject/lightning)、[Eclair](https://github.com/ACINQ/eclair)、[LND](https://github.com/lightningnetwork/lnd/)、[Rust-Lightning](https://github.com/rust-bitcoin/rust-lightning)、[libsecp256k1](https://github.com/bitcoin-core/secp256k1)、[Hardware Wallet Interface(HWI)](https://github.com/bitcoin-core/HWI)、[Rust Bitcoin](https://github.com/rust-bitcoin/rust-bitcoin)、[BTCPay Server](https://bitcoinops.org/en/newsletters/2021/08/11/)、[Bitcoin Improvement Proposals(BIPs)](https://github.com/bitcoin/bips/)和[Lightning BOLTs](https://github.com/lightningnetwork/lightning-rfc/)中值得注意的变更。*
+*本周 [Bitcoin Core](https://github.com/bitcoin/bitcoin)、[C-Lightning](https://github.com/ElementsProject/lightning)、[Eclair](https://github.com/ACINQ/eclair)、[LND](https://github.com/lightningnetwork/lnd/)、[Rust-Lightning](https://github.com/rust-bitcoin/rust-lightning)、[libsecp256k1](https://github.com/bitcoin-core/secp256k1)、[Hardware Wallet Interface(HWI)](https://github.com/bitcoin-core/HWI)、[Rust Bitcoin](https://github.com/rust-bitcoin/rust-bitcoin)、[BTCPay Server](https://bitcoinops.org/en/newsletters/2021/08/11/)、[Bitcoin Improvement Proposals(BIPs)](https://github.com/bitcoin/bips/) 和 [Lightning BOLTs](https://github.com/lightningnetwork/lightning-rfc/) 中值得注意的变更。*
 
 - [Bitcoin Core #22642](https://github.com/bitcoin/bitcoin/pull/22642)更新了Bitcoin Core即将发布的22.0版本的发布流程，将所有[重复构建](https://bitcoinops.org/en/topics/reproducible-builds/)二进制文件的人的GPG签名串联成一个文件，可以批量验证（[示例](https://gist.github.com/harding/78631dbcd65ff4a499e164c4e9dc85d4)）。从确定的开发者获取签名的方式已经存在多年，这次更新会使这些签名更容易获得，同时也减少了现在对项目主要维护者签署发布二进制文件的依赖。
 
