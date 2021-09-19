@@ -15,8 +15,8 @@ lang: zh
 
   虽然具体的实现是JoinMarket独有的，但整体设计方案可能对其他基于比特币之的去中心化协议有用。
 
-## 比特币核心PR审核俱乐部
-*在这个每月一次的栏目中，我们总结了最近一次[比特币核心PR审核俱乐部](https://bitcoincore.reviews/)会议的内容，摘录了一些重要问题和回答。点击下面的问题，可以看到会议上的回答的摘要。*
+## 比特币核心 PR 审核俱乐部
+*在这个每月一次的栏目中，我们会总结最近一次[比特币核心 PR 审核俱乐部](https://bitcoincore.reviews/)会议的内容，摘录一些重要问题和回答。点击下面的问题，可以看到会议上的回答的摘要。*
 
 [Prefer to use txindex if available for GetTransaction](https://bitcoinops.org/en/newsletters/2021/08/11/)是Jameson Lopp的PR。这个PR通过在可以获取到交易索引（txindex）的时候使用它来提升`GetTransaction`的性能(并且可以扩展到用户的`getrawtransaction` RPC)。这一变化修复了一个意外的性能损失，即在一个启用了txindex的节点上,用包含交易的区块的哈希值调用`getrawtransaction`时，会明显变慢。评审会通过比较使用和不使用txindex检索一个交易时各自的步骤来评估这个性能问题的原因。
 
