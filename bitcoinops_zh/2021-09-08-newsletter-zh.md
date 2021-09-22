@@ -3,7 +3,7 @@ title: 'Bitcoin Optech Newsletter #165'
 permalink: /zh/newsletters/2021/09/08/
 name: 2021-09-08-newsletter-zh 
 slug: 2021-09-08-newsletter-zh 
-type: newsletterk
+type: newsletter
 layout: newsletter
 lang: zh
 ```
@@ -13,7 +13,7 @@ lang: zh
 ## 新闻
 - **Bitcoin 相关的 MIME 类型**：Peter Gray 在 Bitcoin-Dev 邮件列表中[发布](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-August/019385.html)了关于向 [IANA](https://en.wikipedia.org/wiki/Internet_Assigned_Numbers_Authority) 注册 [PSBT](https://bitcoinops.org/en/topics/psbt/)、二进制格式的原始交易和 [BIP21](https://github.com/bitcoin/bips/blob/master/bip-0021.mediawiki) URI 的 MIME 类型。Andrew Chow [解释](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-August/019386.html)说，他以前曾经试图为 PSBT 注册一个 MIME 类型，但他的申请被拒绝。他认为注册一个 MIME 类型需要编写一个 [IETF](https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force) 规范（一个 RFC），要形成成熟的文档可能需要大量的工作。[Gray](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-September/019390.html) 建议创建一个 BIP 来定义非官方的 MIME 类型，供比特币应用程序使用。
 
-- **Braidpool，一个 P2Pool 的替代品**：[P2Pool](https://bitcointalk.org/index.php?topic=18313.0) 是一个自 2011 年以来就用于去中心化矿池的比特币采矿系统。[发布](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-August/019371.html)在 Bitcoin-Dev 邮件列表中的一篇新[论文](https://github.com/pool2win/braidpool/raw/main/proposal/proposal.pdf)介绍了几个当前系统的缺陷和一个替代的分布是矿池的设计，这个设计有两个明显的改进：通过使用对第三方信任最小化的支付通道，能更有效地利用区块空间进行支付；以及对池子成员之间更高延迟的连接有更大的容忍度。
+- **Braidpool，一个 P2Pool 的替代品**：[P2Pool](https://bitcointalk.org/index.php?topic=18313.0) 是一个自 2011 年以来就用于去中心化矿池的比特币采矿系统。[发布](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-August/019371.html)在 Bitcoin-Dev 邮件列表中的一篇新[论文](https://github.com/pool2win/braidpool/raw/main/proposal/proposal.pdf)介绍了几个当前系统的缺陷和一个替代的分布式矿池的设计，这个设计有两个明显的改进：支付时更高效的空间利用（利用对第三方信任最小化的支付通道）；和对池子成员之间更高延迟连接的更大容忍度。
 
 ## 比特币核心 PR 审核俱乐部
 *在这个每月一次的栏目中，我们会总结最近一次[比特币核心 PR 审核俱乐部](https://bitcoincore.reviews/)会议的内容，摘录一些重要问题和回答。点击下面的问题，可以看到会议上的回答的摘要。*
@@ -35,7 +35,7 @@ lang: zh
 <details><summary>BIP152 高带宽紧凑块中继使用的是怎样的消息序列？
 </summary>
 
-节点可以在第一次建立连接时，通过在连接开始时发送 `sendcmpct` 并将 `hb_mode`设置为 1，向对等节点请求高带宽紧凑块。这意味着对等体可以立即发送 `cmpct` 块，而不需要先发送区块头信息或等待区块的 `getdata` 请求。如果需要，与低带宽紧凑块中继相同，节点可以使用 `getblocktxn` 和 `blocktxn` 请求和下载任何未知的区块交易。[➚](https://bitcoincore.reviews/22340#l-59)
+节点可以在第一次建立连接时，通过在连接开始时发送 `sendcmpct` 并将 `hb_mode`设置为 1，向对等节点请求高带宽紧凑块。这意味着对等节点可以立即发送 `cmpct` 块，而不需要先发送区块头信息或等待区块的 `getdata` 请求。如果需要，与低带宽紧凑块中继相同，节点可以使用 `getblocktxn` 和 `blocktxn` 请求和下载任何未知的区块交易。[➚](https://bitcoincore.reviews/22340#l-59)
 </details>
 
 <details><summary>在区块下载过程中，为什么紧凑区块中继会浪费 blocksonly 的节点的带宽？浪费了多少带宽？
@@ -44,7 +44,7 @@ lang: zh
 紧凑区块中继减少了拥有内存池的节点的带宽使用，因为他们不需要重新下载大部分的区块交易。然而，blocksonly 模式的节点不参与交易中继，通常他们的内存池是空的，这意味着它们无论如何都需要下载所有的交易。shortid、`getblocktxn` 和 `blocktxn` 的开销加起来，每个区块浪费了[大约 38kB 的带宽](https://github.com/bitcoin/bitcoin/pull/22340#issuecomment-872723147)，而 `getblocktxn` 和 `blocktxn` 消息的发送和响应也额外增加了下载区块的时间。[➚](https://bitcoincore.reviews/22340#l-82)
 </details>
 
-<details><summary>blocksonly 模式下的节点会保留一个内存池吗？
+<details><summary>blocksonly 模式下的节点会保留内存池吗？
 </summary>
 
 虽然 blocksonly 的节点不参与交易中继，但他们仍然有一个内存池，并且由于某些原因其中可能会包含交易。例如，如果节点处于正常模式，然后在 blocksonly 模式下重新启动，那么内存池会在重新启动时持续存在。此外，任何通过钱包和客户端接口提交的交易都会被验证，并使用内存池进行转发。[➚](https://bitcoincore.reviews/22340#l-97)
@@ -95,7 +95,7 @@ ENDIF
 
 虽然撤销分支在成功支出的情况下可以被隐藏（如果使用多签门限，它的存在和参与者的数量也会被混淆），但隐私收益是很小的，因为金库的使用模式在链上是很容易被识别的。
 
-最后，金库协议，像大多数预签署的交易协议一样，将在很大程度上受益于基于 taproot 进一步提出的比特币升级，如 [BIP118](https://github.com/bitcoin/bips/blob/master/bip-0118.mediawiki) 的 [SIGHASH_ANYPREVOUT](https://bitcoinops.org/en/topics/sighash_anyprevout/)。尽管需要进一步的考量和协议调整，`ANYPREVOUT` 和 `ANYPREVOUTANYSCRIPT` 将启用可重新绑定的*取消*签名，这在很大程度上可以减少互动性，并允许 0(1) 签名存储。这对 [Revault 协议](https://github.com/revault/practical-revault)中的*紧急*签名特别有用，因为它将在很大程度上减少 DoS 攻击面。通过在输出中设置 `ANYPREVOUTANYSCRIPT` 签名，你通过限制花费这个币的交易如何创建输出，来有效地创建一个合约。此外，更多的可定制的未来签名哈希值将允许更灵活的限制。
+最后，金库协议，像大多数预签署的交易协议一样，将在很大程度上受益于基于 taproot 进一步提出的比特币升级，如 [BIP118](https://github.com/bitcoin/bips/blob/master/bip-0118.mediawiki) 的 [SIGHASH_ANYPREVOUT](https://bitcoinops.org/en/topics/sighash_anyprevout/)。尽管需要进一步的考量和协议调整，`ANYPREVOUT` 和 `ANYPREVOUTANYSCRIPT` 将启用可重新绑定的*取消*签名，这在很大程度上可以减少交互，并允许 0(1) 签名存储。这对 [Revault 协议](https://github.com/revault/practical-revault)中的*紧急*签名特别有用，因为它将在很大程度上减少 DoS 攻击面。通过在输出中设置 `ANYPREVOUTANYSCRIPT` 签名，你通过限制花费这个币的交易如何创建输出，来有效地创建一个合约。此外，更多的可定制的未来签名哈希值将允许更灵活的限制。
 
 ## 发布和候选发布
 *主流的比特币基础设施项目的新版本和候选版本。请考虑升级到新版本或帮助测试候选版本。*

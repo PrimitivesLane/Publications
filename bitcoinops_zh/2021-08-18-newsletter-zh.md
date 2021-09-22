@@ -3,7 +3,7 @@ title: 'Bitcoin Optech Newsletter #162'
 permalink: /zh/newsletters/2021/08/18/
 name: 2021-08-18-newsletter-zh 
 slug: 2021-08-18-newsletter-zh 
-type: newsletterk
+type: newsletter
 layout: newsletter
 lang: zh
 ```

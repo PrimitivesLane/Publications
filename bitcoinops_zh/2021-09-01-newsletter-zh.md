@@ -3,7 +3,7 @@ title: 'Bitcoin Optech Newsletter #164'
 permalink: /zh/newsletters/2021/09/01/
 name: 2021-09-01-newsletter-zh 
 slug: 2021-09-01-newsletter-zh 
-type: newsletterk
+type: newsletter
 layout: newsletter
 lang: zh
 ```
