@@ -3,7 +3,7 @@ title: 'Bitcoin Optech Newsletter #164'
 permalink: /zh/newsletters/2021/09/01/
 name: 2021-09-01-newsletter-zh 
 slug: 2021-09-01-newsletter-zh 
-type: newsletterk
+type: newsletter
 layout: newsletter
 lang: zh
 ```
@@ -60,9 +60,9 @@ Taproot 通过使用 [schnorr 签名](https://bitcoinops.org/en/topics/schnorr-s
 ## 发布和候选发布
 *主流的比特币基础设施项目的新版本和候选版本。请考虑升级到新版本或帮助测试候选版本。*
 
-- [Bitcoin Core 22.0rc2](https://bitcoincore.org/bin/bitcoin-core-22.0/) 是下一个主要版本的全节点实现及其相关钱包和其他软件的候选发布版本。这个新版本的主要变化包括支持 [I2P](https://bitcoinops.org/en/topics/anonymity-networks/) 连接，取消了对[第二版 Tor](https://bitcoinops.org/en/topics/anonymity-networks/) 连接的支持，并加强了对硬件钱包的支持。
+- [Bitcoin Core 22.0rc3](https://bitcoincore.org/bin/bitcoin-core-22.0/) 是下一个主要版本的全节点实现及其相关钱包和其他软件的候选发布版本。这个新版本的主要变化包括支持 [I2P](https://bitcoinops.org/en/topics/anonymity-networks/) 连接，取消了对[第二版 Tor](https://bitcoinops.org/en/topics/anonymity-networks/) 连接的支持，并加强了对硬件钱包的支持。
 
-- [Bitcoin Core 0.21.2rc1](https://bitcoincore.org/bin/bitcoin-core-0.21.2/) 是 Bitcoin Core的维护版本的一个候选发布版本，包含了若干代码中的缺陷修复以及小规模的实现优化。
+- [Bitcoin Core 0.21.2rc2](https://bitcoincore.org/bin/bitcoin-core-0.21.2/) 是 Bitcoin Core的维护版本的一个候选发布版本，包含了若干代码中的缺陷修复以及小规模的实现优化。
 
 
 ## 重大代码和文档更新
@@ -92,3 +92,5 @@ Taproot 通过使用 [schnorr 签名](https://bitcoinops.org/en/topics/schnorr-s
 <a name="myfootnote1">[1]</a>译者注：[lightning-rfc](https://github.com/lightningnetwork/lightning-rfc/blob/master/00-introduction.md)文档供开发者参考。
 
 <a name="myfootnote1">[2]</a>译者注：PTLC 是基于 HTLC 的升级，更多信息可参考 [Optech 的介绍](https://bitcoinops.org/en/topics/ptlc/)和 [往期 Newsletter](https://bitcoinops.org/en/newsletters/2021/08/25/)。
+
+
