@@ -39,7 +39,7 @@ lang: zh
 
 - **Full Noded v0.2.26 发布**：[Full Noded](https://fullynoded.app/) 是一个用于 macOS/iOS 的比特币和闪电网络钱包，它增加了对 [taproot](https://bitcoinops.org/en/topics/taproot/)、[BIP86](https://github.com/bitcoin/bips/blob/master/bip-0086.mediawiki) 和 signet 的支持。
 
-## 为 taproot 做准备# 14：在 signet 上测试
+## 为 taproot 做准备 #14：在 signet 上测试
 *关于开发者和服务提供者如何为即将在区块高度 709,632 处激活的 taproot 做准备的每周[系列](https://bitcoinops.org/en/preparing-for-taproot/)文章。*
 
 虽然在主网 [709,632 区块之前你不能安全地使用 taproot](https://bitcoinops.org/en/preparing-for-taproot/#why-are-we-waiting)，但现在你可以在 testnet 或 signet 上使用 taproot。与使用比特币核心的 regtest 模式创建一个本地测试网络相比，如 [Optech taproot 工作手册](https://bitcoinops.org/en/preparing-for-taproot/#learn-taproot-by-using-it)介绍的，使用 testnet 或 signet 可以更容易地测试你的钱包与其他人的钱包的交互。
