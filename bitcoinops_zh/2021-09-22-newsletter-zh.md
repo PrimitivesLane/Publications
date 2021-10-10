@@ -11,14 +11,14 @@ lang: zh
 本周的 Newsletter 介绍了对 BIP 流程的修改建议，总结了一个在比特币核心中增加对包中继支持的计划，另外也涉及到关于在 DNS 中增加 LN 节点信息的讨论。还包括我们的常规部分，服务和客户端软件的变更，如何为 taproot 做准备，新版本和候选版本，以及主流的比特币基础设施软件中值得注意的变更。
 
 ## 新闻
-- **BIP 扩展**：Karl-Johan Alm 在 Bitcoin-Dev 邮件列表中[发布](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-September/019457.html)了一个提案，即已经达到一定稳定程度的 BIP 不再可以修改，除非是小修改。任何对稳定的 BIP 条款的修改都需要通过一个新的 BIP 来实现，新 BIP 扩展之前的文件。
+- **BIP 扩展**：Karl-Johan Alm 在 Bitcoin-Dev 邮件列表中[发布](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-September/019457.html)了一个提案，即已经达到一定稳定程度的 BIP 不再可以修改，除非是小修改。对稳定的 BIP 条款的修改需要通过新的 BIP 实现，作为对之前文档的扩展。
 
-  Anthony Towns [反对](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-September/019462.html)这个想法，并建议对目前的程序进行一些替代性调整，包括在 BIP 仓库中设立一个草稿文件夹，并取消 BIP 维护者给提案选择编号的权力。
+  Anthony Towns [反对](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-September/019462.html)这个想法，并建议对目前的程序进行一些替代性调整，包括在 BIP 仓库中设立一个草稿文件夹，并取消 BIP 维护者选择提案编号的权力。
 
 - **包的内存池接受和包的 RBF**：Gloria Zhao 在 Bitcoin-Dev 邮件列表中[发布](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-September/019464.html)了一个关于多个关联交易的[包中继](https://bitcoinops.org/en/topics/package-relay/)的设计，这将提高 [CPFP](https://bitcoinops.org/en/topics/cpfp/) 和 [RBF](https://bitcoinops.org/en/topics/replace-by-fee/) 费用更新的灵活性和可靠性。一个[初步的实现](https://github.com/bitcoin/bitcoin/pull/22290)只允许包通过比特币核心的 RPC 接口提交，但最终目标是使该功能在 P2P 网络上可用。Zhao 简明扼要地总结了她对比特币核心交易接受规则的修改建议。
 
   >- 包可以包含已经在内存池中的交易。
-  >- 包包含两代交易，多父一子。
+  >- 包内有两代交易，多个父交易和一个子交易。
   >- 用包的费率做费用相关的检查。这意味着，钱包可以创建一个使用 CPFP 的包。
   >- 父代可以使用 RBF 内存池交易，用一套类似于 [BIP125](https://github.com/bitcoin/bips/blob/master/bip-0125.mediawiki) 的规则。这实现了 CPFP 和 RBF 的结合，交易的子代费用用于支付替换内存池冲突的开销。
 
@@ -127,7 +127,7 @@ $ bitcoin-cli -signet getrawtransaction 24083fdac05edc9dbe0bb836272601c8893e705a
 
 - [LND #5405](https://github.com/lightningnetwork/lnd/issues/5405) 扩展了 `updatechanpolicy` RPC，它可以返回任何由于当前策略（或由于其他问题，如通道供资交易仍未确认）而无法使用的通道。
 
-- [LND #5304](https://github.com/lightningnetwork/lnd/issues/5304) 使 LND 能够创建和验证 LND 未知的具有外部权限的 macaroons。这一变化使得 [Lightning Terminal](https://bitcoinops.org/en/newsletters/2020/08/19/#lightning-labs-releases-lightning-terminal) 等工具能够使用单一的 macaroon 在多个守护进程中进行验证，这些守护进程都与同一个 LND 连接。
+- [LND #5304](https://github.com/lightningnetwork/lnd/issues/5304) 使 LND 能够创建和验证 LND 未知的具有外部权限的 macaroon<sup>[[1]](#myfootnote1)</sup>。这一变化使得 [Lightning Terminal](https://bitcoinops.org/en/newsletters/2020/08/19/#lightning-labs-releases-lightning-terminal) 等工具能够使用单一的 macaroon 在多个守护进程中进行验证，这些守护进程都与同一个 LND 连接。
 
 - [Rust Bitcoin #628](https://github.com/rust-bitcoin/rust-bitcoin/issues/628) 增加了对 Pay to Taproot's sighash 结构的支持，并整理了对传统、segwit 和 taproot 输入的 sighash 缓存的存储。
 
@@ -136,3 +136,5 @@ $ bitcoin-cli -signet getrawtransaction 24083fdac05edc9dbe0bb836272601c8893e705a
 - [Rust Bitcoin #626](https://github.com/rust-bitcoin/rust-bitcoin/pull/626) 增加了获取区块的剥离大小（去除所有 segwit 数据的区块）和交易的 vbyte 大小的函数。
 
 - [Rust-Lightning #1034](https://github.com/rust-bitcoin/rust-lightning/issues/1034) 增加了一个函数，可用于检索通道余额的完整列表，包括目前正在关闭的通道。这使得终端用户软件可以显示一致的用户余额，即使有些资金仍需等待确认才能再次使用。
+
+<a name="myfootnote1">[1]</a>译者注：关于 macaroon，可以参考 [ION Lightning Network Wiki 及其中的参考文献](https://wiki.ion.radar.tech/tech/research/macaroons)。

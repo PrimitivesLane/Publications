@@ -8,16 +8,16 @@ layout: newsletter
 lang: zh
 ```
 
-本周的 Newsletter 总结了在 DLC 规范中实施不兼容变更的提案，介绍了允许只使用 BIP32 种子恢复关闭的 LN 通道的选项，并描述了一个生成无状态 LN 发票的想法。同时还包括我们的常规部分，来自 Bitcoin Stack Exchange 的热门问题和答案，为 taproot 激活做准备的想法，以及主流的比特币基础设施软件中值得注意的变更。
+本周的 Newsletter 总结了在 DLC 规范中实施不兼容变更的提案，介绍了允许只使用 BIP32 种子恢复关闭的 LN 通道的选项，并描述了一个生成无状态 LN 账单的想法。同时还包括我们的常规部分，来自 Bitcoin Stack Exchange 的热门问题和答案，为 taproot 激活做准备的想法，以及主流的比特币基础设施软件中值得注意的变更。
 
 ## 新闻
 - **关于 DLC 规范不兼容变更的讨论**：Nadav Kohen 在 DLC-dev 邮件列表中[发布](https://mailmanlists.org/pipermail/dlc-dev/2021-September/000075.html)了关于更新 [DLC](https://bitcoinops.org/en/topics/discreet-log-contracts/) 规范的几个变更，这些变更可能会破坏与现有应用程序的兼容性。他提出了两个选择：根据需要更新规范，让应用程序公布他们的实现版本，或者将几个不兼容的变更分批进行，以尽量减少影响的次数。要求从事 DLC 软件的开发人员提供反馈。
 
-- **只使用一个种子恢复 LN 关闭交易的挑战**：Electrum 钱包的开发者 ghost43 在 Lightning-Dev 邮件列表中[发布](https://lists.linuxfoundation.org/pipermail/lightning-dev/2021-September/003229.html)了关于扫描区块链上的钱包通道关闭交易的一些挑战。一个具体的问题是在恢复一个只使用 BIP32 风格的分层确定性密钥生成的钱包时，如何处理新的[锚定输出](https://bitcoinops.org/en/topics/anchor-outputs/)协议。ghost43 分析了几种可能的方案，并建议将 Eclair 目前使用的方案作为当前可行的最佳方案。此外，如果实施者愿意稍微修改通道打开协议，也建议进一步改进。
+- **只使用种子恢复 LN 关闭交易的挑战**：Electrum 钱包的开发者 ghost43 在 Lightning-Dev 邮件列表中[发布](https://lists.linuxfoundation.org/pipermail/lightning-dev/2021-September/003229.html)了关于扫描区块链上的钱包通道关闭交易的一些挑战。一个具体的问题是在恢复一个只使用 BIP32 风格的分层确定性密钥生成的钱包时，如何处理新的[锚定输出](https://bitcoinops.org/en/topics/anchor-outputs/)协议。ghost43 分析了几种可能的方案，并建议将 Eclair 目前使用的方案作为当前可行的最佳方案。此外，如果实施者愿意稍微修改通道打开协议，也建议进一步改进。
 
-- **无状态的 LN 发票生成**：Joost Jager 在 Lightning-Dev 邮件列表中[发布](https://lists.linuxfoundation.org/pipermail/lightning-dev/2021-September/003236.html)了一个可能的拒绝服务攻击，针对为未认证用户生成 LN 发票的应用程序。具体来说，攻击者可以请求数量不受限制的发票，生成服务需要存储这些发票，直到它们过期。Jager 建议，对于不需要太多数据的小型发票，服务可以生成发票并立刻忘记它，并给请求的用户提供发票参数。这些参数将与付款一起提交，使服务能够重建发票，接受付款，并完成订单。
+- **无状态的 LN 账单生成**：Joost Jager 在 Lightning-Dev 邮件列表中[发布](https://lists.linuxfoundation.org/pipermail/lightning-dev/2021-September/003236.html)了一个可能的拒绝服务攻击，针对为未认证用户生成 LN 账单的应用程序。具体来说，攻击者可以请求数量不受限制的账单，生成服务需要存储这些账单，直到它们过期。Jager 建议，对于不需要太多数据的小型账单，服务可以生成账单并立刻忘记它，并给请求的用户提供账单参数。这些参数将与付款一起提交，使服务能够重建账单，接受付款，并完成订单。
 
-  尽管一些受访者[表示担心](https://lists.linuxfoundation.org/pipermail/lightning-dev/2021-September/003252.html)这个想法是不必要的——因为可能以其他方式用请求来淹没应用程序，并且任何解决这些问题的方法也需要解决发票请求淹没的问题——但其他人认为这个想法是有用的。这个想法似乎不需要改变任何协议，只需要改变软件（或插件）来创建和管理发票的生成和重建。
+  尽管一些受访者[表示担心](https://lists.linuxfoundation.org/pipermail/lightning-dev/2021-September/003252.html)这个想法是不必要的——因为可能以其他方式用请求来淹没应用程序，并且任何解决这些问题的方法也需要解决账单请求淹没的问题——但其他人认为这个想法是有用的。这个想法似乎不需要改变任何协议，只需要改变软件（或插件）来创建和管理账单的生成和重建。
 
 ## Bitcoin Stack Exchange 问答选摘
 *[Bitcoin Stack Exchange](https://bitcoin.stackexchange.com/) 是 Optech 贡献者寻找问题答案，或者当我们有一些空闲时间时帮助好奇或困惑的用户的首选地方之一。在这个月度专题中，我们将重点介绍一些自上次更新以来被投票最多的问题和答案。*
