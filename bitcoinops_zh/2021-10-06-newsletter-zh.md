@@ -19,20 +19,20 @@ lang: zh
 
   由于不是所有的参与者都愿意使用邮件列表，所以针对这些想法进行讨论很麻烦。如果邮件列表上的讨论恢复了，我们会在未来的 Newsletter 中总结任何值得注意的更新。
 
-## 为 taproot 做准备 #16: 输出链接
+## 为 taproot 做准备 #16: 输出的可关联性
 *关于开发者和服务提供者如何为即将在区块高度 709,632 处激活的 taproot 做准备的每周[系列](https://bitcoinops.org/en/preparing-for-taproot/)文章。*
 
 在taproot激活后，用户将开始收到对 P2TR 输出的支付。之后，他们会花费这些输出。在某些情况下，他们会向非 P2TR 输出付款，但仍会使用 P2TR 的找零输出将其返还给自己。
 
-  ![alt 属性文本](./image/2021-10-06-newsletter-zh-p1.png)
+  ![示例交易P2TR -> {P2WPKH, P2TR}](./image/2021-10-06-newsletter-zh-p1.png)
 
 观察交易的专家或算法很容易合理地推断出 P2TR 输出是用户自己的找零输出，其他输出是支付输出。这种推断并不能保证一定准确，但是是最可能的解释。
 
 有些人认为，应该忽略 taproot 的许多[隐私优势](https://bitcoinops.org/en/preparing-for-taproot/#multisignature-overview)，因为在钱包向 P2TR 过渡期间，隐私性可能会减弱。许多专家[称](https://www.coindesk.com/tech/2020/12/01/privacy-concerns-over-bitcoin-upgrade-taproot-are-a-non-issue-experts-say/)这是毫无道理的过度反应。我们也同意，并且提供一些额外的反驳意见供参考：
 
-- **其他元数据**：交易可能包含其他元数据会揭示哪些输出是找零，哪些是支付。其中最令人担忧的是，目前有很大比例的输出是[重复使用地址](ps.org/en/topics/output-linking/)，这大大降低了参与这些交易的花费者和接收者的隐私。只要这些问题继续存在，不为实现最佳实践的钱包和服务的用户进行大的隐私升级是愚蠢的。
+- **其他元数据**：交易可能包含其他元数据会揭示哪些输出是找零，哪些是支付。其中最令人担忧的是，目前有很大比例的输出是[重复使用地址](ps.org/en/topics/output-linking/)，这大大降低了参与这些交易的花费者和接收者的隐私。只要这些问题继续存在，不为采取最佳实践的钱包和服务的用户进行重大隐私升级似乎是愚蠢的。
 
-- **输出脚本匹配**：如果任何支付的输出类型是 segwit，比特币核心的内置钱包会默认[使用 segwit 找零输出](https://github.com/bitcoin/bitcoin/pull/12119)。否则，它会使用默认的找零地址类型。例如，当支付 P2PKH 输出时，可能会使用 P2PKH 找零输出；对于 P2WPKH 输出，会使用 P2WPKH 找零。如 [Newsletter #155](https://bitcoinops.org/en/newsletters/2021/06/30/#bitcoin-core-22154) 所述，在 taproot 激活后，当同一交易中的任何其他输出是 P2TR 时，比特币核心将有可能使用 P2TR 找零输出。这可以最小化在过渡期内找零的可识别性的增加。
+- **输出脚本匹配**：如果任何支付的输出类型是 segwit，比特币核心的内置钱包会默认[使用 segwit 找零输出](https://github.com/bitcoin/bitcoin/pull/12119)。否则，它会使用默认的找零地址类型。例如，当支付 P2PKH 输出时，可能会使用 P2PKH 找零输出；对于 P2WPKH 输出，会使用 P2WPKH 找零。如 [Newsletter #155](https://bitcoinops.org/en/newsletters/2021/06/30/#bitcoin-core-22154) 所述，在 taproot 激活后，当同一交易中的任何其他输出是 P2TR 时，比特币核心将乘机使用 P2TR 找零输出。这可以最小化在过渡期内找零的可识别性的增加。
 
 - **请求升级**：有了 P2TR，我们在比特币历史上第一次有机会让每个人都使用相同类型的输出脚本，无论他们的安全要求如何，也可以经常使用不可区分的输入，这大大改善了隐私。如果你想看到比特币隐私性大幅提高，你可以要求你支付的用户或服务提供 taproot 支持（如果可以，也可以要求他们停止重复使用地址）。如果你和他们都升级了，那么找零输出就会变得更难识别，我们也能享受 taproot 的所有其他优秀的隐私好处。
 
@@ -46,9 +46,9 @@ lang: zh
 
 - [Bitcoin Core GUI #416](https://github.com/bitcoin-core/gui/issues/416) 增加了一个 "启用 RPC 服务器 "的复选框，允许用户打开和关闭比特币核心的 RPC 服务（需要重新启动）。
 
-  ![alt 属性文本](./image/2021-10-06-newsletter-zh-p2.png)
+  ![启用 RPC 服务器配置选项的截图](./image/2021-10-06-newsletter-zh-p2.png)
 
-- [Bitcoin Core #20591](https://github.com/bitcoin/bitcoin/issues/20591) 改变了钱包时间的计算逻辑，在重新扫描与钱包有关的交易的历史区块时只使用区块时间戳。使用 `rescanblockchain` RPC 手动调用重新扫描的用户和应用程序不会再看到交易被不准确地标记为扫描时间，而不是确认时间，消除了偶发的混乱的源头。
+- [Bitcoin Core #20591](https://github.com/bitcoin/bitcoin/issues/20591) 改变了钱包时间的计算逻辑，在重新扫描与钱包有关的交易的历史区块时只使用区块时间戳。使用 `rescanblockchain` RPC 手动调用重新扫描的用户和应用程序不会再看到交易被不准确地标记为扫描时间，而不是确认时间，消除了偶发的困惑和沮丧。
 
 - [Bitcoin Core #22722](https://github.com/bitcoin/bitcoin/pull/22722) 更新了  `estimatesmartfee` RPC，使其只返回高于配置和动态最低交易中继费的费率。例如，如果估算器计算的费用是 1 sat/vbyte，配置值是 2 sat/vbyte，而动态最小值已经上升到 3 sat/vbyte，那么将返回 3 sat/vbyte。
 
