@@ -1,4 +1,4 @@
-```
+---
 title: 'Bitcoin Optech Newsletter #168'
 permalink: /zh/newsletters/2021/09/29/
 name: 2021-09-29-newsletter-zh 
@@ -6,7 +6,7 @@ slug: 2021-09-29-newsletter-zh
 type: newsletter
 layout: newsletter
 lang: zh
-```
+---
 
 本周的 Newsletter 总结了在 DLC 规范中实施不兼容变更的提案，介绍了允许只使用 BIP32 种子恢复关闭的 LN 通道的选项，并描述了一个生成无状态 LN 账单的想法。同时还包括我们的常规部分，来自 Bitcoin Stack Exchange 的热门问题和答案，为 taproot 激活做准备的想法，以及主流的比特币基础设施软件中值得注意的变更。
 

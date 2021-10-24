@@ -1,4 +1,4 @@
-```
+---
 title: 'Bitcoin Optech Newsletter #162'
 permalink: /zh/newsletters/2021/08/18/
 name: 2021-08-18-newsletter-zh 
@@ -6,7 +6,7 @@ slug: 2021-08-18-newsletter-zh
 type: newsletter
 layout: newsletter
 lang: zh
-```
+---
 
 本周的 Newsletter 总结了关于尘额限制的讨论，还包括我们的常规部分，介绍了服务和客户端软件的变更，如何为 taproot 做准备，新版本和候选版本，以及主流的比特币基础设施软件中值得注意的变更。
 

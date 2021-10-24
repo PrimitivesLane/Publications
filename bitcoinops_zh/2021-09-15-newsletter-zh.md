@@ -1,4 +1,4 @@
-```
+---
 title: 'Bitcoin Optech Newsletter #166'
 permalink: /zh/newsletters/2021/09/15/
 name: 2021-09-15-newsletter-zh 
@@ -6,7 +6,7 @@ slug: 2021-09-15-newsletter-zh
 type: newsletter
 layout: newsletter
 lang: zh
-```
+---
 
 本周的 Newsletter 描述了一个关于契约操作码的新提案，并总结了关于在 signet 上实施定期重组的反馈请求。另外还包括我们的常规部分，包括如何为 taproot 做准备，新版本和候选版本，以及主流的比特币基础设施软件中值得注意的变更。
 

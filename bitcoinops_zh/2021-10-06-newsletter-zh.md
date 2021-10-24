@@ -1,4 +1,4 @@
-```
+---
 title: 'Bitcoin Optech Newsletter #169'
 permalink: /zh/newsletters/2021/10/06/
 name: 2021-10-06-newsletter-zh 
@@ -6,7 +6,7 @@ slug: 2021-10-06-newsletter-zh
 type: newsletter
 layout: newsletter
 lang: zh
-```
+---
 
 本周的 Newsletter 总结了一项为比特币增加交易继承标识符的提案，还包括我们的常规部分，为 taproot 做准备，新版本和候选版本，以及主流的比特币基础设施软件中值得注意的变更。
 

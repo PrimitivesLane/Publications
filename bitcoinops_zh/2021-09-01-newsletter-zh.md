@@ -1,4 +1,4 @@
-```
+---
 title: 'Bitcoin Optech Newsletter #164'
 permalink: /zh/newsletters/2021/09/01/
 name: 2021-09-01-newsletter-zh 
@@ -6,7 +6,7 @@ slug: 2021-09-01-newsletter-zh
 type: newsletter
 layout: newsletter
 lang: zh
-```
+---
 
 本周的 Newsletter 介绍了一个新的基于 web 的解码和修改 PSBT 的工具，并链接到一篇博文和一个基于 eltoo 的 LN 支付通道的概念验证实现。另外还包括我们的常规部分，包括为 taproot 做准备的内容，新版本和候选版本的通告，以及主流的比特币基础设施软件中值得注意的变更。
 

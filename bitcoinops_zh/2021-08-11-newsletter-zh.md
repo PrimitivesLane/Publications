@@ -1,4 +1,4 @@
-```
+---
 title: 'Bitcoin Optech Newsletter #161'
 permalink: /zh/newsletters/2021/08/11/
 name: 2021-08-11-newsletter-zh 
@@ -6,7 +6,7 @@ slug: 2021-08-11-newsletter-zh
 type: newsletter
 layout: newsletter
 lang: zh
-```
+---
 
 本周的 Newsletter 继续了之前对 JoinMarket 中忠诚保证保险的介绍，还包含了我们常规的比特币核心 PR 审核俱乐部会议的总结，学习 taproot 的建议，发布和候选发布功能的公布，以及一些对主流基础设施项目更新的介绍。
 
