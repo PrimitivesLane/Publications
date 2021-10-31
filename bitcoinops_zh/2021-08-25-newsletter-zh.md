@@ -1,4 +1,4 @@
-```
+---
 title: 'Bitcoin Optech Newsletter #163'
 permalink: /zh/newsletters/2021/08/25/
 name: 2021-08-25-newsletter-zh 
@@ -6,7 +6,7 @@ slug: 2021-08-25-newsletter-zh
 type: newsletter
 layout: newsletter
 lang: zh
-```
+---
 
 本周的 Newsletter 总结了关于将 LN 通固定费用设置为零的讨论，还包括我们的常规部分，介绍了 Bitcoin Stack Exchange 中的热门问题和答案，如何为 taproot 做准备，新版本和候选版本，以及主流的比特币基础设施软件中值得注意的变更。
 

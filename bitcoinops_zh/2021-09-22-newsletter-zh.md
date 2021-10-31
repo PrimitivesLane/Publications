@@ -1,4 +1,4 @@
-```
+---
 title: 'Bitcoin Optech Newsletter #167'
 permalink: /zh/newsletters/2021/09/22/
 name: 2021-09-22-newsletter-zh 
@@ -6,7 +6,7 @@ slug: 2021-09-22-newsletter-zh
 type: newsletter
 layout: newsletter
 lang: zh
-```
+---
 
 本周的 Newsletter 介绍了对 BIP 流程的修改建议，总结了一个在比特币核心中增加对包中继支持的计划，另外也涉及到关于在 DNS 中增加 LN 节点信息的讨论。还包括我们的常规部分，服务和客户端软件的变更，如何为 taproot 做准备，新版本和候选版本，以及主流的比特币基础设施软件中值得注意的变更。
 

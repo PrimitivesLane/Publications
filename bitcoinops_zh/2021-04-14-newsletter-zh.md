@@ -1,4 +1,4 @@
-```
+---
 title: 'Bitcoin Optech Newsletter #144'
 permalink: /zh/newsletters/2021/04/14/
 name: 2021-04-14-newsletter-zh 
@@ -6,7 +6,7 @@ slug: 2021-04-14-newsletter-zh
 type: newsletter
 layout: newsletter
 lang: zh
-```
+---
 
 本周简报总结了关于激活Taproot的代码方面的最新进展 ，还包括我们的常规板块，即最近Bitcoin Core PR Review Club（Bitcoin Core 审核俱乐部）会议的介绍，以及比特币基础软件的重要更新。
 

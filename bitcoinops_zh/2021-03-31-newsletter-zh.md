@@ -1,4 +1,4 @@
-```
+---
 title: 'Bitcoin Optech Newsletter #142'
 permalink: /zh/newsletters/2021/03/31/
 name: 2021-03-31-newsletter-zh 
@@ -6,7 +6,7 @@ slug: 2021-03-31-newsletter-zh
 type: newsletter
 layout: newsletter
 lang: zh
-```
+---
 
 本周简报将介绍一篇有关**闪电网络（LN）概率路径选择**的论文和对其简单的讨论（probabilistic path selection for LN ），还包括我们的常规板块，即在Bitcoin StackExchange 上热门问答的总结，新版本和候选版本，以及比特币基础软件的重要更新。
 

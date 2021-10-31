@@ -1,4 +1,4 @@
-```
+---
 title: 'Bitcoin Optech Newsletter #165'
 permalink: /zh/newsletters/2021/09/08/
 name: 2021-09-08-newsletter-zh 
@@ -6,7 +6,7 @@ slug: 2021-09-08-newsletter-zh
 type: newsletter
 layout: newsletter
 lang: zh
-```
+---
 
 本周的 Newsletter 介绍了一个与比特币有关的 MIME 类型的建议，并总结了一篇关于设计一种新的去中心化矿池的论文。另外还包括我们的常规部分，包括比特币核心 PR 审核俱乐部会议的总结，如何为 taproot 做准备，新版本和候选版本，以及主流的比特币基础设施软件中值得注意的变更。
 
