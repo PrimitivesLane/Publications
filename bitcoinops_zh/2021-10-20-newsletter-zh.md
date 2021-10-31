@@ -15,11 +15,11 @@ lang: zh
 
 - **降低探测成本，使攻击更加昂贵：** 相隔几周，开发者 ZmnSCPxj 和 Joost Jager 分别提出了[基本](https://lists.linuxfoundation.org/pipermail/lightning-dev/2021-September/003256.html)相似的[提案](https://lists.linuxfoundation.org/pipermail/lightning-dev/2021-October/003314.html)，即取消为探测支付路径而锁定资金的要求。这两个提案都建议将此作为在网络中增加预付路由费的第一步，即使支付尝试失败也会让花费者付钱。预付费用是对[信道干扰攻击](https://bitcoinops.org/en/topics/channel-jamming-attacks/)的建议缓解措施之一。
 
-  目前，LN 节点可以发送失败保障支付，以探测支付路径。例如，Alice 生成了一个 [HTLC](https://bitcoinops.org/en/topics/htlc/)，支付一个秘密的原像。她通过 Bob 和 Charlie 将付款路由给 Zed。由于 Zed 不知道付款的预象，他被迫拒绝付款，尽管他是最终的接收者。如果 Alice 收到 Zed 节点的拒绝信息，她知道 Bob 和 Charlie 在他们的通道中有足够的资金可以支付给 Zed，因此她可以立即对 Zed 的拒绝做出反应，发送一个实际的付款，这个付款就有很高的成功概率（唯一与流动性有关的失败原因是如果 Bob 或 Charlie 的余额在这期间发生了变化）。对 Alice 来说，先使用失败保障的探测的好处是，她可以并行地探测多条路径，并使用任何一条先成功的路径，减少整个支付时间。主要的缺点是，每个支付探测都会暂时锁定属于 Alice 以及 Bob 和 Charlie 等中间节点的资金；如果 Alice 并行探测几条长路径，她可能很容易锁定 100 倍甚至更多的支付金额。一个次要的缺点是，这种类型的支付路径探测有时会导致不必要的单边通道关闭及其产生的链上费用。
+  目前，LN 节点可以发送确保失败支付，以探测支付路径。例如，Alice 生成了一个 [HTLC](https://bitcoinops.org/en/topics/htlc/)，支付一个秘密的原像。她通过 Bob 和 Charlie 将付款路由给 Zed。由于 Zed 不知道付款的原象，他被迫拒绝付款，尽管他是最终的接收者。如果 Alice 收到 Zed 节点的拒绝信息，她知道 Bob 和 Charlie 在他们的通道中有足够的资金可以支付给 Zed，因此她可以立即对 Zed 的拒绝做出反应，发送一个实际的付款，这个付款就有很高的成功概率（唯一与流动性有关的失败原因是如果 Bob 或 Charlie 的余额在这期间发生了变化）。对 Alice 来说，先使用确保失败的探测的好处是，她可以并行地探测多条路径，并使用任何一条先成功的路径，减少整个支付时间。主要的缺点是，每个支付探测都会暂时锁定属于 Alice 以及 Bob 和 Charlie 等中间节点的资金；如果 Alice 并行探测几条长路径，她可能很容易锁定百倍于支付金额的资产。一个次要的缺点是，这种类型的支付路径探测有时会导致不必要的单边通道关闭及其产生的链上费用。
 
   ZmnSCPxj 和 Jager 提议允许发送一个特殊的探测信息，不需要使用 HTLC 暂时锁定比特币，或冒通道失败的风险。该消息基本上是免费发送的，尽管 ZmnSCPxj 的提案确实也提出了一些缓解措施以避免拒绝泛洪服务攻击。
 
-  如果免费探测确实使得支出节点在很大比例的时间找到可靠的路径，ZmnSCPxj 和 Jager 认为，那么开发者和用户应该不那么抗拒支付预付费用，用户只会在极少数的支付失败的情况下付出代价。对诚实的用户来说，这种小的偶然成本将成为执行广泛干扰攻击的不诚实节点的高成本，并减少这种攻击发生的风险（并补偿路由节点运营商在持续攻击发生时部署额外资金以改善网络）。
+  如果免费探测确实使得支出节点在很大比例的时间找到可靠的路径，ZmnSCPxj 和 Jager 认为，那么开发者和用户应该不那么抗拒支付预付费用，用户只会在极少数的支付失败的情况下付出代价。对诚实的用户来说的小的偶然成本将成为执行广泛干扰攻击的不诚实节点的高成本，并减少这种攻击发生的风险（并补偿路由节点运营商在持续攻击发生时用以改善网络所需的额外资金）。
 
   截至本文写作时，这个想法得到了一定程度的讨论。
 
@@ -28,11 +28,11 @@ lang: zh
 ## 服务和客户端软件的变更
 *在这个月的专题中，我们会重点介绍比特币钱包和服务中有意思的更新。*
 
-- **Zeus 钱包增加了 LN 功能：** Zeus，一个移动比特币和闪电钱包应用程序，在其 [v0.6.0-alpha3](https://github.com/ZeusLN/zeus/releases/tag/v0.6.0-alpha3) 版本中，提供了对[原子多路径支付（AMP）](https://bitcoinops.org/en/topics/atomic-multipath/)、[闪电地址](https://bitcoinops.org/en/newsletters/2021/09/22/#lightning-address-identifiers-announced)和[硬币控制](https://bitcoinops.org/en/topics/coin-selection/)功能的额外支持。
+- **Zeus 钱包增加了 LN 功能：** Zeus，一个移动比特币和闪电钱包应用程序，在其 [v0.6.0-alpha3](https://github.com/ZeusLN/zeus/releases/tag/v0.6.0-alpha3) 版本中，提供了对[原子多路径支付（AMP）](https://bitcoinops.org/en/topics/atomic-multipath/)、[闪电地址](https://bitcoinops.org/en/newsletters/2021/09/22/#lightning-address-identifiers-announced)和[硬币选择](https://bitcoinops.org/en/topics/coin-selection/)功能的额外支持。
 
 - **Sparrow 增加了 coinjoin 支持：** [Sparrow 1.5.0](https://github.com/sparrowwallet/sparrow/releases/tag/1.5.0) 通过与 Samourai 的 [Whirlpool](https://bitcoiner.guide/whirlpool/) 整合，增加了 [coinjoin](https://bitcoinops.org/en/topics/coinjoin/) 功能。
 
-- **JoinMarket 0.9.2 增加了 RBF 支持：** [JoinMarket 0.9.3](https://github.com/JoinMarket-Org/joinmarket-clientserver/releases/tag/v0.9.3) 修复了一个针对挂单者的关键错误。我们鼓励所有挂单者进行升级。除了在用户界面中默认使用[忠诚保证保险](https://bitcoinops.org/en/newsletters/2021/08/11/#implementation-of-fidelity-bonds)外，JoinMarket 0.9.2 还支持非 coinjoin 交易的费用替换（RBF）。
+- **JoinMarket 为挂单者修复了一个关键错误，并增加了 RBF 支持：** [JoinMarket 0.9.3](https://github.com/JoinMarket-Org/joinmarket-clientserver/releases/tag/v0.9.3) 修复了一个针对挂单者的关键错误。我们鼓励所有挂单者进行升级。除了在用户界面中默认使用[忠诚保证保险](https://bitcoinops.org/en/newsletters/2021/08/11/#implementation-of-fidelity-bonds)外，JoinMarket 0.9.2 还支持非 coinjoin 交易的费用替换（RBF）。
 
 - **Coldcard 支持基于描述符的钱包：** [Coldcard 4.1.3](https://blog.coinkite.com/version-4.1.3-released/) 现在支持比特币核心中的 `importdescriptors`，使描述符钱包和 [PSBT](https://bitcoinops.org/en/topics/psbt/) 工作流与比特币核心结合。
 
@@ -43,7 +43,7 @@ lang: zh
 ## 为 taproot 作准备 #18：趣闻
 *关于开发者和服务提供者如何为即将在区块高度 709,632 处激活的 taproot 作准备的每周[系列](https://bitcoinops.org/en/preparing-for-taproot/)文章。*
 
-- **什么是 taproot？** 维基百科[说](https://en.wikipedia.org/wiki/Taproot)："taproot 是一个大的、中心的和主要的根，其他的根从这里横向发芽。通常情况下，直根直且粗粗，呈锥形，并直接向下生长。在一些植物中，如胡萝卜，直根是一个储存器官，非常发达，以至于它被当作蔬菜来栽培。"
+- **什么是 taproot？** 维基百科[说](https://en.wikipedia.org/wiki/Taproot)："taproot 是一个大的、中心的和主要的根，其他的根从这里横向发芽。通常情况下，直根直且粗，呈锥形，并直接向下生长。在一些植物中，如胡萝卜，直根是一个储存器官，非常发达，以至于它被当作蔬菜来栽培。"
 
   这怎么适用到比特币的场景？
 
@@ -59,14 +59,15 @@ lang: zh
 
 - **不确定使用什么名字：** 虽然没有最终被应用，但在为比特币适配 Schnorr 签名的发展初期，有一个[建议](https://diyhpl.us/wiki/transcripts/discreet-log-contracts/)是，Claus Schnorr 的名字不应该被关联进来，因为他的专利阻止了一项有价值的加密技术的广泛使用超过20年。Pieter Wuille 写道："我们确实考虑过将 BIP340 称为 'DLS'，即'离散对数签名'，但我们最终没有这么做，因为 Schnorr 这个名字已经被广泛提及。"
 
-- **扭曲的 Edwards 曲线的 Schnorr 签名：** 2011 年发表了一个使用椭圆曲线的 Schnorr 签名的应用。这个方案，[EdDSA](https://en.wikipedia.org/wiki/EdDSA)，现在是几个标准的基础。虽然没有在比特币共识中使用，但在 Optech 跟踪的许多比特币库中可以发现在其他系统上下文中对它的引用。
-- **支付到合约：** Ilja Gerhardt 和 Timo Hanke 创建了一个[协议](https://arxiv.org/abs/1212.3257)，由 Hanke 在 2013 年圣何塞比特币会议上提出，允许支付承诺到合约的哈希。任何拥有合约副本和 nonce（用于避免某些攻击）的人都可以验证该承诺，但对其他人来说，该付款看起来就像任何其他比特币付款。
+- **Twisted Edwards 曲线的 Schnorr 签名：** 2011 年发表了一个使用椭圆曲线的 Schnorr 签名的应用。这个方案，[EdDSA](https://en.wikipedia.org/wiki/EdDSA)，现在是几个标准的基础。虽然没有在比特币共识中使用，但在 Optech 跟踪的许多比特币库中可以发现在其他系统上下文中对它的引用。
 
-  2014 年关于[侧链](https://bitcoinops.org/en/topics/sidechains/)的[论文](https://www.blockstream.com/sidechains.pdf)中包含了对这种支付到合约（P2C）协议的微小改进，其中的承诺还包括原始公钥的支付。Taproot 使用了相同的构造，但是，输出的创建者不是承诺到链下的合约的条款，而是承诺到由接收者选择的共识强制条款，这些条款规定了在链上如何花费收到的比特币。
+- **向合约支付：** Ilja Gerhardt 和 Timo Hanke 创建了一个[协议](https://arxiv.org/abs/1212.3257)，由 Hanke 在 2013 年圣何塞比特币会议上提出，允许支付承诺到合约的哈希。任何拥有合约副本和 nonce（用于避免某些攻击）的人都可以验证该承诺，但对其他人来说，该付款看起来就像任何其他比特币付款。
+
+  2014 年关于[侧链](https://bitcoinops.org/en/topics/sidechains/)的[论文](https://www.blockstream.com/sidechains.pdf)中包含了对这种向合约支付（P2C）协议的微小改进，其中的承诺还包括原始公钥的支付。Taproot 使用了相同的构造，但是，输出的创建者不是承诺到链下的合约的条款，而是承诺到由接收者选择的共识强制条款，这些条款规定了在链上如何花费收到的比特币。
 
 - **早上好：** 使用 P2C 使得支付到脚本可以在链上看起来与支付到公钥相同的想法，是 2018 年 1 月 22 日在加州洛斯阿尔托斯的小餐馆 "早上好"被想到的。Pieter Wuille 写道，这个想法是由 Andrew Poelstra 和 Gregory Maxwell 提出的，"而我短暂地离开了桌子......！$%@" [原文如此]。
 
-- **2.5 年与 1.5 天：** 为 [bech32m](https://bitcoinops.org/en/topics/bech32/) 选择最佳常数需要大约 2.5 年的 CPU 时间，但是用 Gregory Maxwell 的 CPU 集群在短短1.5天内就完成了。
+- **2.5 年与 1.5 天：** 为 [bech32m](https://bitcoinops.org/en/topics/bech32/) 选择最佳常数需要大约 2.5 年的 CPU 时间，但是用 Gregory Maxwell 的 CPU 集群在短短 1.5 天内就完成了。
 
 *我们感谢 Anthony Towns、Gregory Maxwell、Jonas Nick、Pieter Wuille 和 Tim Ruffing 与本专栏的愉快谈话。任何错误都是作者的问题。*
 
