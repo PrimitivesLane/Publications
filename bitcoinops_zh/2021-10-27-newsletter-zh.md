@@ -54,9 +54,9 @@ lang: zh
 本周内，[Bitcoin Core][Bitcoin Core]、[C-Lightning][C-Lightning]、[Eclair][Eclair]、[LND][LND]、[Rust-Lightning][Rust-Lightning]、[libsecp256k1][libsecp256k1]、[Rust Bitcoin][Rust Bitcoin]、[BTCPay Server][BTCPay Server]、[BDK][BDK] 和 [Lightning BOLTs][Lightning BOLTs] 出现了重大变更。
 
 - <a id="bitcoin-core-23002" href="#bitcoin-core-23002)">●</a> [Bitcoin Core #23002][Bitcoin Core #23002] 在创建新钱包时会默认生成基于 [descriptor][描述符] 的钱包。基于描述符的钱包第一次引入是在[Bitcoin Core PR #16528][Bitcoin Core PR #16528]。有一个[长期计划][long-term plan]是把所有的钱包都迁移成基于描述符的，最终淘汰掉对传统钱包的支持。
-- <a id="bitcoin-core-22918" href="#bitcoin-core-22918)">●</a> [Bitcoin Core #22918][Bitcoin Core #22918] 延伸了 `getblock` RPC 方法和 `/rest/block/` 端点，使用新的冗余级别（`3`）来包含在当前区块中花费的每一个之前创建的输出（即 “prevout”）的信息。
+- <a id="bitcoin-core-22918" href="#bitcoin-core-22918)">●</a> [Bitcoin Core #22918][Bitcoin Core #22918] 延伸了 `getblock` RPC 方法和 `/rest/block/` 端点，使用新的冗余度（`3`）来包含在当前区块中花费的每一个之前创建的输出（即 “prevout”）的信息。
   在一个区块创建一个新的未花用事务输出（UTXO）时，Bitcoin Core 软件会把它存储在一个数据库里。在一个后来的事务准备花费某个 UTXO 时，Bitcoin Core 软件会在数据库中检索它，并验证事务满足了该 UTXO 的所有花费条件（例如，包含对应于某个公钥的数字签名）。如果一个区块中的所有事务都是有效的，Bitcoin Core 会把这些 prevout 条目从 UTXO 数据库中移出、移到一个 *undo* 文件中；如果后来发生链重组，这个区块从主链上消失，这个文件可以用来把 UTXO 数据库恢复到前一个状态中。
-  这个 PR 会在 undo 文件中检索 prevout，并将它们加入实际包含在区块中的信息不算，或用这些内容开展计算。对于需要 prevout 数据的用户和应用来说，这比直接搜索每一笔前序事务及其输出要更快更方便。开启了修剪数据库功能的全节点会删掉旧的 undo 文件，所以无法为这些已删除的区块使用这一新的冗余级别。
+  这个 PR 会在 undo 文件中检索 prevout，并将它们加入实际包含在区块中的信息，或用这些内容开展计算。对于需要 prevout 数据的用户和应用来说，这比直接搜索每一笔前序事务及其输出要更快更方便。开启了修剪数据库功能的全节点会删掉旧的 undo 文件，所以无法为这些已删除的区块使用这一新的冗余度。
 - <a id="c-lightning-4771" href="#c-lightning-4771)">●</a> [C-Lightning #4771][C-Lightning #4771] 更新了 `pay` 指令，以优先执行包含了较大容量的通道的路由，其它事情保持不变。一个通道的资金总量是公开可知的；不可知的是两个方向上到底有多少资金可用。不过，如果两个通道处在任意状态的[可能性是相同的][equal probability]，那容量更大的通道能够路由成功的可能性自然更大。
 - <a id="c-lightning-4685" href="#c-lightning-4685)">●</a> [C-Lightning #4685][C-Lightning #4685] 基于 [BOLTs #891][BOLTs #891] 中的规范草案，加入了一个实验性的 [websocket][websocket] 通信方式。这让 C-Lightning（和其它支持同一个协议的 LN 实现）能发布一个用来与其他对等节点通信的另类端口。底层的 LN 通信协议没有变化，只是用二进制的 websocket 框架（而非纯粹的 TCP/IP）来执行。
 - <a id="eclair-1969" href="#eclair-1969)">●</a> [Eclair #1969][Eclair #1969] 延伸了所有 API 调用的 `findroute*` 集合，使用了多个额外的参数：`ignoreNodeIDs`、 `ignoreChannelIDs` 以及 ` maxFeeMsat`。它也加入了一个 `full` 格式，会返回关于已发现的路由的所有信息。
@@ -64,7 +64,7 @@ lang: zh
 - <a id="lnd-5346" href="#lnd-5346)">●</a> [LND #5346][LND #5346] 为 LND 节点加入了与其对等节点交互定制化消息的能力 —— 要求类型识别符大于 32767。该 pull request 中也提出了定制化消息的一些建议用法。`lncli` 命令行也升级到可以简便第发送和收听定制化消息。
 - <a id="lnd-5689" href="#lnd-5689)">●</a> [LND #5689][LND #5689] 为 LND 节点加入了可以把所有的私钥操作委托给一个远程的、大部分时间离线的 “签名器” 节点的功能。详细的文档可见[此处][here]。
 - <a id="btcpay-server-2517" href="#btcpay-server-2517)">●</a> [BTCPay Server #2517][BTCPay Server #2517] 增加了通过 LN 来和退款的功能。管理员可以输入一个支付的数量，然后接收方可以输入 TA 的节点的细节，让支付成功发送。
-- <a id="hwi-497" href="#hwi-497)">●</a> [HWI #497][HWI #497] 向使用 Trezor 固件的设备发送额外的信息，允许他们验证一个找零地址属于一个多签名的联盟。如无此功能更，Trezor 会将找零显示为一笔单独的支付，要求用户手动验证他们的找零地址是正确的。
+- <a id="hwi-497" href="#hwi-497)">●</a> [HWI #497][HWI #497] 向使用 Trezor 固件的设备发送额外的信息，允许他们验证一个找零地址属于一个多签名的联盟。如无此功能，Trezor 会将找零显示为一笔单独的支付，要求用户手动验证他们的找零地址是正确的。
 
 
 
