@@ -16,6 +16,7 @@
 | altchains                                                 | 竞争币区块链                     |
 | altcoins                                                  | 竞争币                        |
 | AML                                                       | 反洗钱                        |
+| anchor output                                             | 锚点输出（闪电网络术语）          |
 | anonymity focused                                         | 匿名的                        |
 | antshares                                                 | 小蚁                         |
 | appcoins                                                  | 应用币                        |
@@ -118,6 +119,7 @@
 | cryptocurrency                                            | 加密货币                       |
 | Cunning hamprime chains                                   | 坎宁安素数链                     |
 | currency creation                                         | 货币创造                       |
+| CVE                                                       | 常见漏洞和缺陷                       |
 | D                                                         |                            |
 | Darkcoin                                                  | 暗黑币（译者注：现已更名为达世币Dash）      |
 | data structure                                            | 数据结构                       |
@@ -186,6 +188,7 @@
 | field programma blegatearray(FPGA)                        | 现场可编程门阵列(FPGA)             |
 | Financial disintermediation                               | 金融脱媒                       |
 | fintech                                                   | 金融技术                       |
+| forkcoin                                                  | 分叉币                           |
 | fork attack                                               | 分叉攻击                       |
 | forks                                                     | 分叉                         |
 | fraud proofs                                              | 欺诈证明                       |
@@ -231,6 +234,7 @@
 | Invalid Numerical Value                                   | 无效数值                       |
 | IPDB                                                      | 星际数据库                      |
 | K                                                         |                            |
+| keypath                                                   | 密钥路径                          |
 | key formats                                               | 密钥格式                       |
 | key-value                                                 | 键值                         |
 | KYC                                                       | 了解你的客户                     |
@@ -250,7 +254,7 @@
 | managed pools                                             | 托管池                        |
 | mastercoin protocol                                       | 万事达币协议                     |
 | masternode                                                | 主节点                        |
-| memorypool(mempool)                                       | 内存池                        |
+| memorypool(mempool)                                       | 交易池（原翻译为内存池）                       |
 | Merkle tree(Merkle Hash tree)                             | 二进制的哈希树或者二叉哈希树             |
 | Merkle root                                               | 二进制哈希树根                    |
 | metachains                                                | 附生块链                       |
@@ -305,12 +309,12 @@
 | outputs                                                   | 输出                         |
 | P                                                         |                            |
 | P2P Pool                                                  | P2Pool（一种点对点方式的矿池）         |
+| P2SH address                                              | P2SH地址；脚本哈希支付地址            |
 | parent blocks                                             | 父区块                        |
 | parent blockchain                                         | 主链                         |
 | paths for                                                 | 路径                         |
 | Pay to script hash (P2SH)                                 | P2SH代码；脚本哈希支付方式            |
 | payment channel                                           | 支付通道                       |
-| P2SH address                                              | P2SH地址；脚本哈希支付地址            |
 | peer-to-peer networks                                     | P2P网络                      |
 | physical bitcoin storage                                  | 比特币物理存储                    |
 | PIN-verification                                          | 芯片密码                       |
@@ -329,11 +333,13 @@
 | proof-of-work chain                                       | 工作量证明链                     |
 | propagating transactions on                               | 事务广播                       |
 | protein folding algorithms                                | 蛋白质折叠算法                    |
+| PSBT                                                      | 部分签名的比特币事务                |
 | public child key derivation                               | 公钥子钥派生                     |
 | public key derivation                                     | 公钥推导                       |
 | publickeys                                                | 公钥                         |
 | public blockchain/permissionless blockchain               | 公链                         |
 | private blockchain/permissioned blockchain                | 私链                         |
+| Pull Request（PR）                                         | 新（增）代码                     |
 | pump and bump                                             | 拉升出货                       |
 | purpose level(multiaccount structure)                     | 目标层（多帐户结构）                 |
 | Python ECDSA library                                      | PythonECDSA库               |
@@ -341,10 +347,11 @@
 | random                                                    | 随机                         |
 | random wallets                                            | 随机钱包                       |
 | raw value                                                 | 原始价格                       |
+| RBF:Replace By Fee                                        | 费用替代方案                     |
 | reentrancy                                                | 可重入性                       |
 | regtech                                                   | 监管技术                       |
 | replay attacks                                            | 重放攻击                       |
-| RBF:Replace By Fee                                        | 费用替代方案                     |
+| replacement transaction                                   | 替代事务                      |
 | retargeting                                               | 切换目标                       |
 | recursive call                                            | 递归调用                       |
 | RIPEMD160                                                 | RIPEMD160一种算法              |
@@ -360,6 +367,7 @@
 | scriptcons truction                                       | 脚本构建                       |
 | scriptl anguage for                                       | 脚本语言                       |
 | Scriptlanguage                                            | 脚本语言                       |
+| scriptpath                                                | 脚本路径                      |
 | scripts                                                   | 脚本                         |
 | scrypt algorithm                                          | scrypt算法                   |
 | scrypt-N algorithm                                        | scrypt-N算法                 |
@@ -390,7 +398,7 @@
 | soft fork                                                 | 软分叉                        |
 | spilt                                                     | 分割                         |
 | Stellar                                                   | 恒星币                        |
-| stateless verification of transactions                    | 事务状态验证                     |
+| stateless verification of transactions                    | 事务的无状态验证                     |
 | statelessness                                             | 无状态                        |
 | state machine replication                                 | 状态机原理                      |
 | storage                                                   | 存储                         |
@@ -406,6 +414,7 @@
 | taint Analysis                                            | 污点分析                       |
 | TeleHash                                                  | p2p信息发送系统                  |
 | timeline                                                  | 时间轴                        |
+| timelock                                                  | 时间锁                           |
 | timestamping blocks                                       | 带时间戳的区块                    |
 | txids                                                     | 缩短事务标识符                    |
 | token                                                     | 代币                         |
@@ -445,6 +454,7 @@
 | Visualise Transaction                                     | 可视化事务                      |
 | W                                                         |                            |
 | Wallet Import Format(WIF)                                 | 钱包导入格                      |
+| watchtower                                                | 瞭望塔服务（用于闪电网络）       |
 | wallets                                                   | 钱包                         |
 | white hat attack                                          | 白帽攻击                       |
 | weak blocks                                               | 弱区块                        |
