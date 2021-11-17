@@ -8,17 +8,17 @@ layout: newsletter
 lang: zh
 ---
 
-本周的周报总结了一篇讨论 “谨慎日志合约（Discreet Log Contract，DLC）” 如何整合到闪电网络的文章、链接 了一份最新的闪电网络开发者大会的详细总结，还介绍了一些为致密区块过滤器（compact block filter）执行额外验证的想法。也包含了我们的常规环节：Bitcoin Core PR 审核俱乐部会议的总结、“为 Taproot 升级作准备” 的最后一章、软件新版本和后续版本的公告，以及常见基础设施软件重大变更的清单。
+本周的周报总结了一篇讨论 “谨慎日志合约（Discreet Log Contract，DLC）” 如何整合到闪电网络的文章、链接了一份最新的闪电网络开发者大会的详细总结，还介绍了一些为致密区块过滤器（compact block filter）执行额外验证的想法。也包含了我们的常规环节：Bitcoin Core PR 审核俱乐部会议的总结、“为 Taproot 升级作准备” 的最后一章、软件新版本和后续版本的公告，以及常见基础设施软件重大变更的清单。
 
 ## 新闻
 
 - <a id="dlcs-over-ln" href="#dlcs-over-ln)">●</a> **闪电网络上的谨慎日志合约**：Thibaut Le Guilly 在 DLC-Dev 邮件组中发表了一篇[帖子][thread]，讨论如何在闪电网络中集成[谨慎日志合约][Discreet Log Contracts]。最初的帖子简述了多种在两个直接相连的闪电节点的交易中包含 DLC 的可能构造。这篇帖子也描述了创建在闪电网络中路由的 DLC 时会遇到的一些挑战。
-- <a id="ln-summit-2021-notes" href="#ln-summit-2021-notes)">●</a> **LN 2021 峰会记录**：Olaoluwa Osuntokun 为最近在苏黎世（Zurich）举办的虚拟和真人闪电网络开发者会议[发表][posted]了一份详尽的总结。总结的内容包括：在闪电网络中使用 [taproot][taproot]（包括 [“点时间锁（PLTC）”][PTLCs] 、为[多签名场景][multisignatures]适配 [MuSig2][MuSig2] 以及 [eltoo][eltoo]）；把规范讨论的环境从在线聊天室（IRC）切换到视频讨论；改变当前的 BOLT 规范模式；洋葱消息和 [“收款码”][offers] 功能；无滞碍的支付（见 [本周报第 53 期][Newsletter #53]）；[通道阻塞攻击][channel jamming attacks]以及多种缓解措施，以及 [“蹦床支付”（trampoline routing）][trampoline routing]。
+- <a id="ln-summit-2021-notes" href="#ln-summit-2021-notes)">●</a> **LN 2021 峰会记录**：Olaoluwa Osuntokun 为最近在苏黎世（Zurich）举办的虚拟和真人闪电网络开发者会议[发表][posted]了一份详尽的总结。总结的内容包括：在闪电网络中使用 [taproot][taproot]（包括 [“点时间锁（PTLC）”][PTLCs] 、为[多签名场景][multisignatures]适配 [MuSig2][MuSig2] 以及 [eltoo][eltoo]）；把规范讨论的环境从在线聊天室（IRC）切换到视频讨论；改变当前的 BOLT 规范模式；洋葱消息和 [“收款码”][offers] 功能；无滞碍的支付（见 [本周报第 53 期][Newsletter #53]）；[通道阻塞攻击][channel jamming attacks]以及多种缓解措施，以及 [“蹦床支付”（trampoline routing）][trampoline routing]。
 - <a id="additional-compact-block-filter-verification" href="#additional-compact-block-filter-verification)">●</a> **额外的致密区块过滤器验证**：[Neutrino][Neutrino] 软件轻量版用一种启发式算法来检测[致密区块过滤器][compact block filter]是否包含了错误的数据，但这种算法对测试网上生成的、包含了一笔 taproot 交易的区块的正确生成的过滤器，居然报错了。这个问题在 Neutrino 的源代码中已经打上了[补丁][patched]，而且致密区块过滤器的其它实现不受影响。但 Olaoluwa Osuntokun 在 [Bitcoin-Dev][Bitcoin-Dev] 和 [LND-Dev][LND-Dev] 邮件组中开了一个帖子来讨论这个问题 —— 以及致密区块过滤器未来可能的提升，比如：
   - <a id="new-filters" href="#new-filters)">●</a>  *新的过滤器*：创建额外的、可选的过滤器类型，让轻量客户端可以搜索其它类型的数据。
   - <a id="new-p2p-protocol-message" href="#new-p2p-protocol-message)">●</a> *新的 P2P 协议消息*：加入一种新的 P2P 协议消息，用于检索区块撤销数据（block undo data）。区块撤销数据包含一个区块所花费的每个输入的前序输出（以及相关消息），可以结合区块来完全验证一个过滤器是否从撤销数据中生成。撤销数据自身可以在对等节点的差异中得到[验证][verified]。
   - <a id="multi-block-filters" href="#multi-block-filters)">●</a> *多区块过滤器*：可以进一步减少轻量级客户端需要下载的数据。
-  - <a id="committed-block-filters" href="#committed-block-filters)">●</a> *得到承诺的区块过滤器*：要求矿工在区块中承诺过滤器，减少轻量客户端为了观察不同的对等节点所提供的过滤器的差异而需要下载的数据量
+  - <a id="committed-block-filters" href="#committed-block-filters)">●</a> *得到承诺的区块过滤器*：要求矿工在区块中承诺过滤器，减少轻量客户端为了观察不同的对等节点所提供的过滤器的差异而需要下载的数据量。
 
 ## Bitcoin Core 软件 PR 审核俱乐部
 
@@ -63,7 +63,7 @@ taproot 背后的关键想法[源于][originated] 2019 年 1 月 22 日早晨几
 
 *Adam Back、Andrea Barontini、Andreas Schildbach、Andrew Chow、Andrew Poelstra、Anthony Towns、Antoine Riard、Ariel Lorenzo-Luaces、Aymeric Vitte、Ben Carman、Ben Woosley、Billy Tetrud、BitcoinMechanic、Bryan Bishop、Carlo Spiller、Chris Belcher、Christopher Allen、Clark Moody、Claus Ehrenberg、Craig Raw、Damian Mee、Daniel Edgecumbe、David A. Harding、DA Williamson、Elichai Turkel、Emil Pfeffer、Eoin McQuinn、Eric Voskuil、Erik Aronesty、Felipe Micaroni Lalli、Giacomo Caironi、Gregory Maxwell、Greg Sanders、Jay Berg、Jeremy Rubin、John Newbery、Johnson Lau、Jonas Nick、Karl-Johan Alm、Keagan McClelland、Lloyd Fournier、Luke Dashjr、Luke Kenneth Casson Leighton、Mark Friedenbach、Martin Schwarz、Matt Corallo、Matt Hill、Michael Folkson、Natanael、Oleg Andreev、Pavol Rusnak、Pieter Wuille、Prayank、R E Broadley、Riccardo Casatta、Robert Spigler、Ruben Somsen、Russell O’Connor、Rusty Russell、Ryan Grant、Salvatore Ingala、Samson Mow、Sjors Provoost、Steve Lee、Tamas Blummer、Thomas Hartman、Tim Ruffing、Vincent Truong、vjudeu、yancy、yanmaani— 以及 ZmnSCPxj*。
 
-不过，taproot 升级中包含的许多电子，例如 [schnorr 签名][schnorr signatures] 和 [MAST][MAST]，比 taproot 早几年甚至几十年提出。所以列出对这些想法的贡献者就超出了我们的能力，但无论如何，我们应该感谢他们。
+不过，taproot 升级中包含的许多点子，例如 [schnorr 签名][schnorr signatures] 和 [MAST][MAST]，比 taproot 早几年甚至几十年提出。所以列出对这些想法的贡献者就超出了我们的能力，但无论如何，我们应该感谢他们。
 
 **Taproot BIP 审核**
 
@@ -91,11 +91,11 @@ taproot 在 Bitcoin Core 中的主要实现从 2020 年 1 月开始，分成[两
 
 **辅助项目**
 
-taproot 的激活只是个开始。现在，需要开发者和用户开始利用 taproot 支持的新功能。一些人已经为此做了许多年的准备工作，在开发包括 [MuSig][MuSig] 在内的辅助项目。获得这些开发者的清单不是很便利，但我们也要感谢他们所有人。
+Taproot 的激活只是个开始。现在，需要开发者和用户开始利用 taproot 支持的新功能。一些人已经为此做了许多年的准备工作，在开发包括 [MuSig][MuSig] 在内的辅助项目。获得这些开发者的清单不是很便利，但我们也要感谢他们所有人。
 
 **节点运营者**
 
-更重要地是，我们所有人都应该感谢已经升级到 Bitcoin Core 0.21.1 版本（或其它兼容 taproot 的软件）的几千位比特币全验证节点的运营者，以及使用他们的节点来接收支付、确保他们从区块 709632 开始只会接受适用了 taproot 规则的区块的人。这为其他所有比特币用户只接受 taproot 兼容区块的经济激励，让所有人都能更安全地适用 taproot 的功能。
+更重要地是，我们所有人都应该感谢已经升级到 Bitcoin Core 0.21.1 版本（或其它兼容 taproot 的软件）的几千位比特币全验证节点的运营者，以及使用他们的节点来接收支付、确保他们从区块 709632 开始只会接受适用了 taproot 规则的区块的人。这为其他所有比特币用户只接受 taproot 兼容区块提供了经济激励，让所有人都能更安全地适用 taproot 的功能。
 
 ## 新版本和候选版本
 
