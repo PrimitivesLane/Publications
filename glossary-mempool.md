@@ -7,3 +7,15 @@
 | prevout           | （待定）前序输出 |
 | channel lease     | （待定）通道租约 |
 
+
+
+
+
+| Discreet Log Contract  | 谨慎日志合约 |
+| ---------------------- | ------------ |
+|                        |              |
+| channel jamming attack | 通道阻塞攻击 |
+| Trampoline payment     | 蹦床支付     |
+| anchor channel         | 锚点通道     |
+| zero-conf channel      | 零确认通道   |
+
