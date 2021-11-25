@@ -12,7 +12,7 @@ lang: zh
 
 ## 新闻
 
-- **Taproot激活：** 正如预期，[taproot][topic taproot] 软分叉在区块高度 709,632 处激活。截至本文撰写时，几个大型矿池没有挖出含有 taproot 花费的区块。这可能表明，他们错误地发出了准备执行 taproot 规则的信号，我们[之前警告过][p4tr what happens]这个风险。另外，他们可能使用一个执行 taproot 的节点来选择使用哪条区块链，同时也使用一个较旧的节点或自定义软件来选择在他们的区块中包含哪些交易来避免风险。
+- **Taproot激活：** 正如预期，[taproot][topic taproot] 软分叉在区块高度 709,632 处激活。截至本文撰写时，几个大型矿池没有挖出含有 taproot 花费的区块。这可能表明，他们错误地发出了准备执行 taproot 规则的信号，我们[之前警告过][p4tr what happens]这个风险。另一种情况是，他们可能使用一个执行 taproot 的节点来选择使用哪条区块链，但是也会使用一个较旧的节点或自定义软件来选择在他们的区块中包含哪些交易来避免风险。
 
   对于用户和企业来说，最安全的做法是运行他们自己的执行 taproot 的节点（如 Bitcoin Core 22.0），并只接受由它确认的交易。
 
@@ -48,7 +48,7 @@ lang: zh
 
 - [Bitcoin Core #22934][] 在 ECDSA 签名和 [schnorr 签名][topic schnorr signatures]创建后都增加了一个验证步骤。这可以防止软件暴露不正确生成的签名，导致泄露用于生成签名的私钥或 nonce 的信息。这遵循了之前在 [Newsletter #83][news83 safety] 中讨论的 [BIP340][]（见 [Newsletter #87][news87 bips886]）的更新中给出的建议。
 
-- [Bitcoin Core #23077][] 通过 [CJDNS][] 实现了地址中继，使 CJDNS 成为像 IPv4、IPv6、Tor 和 I2P 一样完全支持的网络。一旦 CJDNS 在比特币核心之外被设置，节点操作员可以切换新的配置选项 `-cjdnsreachable`，让比特币核心将 `fc00::/8` 地址解释为属于 CJDNS，而不是被解释为私人 IPv6 地址。
+- [Bitcoin Core #23077][] 通过 [CJDNS][] 实现了地址中继，使 CJDNS 成为像 IPv4、IPv6、Tor 和 I2P 一样完全支持的网络。一旦 CJDNS 在比特币核心之外被设置，节点操作员可以切换新的配置选项 `-cjdnsreachable`，让比特币核心将 `fc00::/8` 地址解释为属于 CJDNS，而不是被解释为私有 IPv6 地址。
 
 - [Eclair #1957][] 增加了对 [BOLTs #759][] 的[洋葱消息][topic onion messages]的基本支持，允许洋葱消息的中继，但不支持发起或接收洋葱消息。
 
