@@ -10,7 +10,7 @@ lang: zh
 
 
 
-本周的周报索引了一场关于如何允许闪电网络的用户在更高书续费和更高支付可靠性之间自行选择的讨论。也包含了我们的常规栏目：来自 Bitcoin Stack Exchange 问答网站的热门问题和回答、软件的新版本和候选版本公告、流行的比特币基础设施软件重大变更总结。
+本周的周报索引了一场关于如何允许闪电网络的用户在更高手续费和更高支付可靠性之间自行选择的讨论。也包含了我们的常规栏目：来自 Bitcoin Stack Exchange 问答网站的热门问题和回答、软件的新版本和候选版本公告、流行的比特币基础设施软件重大变更总结。
 
 ## 新闻
 
@@ -36,7 +36,7 @@ lang: zh
 
 - <a id="c-lightning-4890" href="#c-lightning-4890)">●</a> [C-Lightning #4890][C-Lightning #4890] 让用户可以为钱包配置一个 sqlite 数据库备份文件。在操作期间，所有数据都会在主 sqlite 文件和备份文件间复制。新功能已有[详情文档][Extensive documentation]。
 - <a id="rust-lightning-1173" href="#rust-lightning-1173)">●</a>[Rust-Lightning #1173][Rust-Lightning #1173] 加入了一个新的 `accept_inbound_channels` 配置，可以用来防止节点接受新的连入通道。默认值为真。
-- <a id="rust-lightning-1166" href="#rust-lightning-1166)">●</a> [Rust-Lightning #1166][Rust-Lightning #1166] 提高了默认的路由评分逻辑，降级支付的 HTLC 数值超过通道容量 1/8 的通道。而且这个差评会随着支付额趋于通道容量而线性增加。
+- <a id="rust-lightning-1166" href="#rust-lightning-1166)">●</a> [Rust-Lightning #1166][Rust-Lightning #1166] 改进了默认的路由评分逻辑，降级支付的 HTLC 数值超过通道容量 1/8 的通道。而且这个差评会随着支付额趋于通道容量而线性增加。
 
 
 
