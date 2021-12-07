@@ -1,5 +1,5 @@
 ---
-title: 'Bitcoin Optech Newsletter #175'
+title: 'Bitcoin Optech Newsletter #176'
 permalink: /zh/newsletters/2021/11/24/
 name: 2021-11-24-newsletter-zh 
 slug: 2021-11-24-newsletter-zh 
