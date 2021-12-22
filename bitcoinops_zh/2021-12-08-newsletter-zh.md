@@ -10,7 +10,7 @@ lang: zh
 
 本周的周报介绍了一篇关于手续费加速的研究，也包含了我们的常规部分：Bitcoin Core PR 审核俱乐部会议的总结、比特币软件的最新版本和候选版本、热门基础设施项目的重大变更。
 
-## News
+## 新闻
 
 - <a id="fee-bumping-research" href="#fee-bumping-research)">●</a> **手续费加速研究**：Antoine Poinsot 在 Bitcoin-Dev 邮件组里发布了一篇[文章][posted]，详细讲解了开发者在选择用于 [vaults][vaults] 或合约协议（比如闪电网络）的已签名交易的手续费加速办法时应当关心的几个问题。尤其，Poinsot 查看了一些超过两方参与的多方协议所选的方案；对这些方案来说，当前的 “[子为父付（CPFP carve out）][CPFP carve out]” 交易转发策略不管用，所以它们必须使用可能会遭遇 “[交易钉死（transaction pinning）][transaction pinning]” 攻击的[交易替代（transaction replacement）][transaction replacement]机制。他的文章还包含了早前一点想法的[研究][research]结果。
 
