@@ -5,7 +5,7 @@ name: 2021-12-15-newsletter
 slug: 2021-12-15-newsletter
 type: newsletter
 layout: newsletter
-lang: en
+lang: zh
 ---
 
 本周的 Newsletter 描述了一项关于在某些情况下允许中继零输出交易的提案，并总结了关于准备在 LN 上采用 PTLC 的讨论。此外，还包括我们的常规部分，包括服务端和客户端软件的最新变更，Bitcoin Stack Exchange 的热门问题，以及主流的比特币基础设施软件中值得注意的变更。
