@@ -8,19 +8,19 @@ layout: newsletter
 lang: zh
 ---
 
-本周的 Newsletter 描述了一项关于在某些情况下允许中继零输出交易的提案，并总结了关于准备在 LN 上采用 PTLC 的讨论。此外，还包括我们的常规部分，包括服务端和客户端软件的最新变更，Bitcoin Stack Exchange 的热门问题，以及主流的比特币基础设施软件中值得注意的变更。
+本周的 Newsletter 描述了一项关于在某些情况下允许中继零值输出交易的提案，并总结了关于准备在 LN 上采用 PTLC 的讨论。此外，还包括我们的常规部分，包括服务端和客户端软件的最新变更，Bitcoin Stack Exchange 的热门问题，以及主流的比特币基础设施软件中值得注意的变更。
 
 ## 新闻
 
-- **为某些不经济的输出增加特殊的例外：** 自我们在 [Newsletter #162][news162 unec] 中介绍后，Jeremy Rubin 在 Bitcoin-Dev 邮件列表中[重新][rubin unec]讨论了允许交易创建价值低于[尘额限制][topic uneconomical outputs]的输出。尘额限制是一个交易中继策略，节点用来阻止用户创建不经济的 UTXO 花费。UTXO 至少需要被一些全节点储存起来，直到被花费，而且在某些情况下能够被快速检索，所以允许*不经济的输出*可能会造成不必要的问题。
+- **为某些不经济的输出破例：** 自我们在 [Newsletter #162][news162 unec] 中介绍后，Jeremy Rubin 在 Bitcoin-Dev 邮件列表中[重新][rubin unec]讨论了允许交易创建价值低于[尘额限制][topic uneconomical outputs]的输出。尘额限制是一个交易中继策略，节点用来阻止用户创建不经济的 UTXO 花费。UTXO 至少需要被一些全节点储存起来，直到被花费，而且在某些情况下能够被快速检索，所以允许*不经济的输出*可能会造成不必要的问题。
 
-  然而，在 [CPFP][topic cpfp] 费用更新中，零值输出可能会有用武之地，在这种情况下，被费用更新的交易的资金都不能被花费 —— 所有用于费用更新的资金都需要来自独立的 UTXO，例如在 [eltoo][topic eltoo] 中。Ruben Somsen 还提供了一个例子，说明零值输出对 spacechain（一种单向锚定的侧链）是多么有用。
+  然而，在 [CPFP][topic cpfp] 费用更新中，零值输出可能会有用武之地，在这种情况下，用于费用更新的交易的资金不能被花费 —— 所有用于费用更新的资金都需要来自独立的 UTXO，例如在 [eltoo][topic eltoo] 中。Ruben Somsen 还提供了一个例子，说明零值输出对 spacechains（一类单向锚定的侧链）是多么有用。
 
   截至本文写作时，讨论没有得出明确的结论。
 
-- **准备在 LN 上采用 PTLC：** Bastien Teinturier 在 Lightning-Dev 邮件列表中发起了一个[主题][teinturier post]，关于对 LN 通信协议进行必要的最小[变更][ln docs 16]，以允许节点开始升级到使用 [PTLC][topic ptlc]。PTLC 比目前使用的 HTLC 更隐私，并且使用更少的区块空间。
+- **准备在 LN 上采用 PTLC：** Bastien Teinturier 在 Lightning-Dev 邮件列表中发起了一个[主题][teinturier post]，关于对 LN 通信协议进行必要的最小[变更集合][ln docs 16]，以允许节点开始升级到使用 [PTLC][topic ptlc]。PTLC 比目前使用的 HTLC 更私密，并且使用更少的区块空间。
 
-  Teinturier 正试图产出一套可以与被提案的 `option_simplified_update` [协议变更][bolts #867]同时进行的变更（见 [Newsletter #120][news120
+  Teinturier 正试图产出一套可以与被提议的 `option_simplified_update` [协议变更][bolts #867]同时进行的变更（见 [Newsletter #120][news120
     opt_simp_update]）。一个次要目标是试图使通信协议与 [Newsletter #152][news152 ff] 中描述的基于 fast-forwards 的 PTLC 协议兼容。这将使得节点可以分阶段升级，首先升级到带有 HTLC 的 `option_simplified_update`，然后升级到 PTLC，再升级到 fast-forwards。
 
 ## 服务端和客户端软件的变更
@@ -36,7 +36,7 @@ lang: zh
 
 - **Swan 增加了 taproot 的发送支持：** Swan [宣布][swan taproot tweet]支持 taproot 提款（发送）。
 
-- **Wallet of Satoshi 增加了 taproot 发送支持：** Wallet of Satoshi 是一个移动端比特币和闪电网络钱包，宣布支持 taproot 交易发送。
+- **Wallet of Satoshi 增加了 taproot 发送支持：** Wallet of Satoshi ，一个移动端比特币和闪电网络钱包，宣布支持 taproot 交易发送。
 
 ## Bitcoin Stack Exchange 问答选摘
 *[Bitcoin Stack Exchange](https://bitcoin.stackexchange.com/) 是 Optech 贡献者寻找问题答案，或者当我们有一些空闲时间时帮助好奇或困惑的用户的首选地方之一。在这个月度专题中，我们将重点介绍一些自上次更新以来被投票最多的问题和答案。*
@@ -47,7 +47,7 @@ lang: zh
 
 - [矿工在挖矿时向区块添加交易是否会重置区块的 PoW？][110903] Pieter Wuille 解释说，挖矿是[无进度][oconnor blog]的。破解区块的挖矿难题的每一次哈希碰撞的尝试都与之前做的哈希碰撞的尝试无关，包括新的交易被添加到目前正在挖的区块中的情形。
 
-- [Schnorr 聚合签名可以嵌套在其他 schnorr 聚合签名中吗？][110862] Pieter Wuille 介绍了使用 [schnorr 签名][topic schnorr signatures]的密钥聚合方案的可行性，其中 "密钥可以分层聚合，而签名者不知道他们的'侄子/侄女'密钥"。他指出，[MuSig2][topic musig] 被设计成兼容嵌套，它可以为这种使用情况进行修改，尽管还没有安全证明。
+- [Schnorr 聚合签名可以嵌套在其他 schnorr 聚合签名中吗？][110862] Pieter Wuille 介绍了使用 [schnorr 签名][topic schnorr signatures]的密钥聚合方案的可行性，其中 "密钥可以分层聚合，而签名者不知道他们的'侄子/侄女'密钥"。他指出，[MuSig2][topic musig] 被设计成兼容嵌套，它可以为这种使用情况进行修改，尽管尚无安全证明。
 
 ## 代码和文档的重大变更
 
@@ -57,11 +57,11 @@ lang: zh
 
 - [Bitcoin Core #20295][] 增加了一个新的 RPC `getblockfrompeer`，允许从一个特定的对等节点手动请求一个特定的块。其目的是以分叉监测和研究为目的来获取过时的最新区块头。
 
-- [Bitcoin Core #14707][] 更新了几个RPC，使其也包括通过矿工 coinbase 交易输出收到的比特币。RPC 的一个新的 `include_immature_coinbase` 选项允许在 coinbase 交易完全被确认前（根据共识规则，至少经过 100 个确认才可以被花费）被加入。
+- [Bitcoin Core #14707][] 更新了几个RPC，使其也包括通过矿工铸币交易输出收到的比特币。RPC 的一个新的 `include_immature_coinbase` 选项允许在铸币交易完全被确认前（根据共识规则，至少经过 100 个确认才可以被花费）被加入。
 
 - [Bitcoin Core #23486][] 更新了 `decodescript` RPC，只返回脚本的 P2SH 或 P2WSH 地址，如果该脚本可以分别用于 P2SH 或 P2WSH。
 
-- [BOLTs #940][] 废弃了 `node_announcements` 中对 Tor v2 洋葱服务的公告和解析。[Rust-Lightning #1204][]，更新了该实现以遵循该更新的规范，在本周也被合并。
+- [BOLTs #940][] 废弃了 `node_announcements` 中对 Tor v2 洋葱服务的公告和解析。[Rust-Lightning #1204][]，更新了遵循该更新的规范的实现，在本周也被合并。
 
 - [BOLTs #918][] 删除了 ping 消息的速率限制。`ping` 消息主要用于检查对等节点连接是否仍然有效。在这次合并之前，`ping` 消息应该是每 30 秒最多发送一次。对于许多节点来说，通过 `ping` 更频繁地发送心跳信息以保证高质量的服务是很有用的。由于其他闪电网络的信息没有速率限制，所以 `ping` 信息的 30 秒速率限制也被废弃了。
 
