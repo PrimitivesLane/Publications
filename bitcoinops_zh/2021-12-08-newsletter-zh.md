@@ -10,11 +10,11 @@ lang: zh
 
 本周的周报介绍了一篇关于手续费加速的研究，也包含了我们的常规部分：Bitcoin Core PR 审核俱乐部会议的总结、比特币软件的最新版本和候选版本、热门基础设施项目的重大变更。
 
-## News
+## 新闻
 
 - <a id="fee-bumping-research" href="#fee-bumping-research)">●</a> **手续费加速研究**：Antoine Poinsot 在 Bitcoin-Dev 邮件组里发布了一篇[文章][posted]，详细讲解了开发者在选择用于 [vaults][vaults] 或合约协议（比如闪电网络）的已签名交易的手续费加速办法时应当关心的几个问题。尤其，Poinsot 查看了一些超过两方参与的多方协议所选的方案；对这些方案来说，当前的 “[子为父付（CPFP carve out）][CPFP carve out]” 交易转发策略不管用，所以它们必须使用可能会遭遇 “[交易钉死（transaction pinning）][transaction pinning]” 攻击的[交易替代（transaction replacement）][transaction replacement]机制。他的文章还包含了早前一点想法的[研究][research]结果。
 
-  保证手续费加速方法能可靠运行，是绝大部分合约协议的安全性前提，而且迄今为止没有出现十全十美的解决ebjfa。看到这个问题的持续研究，令人感到鼓舞。
+  保证手续费加速方法能可靠运行，是绝大部分合约协议的安全性前提，而且迄今为止没有出现十全十美的解决方案。看到这个问题的持续研究，令人感到鼓舞。
 
 ##Bitcoin Core PR 审核俱乐部
 
@@ -52,13 +52,13 @@ lang: zh
 *本周出现重大变更的有 [Bitcoin Core][Bitcoin Core]、[C-Lightning][C-Lightning]、[Eclair][Eclair]、[LND][LND]、[Rust-Lightning][Rust-Lightning]、[libsecp256k1][libsecp256k1]、[Rust Bitcoin][Rust Bitcoin]、[BTCPay Server][BTCPay Server]、[BDK][BDK] 以及 [Lightning BOLTs][Lightning BOLTs]。
 
 - <a id="bitcoin-core-23155" href="#bitcoin-core-23155)">●</a> [Bitcoin Core #23155][Bitcoin Core #23155] 延伸了 ` dumprxoutset` RPC，可获得链状态（UTXO 集）快照的哈希值，以及整条链到此时为止的事务数量。这个信息可以跟链状态一起发布，这样其他人也能用 `gettxoutseinfo` RPC 来验证它，使之能被用于 [assumeUTXO][assumeUTXO] 节点的引导启动。
-- <a id="bitcoin-core-22513" href="#bitcoin-core-22513)">●</a> [Bitcoin Core #22513][Bitcoin Core #22513] 允许  ` walletprocesspsbt ` 不走完 [PSBT][PSBT] 的流程就签名。这对于复杂的脚本是很有用的，比如，在一个有两个路径的 [tapscript][tapscript] 中：一个备用路径只需要 Alice 的签名；一个常用路径需要包括 Alice 在内的多人签名。在 Alice 签名是，最好是使用备用脚本路径推迟完成 PSBT、反过来构造一个包含 Alice 两个签名的 PSBT、并把这个 PSBT 发给其他签名者，等待签名完成。在这种情况下，最终的路径是在所有签名都完成之后决定的。
+- <a id="bitcoin-core-22513" href="#bitcoin-core-22513)">●</a> [Bitcoin Core #22513][Bitcoin Core #22513] 允许  ` walletprocesspsbt ` 不走完 [PSBT][PSBT] 的流程就签名。这对于复杂的脚本是很有用的，比如，在一个有两个路径的 [tapscript][tapscript] 中：一个备用路径只需要 Alice 的签名；一个常用路径需要包括 Alice 在内的多人签名。在 Alice 签名时，最好是使用备用脚本路径推迟完成 PSBT、反过来构造一个包含 Alice 两个签名的 PSBT、并把这个 PSBT 发给其他签名者，等待签名完成。在这种情况下，最终的路径是在所有签名都完成之后决定的。
 - <a id="c-lightning-4921" href="#c-lightning-4921)">●</a> [C-Lightning #4921][C-Lightning #4921] 升级了[洋葱消息][onion messages]的实现，来匹配
 “[路径盲化（route blinding）][route blinding]” 和[洋葱消息][onion messages]规范草案的最新升级。
 - <a id="c-lightning-4829" href="#c-lightning-4829)">●</a> [C-Lightning #4829][C-Lightning #4829] 为 [BOLTs #911][BOLTs #911] 提出的闪电网络协议变更加入了实验性的支持。该升级将允许节点为自己的 DNS 地址（而不是 IP 地址或洋葱服务地址）打广告。
 - <a id="eclair-2061" href="#eclair-2061)">●</a> [Eclair #2061][Eclair #2061] 为[洋葱消息][onion messages]加入了初步支持。用户可以启用 ` option_onion_message ` 功能来转发洋葱消息，还可以使用 ` sendonionmessage ` RPC 来发送洋葱消息。处理进入的洋葱消息和[路线盲化][route blinding]的功能还未实现。
 - <a id="eclair-2073" href="#eclair-2073)">●</a> [Eclair #2073][Eclair #2073] 根据 [BOLTs #906][BOLTs #906] 草案的详述，为可选的通道类型谈判特征位添加了支持。这与 LND [上周][last week]对同一草案特性的实现是一致的。
-- <a id="rust-lightning-1163" href="#rust-lightning-1163)">●</a> [Rust-Lightning #1163][Rust-Lightning #1163] 允许远程参与者将他们的通道预留值设得低于粉尘限制，甚至可以设到 0。在最糟糕的情况下，这个特性允许本地节点无成本地尝试从一个画完的通道中偷取资金 —— 虽然这样的尝试在监控着通道的远程参与者那里还是会失败的。默认情况下，大部分远程节点都会通过设置一个合理的通道预留值来阻止这样的尝试，但一些闪电服务提供者（Lightning Service Providers，LSP）使用很低甚至 0 的通道预留值来为用户提供更好的体验 —— 让他们可以 100% 花完通道内的资金。因为只有远程节点承担风险，本地节点接受这样的通道也是没问题的。
+- <a id="rust-lightning-1163" href="#rust-lightning-1163)">●</a> [Rust-Lightning #1163][Rust-Lightning #1163] 允许远程参与者将他们的通道预留值设得低于粉尘限制，甚至可以设到 0。在最糟糕的情况下，这个特性允许本地节点无成本地尝试从一个花完的通道中偷取资金 —— 虽然这样的尝试在监控着通道的远程参与者那里还是会失败的。默认情况下，大部分远程节点都会通过设置一个合理的通道预留值来阻止这样的尝试，但一些闪电服务提供者（Lightning Service Providers，LSP）使用很低甚至 0 的通道预留值来为用户提供更好的体验 —— 让他们可以 100% 花完通道内的资金。因为只有远程节点承担风险，本地节点接受这样的通道也是没问题的。
 
 [posted]:https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-November/019614.html
 
