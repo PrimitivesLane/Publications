@@ -278,8 +278,6 @@ LN 开发者举办了 [2018 以来][2018 ln summit]的首次峰会， [讨论了
 [topic musig]: https://bitcoinops.org/en/topics/musig/
 [topic trampoline payments]: https://bitcoinops.org/en/topics/trampoline-payments/
 
-
-
 [2018 summary]: https://bitcoinops.org/en/newsletters/2018/12/28/
 [2019 summary]: https://bitcoinops.org/en/newsletters/2019/12/28/
 [2020 summary]: https://bitcoinops.org/en/newsletters/2020/12/23/
@@ -332,8 +330,6 @@ LN 开发者举办了 [2018 以来][2018 ln summit]的首次峰会， [讨论了
 [cbf verification]: https://bitcoinops.org/en/newsletters/2021/11/10/#additional-compact-block-filter-verification
 [lnd#5709]: https://bitcoinops.org/en/newsletters/2021/10/27/#lnd-5709
 
-
-
 [cl#4639]: https://bitcoinops.org/en/newsletters/2021/07/28/#c-lightning-4639
 [bolts#878]: https://github.com/lightning/bolts/pull/878
 [descriptor bips1]: https://bitcoinops.org/en/newsletters/2021/07/07/#bips-for-output-script-descriptors
@@ -366,12 +362,8 @@ LN 开发者举办了 [2018 以来][2018 ln summit]的首次峰会， [讨论了
 [anyprevout proposed]: https://bitcoinops.org/en/newsletters/2019/05/21/#proposed-anyprevout-sighash-modes
 [wiki contract]: https://en.bitcoin.it/wiki/Contract#Example_1:_Providing_a_deposit
 [cl#4771]: https://bitcoinops.org/en/newsletters/2021/10/27/#c-lightning-4771
-[fee bump research]: /en/newsletters/2021/12/08/#fee-bumping-research
 [nov cs]: https://bitcoinops.org/en/newsletters/2021/11/17/#changes-to-services-and-client-software
 [dec cs]: https://bitcoinops.org/en/newsletters/2021/12/15/#changes-to-services-and-client-software
-
-
-
 
 [support]:https://bitcoinops.org/en/newsletters/2021/10/27/#lnd-5709
 [AMP]:https://bitcoinops.org/en/topics/atomic-multipath/
