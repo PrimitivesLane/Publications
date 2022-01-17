@@ -53,7 +53,7 @@ lang: zh
 
 - <a id="eclair-2104" href="#eclair-2104)">●</a> [Eclair #2104][Eclair #2104] 加入了一个日志消息来警告本地的节点运营者：如果他们的链上即刻可花费的余额低于使用 “[CPFP（子为父偿）手续费加速][CPFP fee bumping]” 和 “[锚点输出][anchor outputs]” 来及时关闭通道所需的预估数额，则会传出警告。闪电网络的开发者和运营者在选择预留值时，可能会希望比较 Eclair 预估的值和[他们][those] [在][in] LND 中得到的预估值。
 
-- <a id="eclair-2099" href="#eclair-2099)">●</a> [Eclair #2099][Eclair #2099] 加入了一个 ` onion-messages ` 配置选项，可以设定成永远不转发[洋葱消息][onion messages]（但仍然允许节点发送和接收消息）、转发所有消息（即使需要跟一新的对等节点开启一个新链接）或者只转发已有连接的消息。
+- <a id="eclair-2099" href="#eclair-2099)">●</a> [Eclair #2099][Eclair #2099] 加入了一个 ` onion-messages ` 配置选项，可以设定成永远不转发[洋葱消息][onion messages]（但仍然允许节点发送和接收消息）、转发所有消息（即使需要跟一新的对等节点开启一个新连接）或者只转发已有连接的消息。
 
 - <a id="libsecp256k1-964" href="#libsecp256k1-964)">●</a> [Libsecp256k1 #964][Libsecp256k1 #964] 为 libsecp256k1 库列举了一个发行流程和一个版本方案。
 
@@ -61,7 +61,7 @@ lang: zh
 
 - <a id="rust-lightning-1177" href="#rust-lightning-1177)">●</a> [Rust-Lightning #1177][Rust-Lightning #1177] 消除了使用 Rust-Lightning 自身来存储更高层的钱包应用所需的支付信息的需要。取而代之的是，关于支付的根本信息将被加密然后编码到[支付秘密值][payment secret]中。在收到一笔支付时，加密过的支付秘密值会被解密，然后其明文信息会被用来推导该笔支付的 [HTLC][HTLC] 所用的[支付哈希值][payment hash]所对应的[原像][payment preimage]。
 
-  这是对[第 168 期周报][Newsletter #168]介绍的一种想法的简化时间。其它闪电网络实现可能会存储关于一个发票的信息（例如，由一个商家的店面管理软件提供的任意序列的标识符），但 Rust-Lightning 回避了这种方法，因为它时一个库，希望能被直接整合到一个更高级的应用种、让这个高层应用能管理其自身的支付请求的细节。
+  这是对[第 168 期周报][Newsletter #168]介绍的一种想法的简化时间。其它闪电网络实现可能会存储关于一个发票的信息（例如，由一个商家的店面管理软件提供的任意序列的标识符），但 Rust-Lightning 回避了这种方法，因为它是一个库，希望能被直接整合到一个更高级的应用中、让这个高层应用能管理其自身的支付请求的细节。
 
 - <a id="hwi-545" href="#hwi-545)">●</a>  [HWI #545][HWI #545]、[#546][#546] 和 [#547][#547] 通过启用 ` tr() ` 描述符启用了对 [taproot][taproot] 的支持、通过支持 [BIP371][BIP371] 来增加 taproot 的 [PSBT][PSBT] 字段，并在底层的硬件签名设备可用的时候为 taproot 脚本使用 [bech32m][bech32m] 地址。注意，根据这些 PR，HWI 尚未完全支持一些签名设备的 taproot 支持固件，所以这些设备还不能启用 taproot。
 
