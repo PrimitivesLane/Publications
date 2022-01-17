@@ -139,6 +139,7 @@
 | denial of service attack                                  | 拒绝服务攻击                     |
 | detached block                                            | 分离块                        |
 | deterministic wallets                                     | 确定性钱包                      |
+| descriptor        | 描述符           |
 | DEX ：distributed exchange                                 | 去中心化交易所                    |
 | difficulty bits                                           | 难度位                        |
 | difficulty retargeting                                    | 难度调整                       |
@@ -390,6 +391,7 @@
 | sidechain                                                 | 侧链                         |
 | signature operations（sigops）                              | 处理签名操作                     |
 | signature aggregation                                     | 签名集合                       |
+| signer delegation | 委托签名      |
 | Skein algorithm                                           | Skein算法                    |
 | smart pool                                                | 机枪池                        |
 | smart contracts                                           | 智能合约                       |
