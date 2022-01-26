@@ -14,11 +14,11 @@ lang: zh
 
 ## 新闻
 
-- <a id="bitcoin-and-ln-legal-defense-fund" href="#bitcoin-and-ln-legal-defense-fund)">●</a> **比特币和闪电网络法律辩护基金**：Jack Dorsey、Alex Morcos 和 Martin White 在 Bitcoin-Dev 邮件组中[发文][posted]宣布要为开发比特币、闪电网络和相关可急的开发者设立一个法律辩护基金。这个基金 “将是一个非营利的实体，致力于尽可能减少阻碍开发者主动开发比特币和相关项目的法律障碍”。
+- <a id="bitcoin-and-ln-legal-defense-fund" href="#bitcoin-and-ln-legal-defense-fund)">●</a> **比特币和闪电网络法律辩护基金**：Jack Dorsey、Alex Morcos 和 Martin White 在 Bitcoin-Dev 邮件组中[发文][posted]宣布要为开发比特币、闪电网络和相关科技的开发者设立一个法律辩护基金。这个基金 “将是一个非营利的实体，致力于尽可能减少阻碍开发者主动开发比特币和相关项目的法律障碍”。
 
 - <a id="op-checktemplateverify-discussion" href="#op-checktemplateverify-discussion)">●</a> **OP_CHECKTEMPLATEVERIFY 讨论**：本周内，为比特币加入 [OP_CHECKTEMPLATEVERIFY][OP_CHECKTEMPLATEVERIFY] （CTV）操作码的软分叉提议在 Bitcoin-Dev 邮件组和 IRC 频道中都得到了讨论。
 
-  - <a id="mailing-list-discussion" href="#mailing-list-discussion)">●</a>  *Bitcoin-Dev 邮件组讨论*：Peter Todd [撰文][posted]便是了对该提议的几项担忧，包括：它的好处并非几乎所有比特币用户都能享受（而他声称之前所有的增加功能的软分叉都做到了这一点）、它可能会创造新的拒绝服务式攻击界面、提议可使用 CTV 的应用场景是模糊的，而且（可能）因为过于复杂而不可能在显示中大规模部署。
+  - <a id="mailing-list-discussion" href="#mailing-list-discussion)">●</a>  *Bitcoin-Dev 邮件组讨论*：Peter Todd [撰文][posted]便是了对该提议的几项担忧，包括：它的好处并非几乎所有比特币用户都能享受（而他声称之前所有的增加功能的软分叉都做到了这一点）、它可能会创造新的拒绝服务式攻击界面、提议可使用 CTV 的应用场景是模糊的，而且（可能）因为过于复杂而不可能在现实中大规模部署。
 
     CTV 作者 Jeremy Rubin [引用][referenced]更新后的代码和强化后的稳定，表示许多对 DoS 攻击的担忧可以得到解决。他也指出，至少两个钱包（其中一个是广泛使用的）计划使用 CTV 提供的至少一个功能。截至本期通讯截稿，尚不清楚 Rubin 的回复是否完全解决了 Peter Todd 的担忧。
 
@@ -31,7 +31,7 @@ lang: zh
 *在这个月的栏目中，我们突出比特币钱包和服务的有趣升级*。
 
 - <a id="cash-app-adds-lightning-support" href="#cash-app-adds-lightning-support)">●</a> **Cash App 开始支持闪电网络**：Cash App 加入了使用闪电网络来发送支付的功能。
-- <a id="lnp-node-opens-first-mainnet-channel" href="#lnp-node-opens-first-mainnet-channel)">●</a> **LNP 节点开启第一个主网通道**：新的闪电王烈节点软件 [LNP Node][LNP Node] 开启了[第一个闪电网络通道][first LN channel]。LNP 节点是使用 Rust 语言编写的，支持闪电网络以及集体名为 “Bifrost” 的插件。这个插件可以支持未来闪电网络的升级，以及闪电网络上的增量协议。
+- <a id="lnp-node-opens-first-mainnet-channel" href="#lnp-node-opens-first-mainnet-channel)">●</a> **LNP 节点开启第一个主网通道**：新的闪电网络节点软件 [LNP Node][LNP Node] 开启了[第一个闪电网络通道][first LN channel]。LNP 节点是使用 Rust 语言编写的，支持闪电网络以及集体名为 “Bifrost” 的插件。这个插件可以支持未来闪电网络的升级，以及闪电网络上的增量协议。
 - <a id="samourai-adds-taproot-support" href="#samourai-adds-taproot-support)">●</a> **Samourai 加入了 taproot 支持**：Samourai [v0.99.98][v0.99.98] 和 Samourai [Dojo v1.13.0][Dojo v1.13.0] 版本（使用了 [bitcoinjs-lib][bitcoinjs-lib] 库）支持 P2TR 的 [bech32m][bech32m] 地址。
 - <a id="block-explorer-mempool-v2-3-0-released" href="#block-explorer-mempool-v2-3-0-released)">●</a> **区块浏览器 Mempool v2.3.0 放出**：Mempool [v2.3.0][v2.3.0] 以及 [mempool.space][mempool.space] 网页加入了版本和 locktime 数据，一个十六进制形式交易的广播功能、一个 “为花费 Taproot 输出的交易而设的标签”，以及其它升级。
 
