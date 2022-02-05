@@ -10,14 +10,14 @@ lang: zh
 本周的 Newsletter 介绍了一个扩展 PSBT 的提案，其中包括使用支付给合约协议构建的花费输出字段，同时还包括我们的常规部分，其中有来自 Bitcoin Stack Exchange 热门帖子的摘要和主流的比特币基础设施软件中值得注意的变更。
 
 ## 新闻
-- **P2C 字段的 PSBT 扩展：** Maxim Orlovsky [提出][orlovsky p2c]了一个新的 BIP，为 [PSBT][topic psbt] 增加可选的字段，用于从使用 [Pay-to-Contract][topic p2c]（P2C）协议创建的输出中花费，正如之前在 [Newsletter #37][news37 psbt p2c] 中提到的。P2C 允许支出方和接收方就合约文本（或其他任何东西）达成一致，然后创建一个承诺到该文本的公钥。付款人随后可以证明，付款人承诺了该文本，并且如果没有接收人的合作，该承诺在计算上是不可行的。简而言之，花钱的人可以向法院或公众证明他们的支付。
+- **P2C 字段的 PSBT 扩展：** Maxim Orlovsky [提出][orlovsky p2c]了一个新的 BIP，为 [PSBT][topic psbt] 增加可选的字段，用于从使用 [Pay-to-Contract][topic p2c]（P2C）协议创建的输出中花费，正如之前在 [Newsletter #37][news37 psbt p2c] 中提到的。P2C 允许支出方和接收方就合约文本（或其他任何东西）达成一致，然后创建一个关于该文本的公钥的承诺。付款人随后可以证明，付款人承诺了该文本，并且如果没有收款者的合作，该承诺在计算上是不可行的。简而言之，付款人可以向法院或公众证明他们所支付的内容。
 
-  然而，为了让接收者随后构建一个花费他们收到的资金的签名，除了他们使用的密钥（该密钥通常是硬化衍生密钥链的一部分）之外，他们还需要合约的哈希值。Orlovsky 的提案允许将该哈希值添加到 PSBT 中，以便签名钱包或硬件设备能够产生有效的签名。
+  然而，为了让收款者随后构建一个花费他们收到的资金的签名，除了他们使用的密钥（该密钥通常是硬化衍生密钥链的一部分）之外，他们还需要合约的哈希值。Orlovsky 的提案允许将该哈希值添加到 PSBT 中，以便签名钱包或硬件设备能够产生有效的签名。
 
 ## Bitcoin Stack Exchange 问答选摘
 *[Bitcoin Stack Exchange](https://bitcoin.stackexchange.com/) 是 Optech 贡献者寻找问题答案，或者当我们有一些空闲时间时帮助好奇或困惑的用户的首选地方之一。在这个月度专题中，我们将重点介绍一些自上次更新以来被投票最多的问题和答案。*
 
-- [是否可以将 taproot 根地址转换成 v0 的 native segwit 地址？][Q1]在一个交易所由于缺乏 taproot 支持而将用户的 P2TR（native segwit v1）taproot 提款地址改为P2WSH（原生segwit v0）地址后，用户问是否有办法在产生的 v0 输出中获取比特币。Pieter Wuille 指出，这些比特币是无法检索的，因为用户需要找到一个脚本来哈希到 P2TR 地址中的公钥，这是一个计算上不可行的操作。
+- [是否可以将 taproot 根地址转换成 v0 的 native segwit 地址？][Q1]在一个交易所由于缺乏 taproot 支持而将用户的 P2TR（native segwit v1）taproot 提款地址改为P2WSH（原生segwit v0）地址后，用户问是否有办法在产生的 v0 输出中提取比特币。Pieter Wuille 指出，这些比特币是无法找回的，因为用户需要找到一个脚本，其哈希值对应于 P2TR 地址的公钥，这是一个计算上不可行的操作。
 
 - [比特币 0.3.7 是一个硬分叉吗？][Q2]用户 BA20D731B5806B1D 想知道是什么导致比特币的 0.3.7 版本被归类为硬分叉。Antoine Poinsot 给出了 `scriptPubKey` 和 `scriptSig` 值的例子，说明在 [0.3.7][bitcoin 0.3.7 github] 对 `scriptSig` + `scriptPubKey` 分开计算的 bug 修复后，以前无效的签名可以有效。
 
@@ -25,15 +25,15 @@ lang: zh
 
 - [如何避免链间的网络冲突？][Q4] Murch 解释了节点如何使用 P2P [消息结构][wiki message structure]中规定的奇异数来识别它们的对等节点是否连接到同一网络（mainnet、testnet、signet）。
 
-- [2021 年标准客户端中采用了多少个 BIP？][Q5] Pieter Wuille 链接到比特币核心的 [BIP 文档][bitcoin bips doc]，其中记录了在比特币核心中实现的 BIP。
+- [2021 年标准客户端中采用了多少个 BIP？][Q5] Pieter Wuille 贴出了比特币核心的 [BIP 文档][bitcoin bips doc]链接，其中记录了在比特币核心中实现的 BIP。
 
 ## 代码和文档的重大变更
 
 *本周内，[Bitcoin Core][bitcoin core repo]、[C-Lightning][c-lightning repo]、[Eclair][eclair repo]、[LND][lnd repo]、[Rust-Lightning][rust-lightning repo]、[libsecp256k1][libsecp256k1 repo]、[Hardware Wallet Interface (HWI)][hwi repo]、[Rust Bitcoin][rust bitcoin repo]、[BTCPay Server][btcpay server repo]、[BDK][bdk repo]、[Bitcoin Improvement Proposals (BIPs)][bips repo] 和 [Lightning BOLTs][bolts repo] 出现的重大变更。*
 
-- [Eclair #2134][] 默认启用了[锚定输出][topic anchor outputs]，允许承诺交易在广播时费率过低的情况下被碰撞。由于锚定输出的费用碰撞是通过 [CPFP][topic cpfp] 实现的，用户需要在他们的 `bitcoind` 钱包中保持 UTXO 可访问。
+- [Eclair #2134][] 默认启用了[锚定输出][topic anchor outputs]，允许承诺交易在广播时费率过低的情况下提升费率。由于锚定输出的费用提升是通过 [CPFP][topic cpfp] 实现的，用户需要在他们的 `bitcoind` 钱包中保持 UTXO 可访问。
 
-- [Eclair #2113][] 增加了自动管理费用碰撞的功能。这包括按照按时确认的重要性对交易进行分类，在每个区块产生后重新评估交易，以确定是否适合对其进行费用碰撞，也重新评估当前的网络费率，以防交易的费率需要增加，并在必要时增加交易的输入以增加交易的费率。PR 还呼吁[改进][Bitcoin Core #23201]比特币核心的钱包 API，以减少 Eclair 等外部程序所需的附加钱包管理的需求。
+- [Eclair #2113][] 增加了自动管理费用提升的功能。这包括按照确认时间的重要性对交易进行分类，在每个区块产生后重新评估交易以确定是否适合提升其费用，也重新评估当前的网络费率以应对交易的费率需要增加的情形，并在必要时为交易增加输入以增加交易的费率。PR 还呼吁[改进][Bitcoin Core #23201]比特币核心的钱包 API，以减少 Eclair 等外部程序所需的附加钱包管理的需求。
 
 - [Eclair #2133][] 开始默认转发[洋葱消息][topic onion messages]。在[Newsletter #181][news181 onion] 中提到的速率限制是用来防止滥用 LN 协议中的这一实验性部分。
 
@@ -41,7 +41,7 @@ lang: zh
 
 - [BIPs #1270][] 明确了 [PSBT][topic psbt] 规范中关于签名字段的可接受值。在 Rust Bitcoin 最近的一次更新[引入了更严格的签名字段解析][news183 rust-btc psbt]后，人们讨论了 PSBT 中的签名字段是否可以放置占位符，或者只允许有效签名。最后决定， PSBT 应该只包含有效的签名。
 
-- [BOLTs #917][] 扩展了 [BOLT1][] 定义的 `init` 消息，使节点能够识别连接的对等节点使用什么 IPv4 或 IPv6 地址。由于 [NAT][] 下的对等节点不能看到他们自己的 IP 地址，这允许对等节点在地址改变时更新它向网络公布的 IP 地址。
+- [BOLTs #917][] 扩展了 [BOLT1][] 定义的 `init` 消息，使节点能够识别连接的对等节点使用的 IPv4 或 IPv6 地址。由于 [NAT][] 下的对等节点不能看到他们自己的 IP 地址，这允许对等节点在地址改变时更新它向网络公布的 IP 地址。
 
 
 [topic psbt]: https://bitcoinops.org/en/topics/psbt/
