@@ -49,6 +49,7 @@ lang: zh
 - <a id="eclair-2141" href="#eclair-2141)">●</a> [Eclair #2141][Eclair #2141] 增强了自动化的手续费追加机制（[184 期周报][Newsletter #184]亦提及），办法是在钱包的 UTXO 数量较少时选择一个更激进的确认目标。如此一来，让手续费加速交易能尽快确认、保持钱包的 UTXO 计数以防止进一步的强制关闭，就很重要。更多关于 Eclair 所用的锚点输出类型的手续费追加机制的细节，可见[此处][here]。
 - <a id="btcpay-server-3341" href="#btcpay-server-3341)">●</a> [BTCPay Server #3341][BTCPay Server #3341] 允许用户在通过闪电网络请求撤回资金时自主配置 [BOLT11][BOLT11] 的超时时间（以往默认是 30 天）。
 
+
 [posted]:https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2022-January/019808.html
 
 [OP_CHECKTEMPLATEVERIFY]:https://bitcoinops.org/en/topics/op_checktemplateverify/
