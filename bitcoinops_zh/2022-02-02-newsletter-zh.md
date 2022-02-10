@@ -50,6 +50,8 @@ lang: zh
 - <a id="btcpay-server-3341" href="#btcpay-server-3341)">●</a> [BTCPay Server #3341][BTCPay Server #3341] 允许用户在通过闪电网络请求撤回资金时自主配置 [BOLT11][BOLT11] 的超时时间（以往默认是 30 天）。
 
 
+
+
 [posted]:https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2022-January/019808.html
 
 [OP_CHECKTEMPLATEVERIFY]:https://bitcoinops.org/en/topics/op_checktemplateverify/
