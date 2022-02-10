@@ -1,8 +1,8 @@
 ---
-title: 'Bitcoin Optech Newsletter #184'
-permalink: /en/newsletters/2022/01/26/
-name: 2022-01-26-newsletter
-slug: 2022-01-26-newsletter
+title: 'Bitcoin Optech Newsletter #185'
+permalink: /en/newsletters/2022/02/02/
+name: 2022-02-02-newsletter
+slug: 2022-02-02-newsletter
 type: newsletter
 layout: newsletter
 lang: zh
@@ -18,9 +18,9 @@ lang: zh
 
 - <a id="improving-dlc-efficiency-by-changing-script" href="#improving-dlc-efficiency-by-changing-script)">●</a> **通过改变脚本来提高 DLC 的效率**：Lloyd Fournier 在 DLC-Dev 和 Bitcoin-Dev 邮件组中[发帖][posted]论述 [OP_CHECKTEMPLATEVERIFY][OP_CHECKTEMPLATEVERIFY]（CTV）操作码可以大幅减少创建特定类型的谨慎日志合约（[DLCs][DLCs]）所需的签名数量，以及其它某些操作的数量。
 
-  简而言之，对一个合约的每一种可能的终止状态 —— 比如 Alice 获得 1 BTC，Bob 获得 2 BTC —— 来说，当前的 DLC 需要为该状态创建一个专门的[适配器签名][signature adaptor]。许多合约都回定义大量可能的终止撞人的，比如一个关于比特币期货价格的合约，精确到美元价格的个位数，即使使相对短期的合约，也需要覆盖几千美元的价格区间。为此参与者需要创建、交换和存储几千个签名碎片。
+  简而言之，对一个合约的每一种可能的终止状态 —— 比如 Alice 获得 1 BTC，Bob 获得 2 BTC —— 来说，当前的 DLC 需要为该状态创建一个专门的[适配器签名][signature adaptor]。许多合约都会定义大量可能的终止状态的，比如一个关于比特币期货价格的合约，精确到美元价格的个位数，即使是相对短期的合约，也需要覆盖几千美元的价格区间。为此参与者需要创建、交换和存储几千个签名碎片。
 
-  与之相对的是，Fournier 主张几千个可能的状态可以使用 CTV 来承诺可能要上链的输出、并容纳在一个 [tapleaf][tapleaf] 中。CTV 使用哈希值来承诺输出，所以参与者可以很快地按需计算出所有可能状态的哈希值，从而最小化 计算量、数据交换和数据存储。虽然依然需要一些签名，但数量已经极大地减少。
+  与之相对的是，Fournier 主张几千个可能的状态可以使用 CTV 来承诺可能要上链的输出、并容纳在一个 [tapleaf][tapleaf] 中。CTV 使用哈希值来承诺输出，所以参与者可以很快地按需计算出所有可能状态的哈希值，从而最小化计算量、数据交换和数据存储。虽然依然需要一些签名，但数量已经极大地减少。
 
   Jonas Nick [指出][noted]，使用 [SIGHASH_ANYPREVOUT][SIGHASH_ANYPREVOUT] 签名哈希模式也可以实现类似的优化（而我们要指出，同样的优化用下面一条新闻所述的另类方案也可以实现）。
 
@@ -45,9 +45,9 @@ lang: zh
 
 本周出现重大变更的包括：[Bitcoin Core][Bitcoin Core]、[C-Lightning][C-Lightning]、[Eclair][Eclair]、[LDK][LDK]、[LND][LND]、[libsecp256k1][libsecp256k1]、[Rust Bitcoin][Rust Bitcoin]、[BTCPay Server][BTCPay Server]、[BDK][BDK]、[Bitcoin Improvement Proposals (BIPs)][ Bitcoin Improvement Proposals (BIPs)] 和 [Lightning BOLTs][Lightning BOLTs]。
 
-- <a id="bitcoin-core-23201" href="#bitcoin-core-23201)">●</a> [Bitcoin Core #23201][Bitcoin Core #23201] 增强了钱包用户使用外部输入来构造交易的能力（此前在[170 期周报][Newsletter #170]提及），办法是允许用户指定重量而非解析数据的上限。这使得使 ` fundrawtransaction`、`send `  和 `walletfundpsbt ` 的应用可以为非标准的输出（比如 [HTLCs][HTLCs]，是闪电网络客户端的必要组件）使用手续费追加交易（亦见 [184 期周报][Newsletter #184]）。
-- <a id="eclair-2141" href="#eclair-2141)">●</a> [Eclair #2141][Eclair #2141] 增强了自动化的手续费追加机制（[184 期周报][Newsletter #184]亦提及），办法是在钱包的 UTXO 数量较少时选择一个更激进的确认目标。如此一来，让手续费加速交易能尽快确认、保持钱包的 UTXO 计数以防止进一步的强制关闭，就很中烟。更多关于 Eclair 所用的锚点输出类型的手续费追加机制的细节，可见[此处][here]。
-- <a id="btcpay-server-3341" href="#btcpay-server-3341)">●</a> [BTCPay Server #3341][BTCPay Server #3341] 允许用户在通过闪电网络请求撤回资金时自主配置 [BOLT11][BOLT11] 的超时时间（以往默认时 30 天）。
+- <a id="bitcoin-core-23201" href="#bitcoin-core-23201)">●</a> [Bitcoin Core #23201][Bitcoin Core #23201] 增强了钱包用户使用外部输入来构造交易的能力（此前在[170 期周报][Newsletter #170]提及），办法是允许用户指定最大重量而非解析数据的上限。这使得使 ` fundrawtransaction`、`send `  和 `walletfundpsbt ` 的应用可以为非标准的输出（比如 [HTLCs][HTLCs]，是闪电网络客户端的必要组件）使用手续费追加交易（亦见 [184 期周报][Newsletter #184]）。
+- <a id="eclair-2141" href="#eclair-2141)">●</a> [Eclair #2141][Eclair #2141] 增强了自动化的手续费追加机制（[184 期周报][Newsletter #184]亦提及），办法是在钱包的 UTXO 数量较少时选择一个更激进的确认目标。如此一来，让手续费加速交易能尽快确认、保持钱包的 UTXO 计数以防止进一步的强制关闭，就很重要。更多关于 Eclair 所用的锚点输出类型的手续费追加机制的细节，可见[此处][here]。
+- <a id="btcpay-server-3341" href="#btcpay-server-3341)">●</a> [BTCPay Server #3341][BTCPay Server #3341] 允许用户在通过闪电网络请求撤回资金时自主配置 [BOLT11][BOLT11] 的超时时间（以往默认是 30 天）。
 
 [posted]:https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2022-January/019808.html
 
