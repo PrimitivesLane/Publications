@@ -11,7 +11,7 @@ lang: zh
 本周的 Newsletter 介绍了关于费用替换交易的中继政策的讨论，并包括我们的常规部分，包括比特币核心 PR 审核俱乐部会议的总结，新版本和候选版本的公告，以及主流的比特币基础设施软件中值得注意的变更。
 
 ## News
-- **关于 RBF 策略的讨论：** Gloria Zhao 在 Bitcoin-Dev 邮件列表中发起了关于费用替换（[RBF][]）策略的[讨论][zhao rbf]。她的邮件提供了当前策略的背景，列举了数年来发现的一些问题（如[钉住攻击][topic transaction pinning]），研究了该政策如何影响钱包的用户界面，然后描述了几个可能的改进。基于下一个区块模板（即矿工在试图产生工作量证明时创建并计划提交的区块）来考虑交易的改进思路被给予了极大的关注。通过评估替换对下一个区块模板的影响，就有可能在不使用启发式方法的情况下，确定它是否会给下一个区块的矿工带来更多的费用收入。一些开发者在回复中对 Gloria Zhao 的总结和她的建议做出了回复，包括可以采用的额外或替代性的修改建议。
+- **关于 RBF 策略的讨论：** Gloria Zhao 在 Bitcoin-Dev 邮件列表中发起了关于费用替换（[RBF][]）策略的[讨论][zhao rbf]。她的邮件提供了当前策略的背景，列举了数年来发现的一些问题（如[钉死攻击][topic transaction pinning]），研究了该政策如何影响钱包的用户界面，然后描述了几个可能的改进。基于下一个区块模板（即矿工在试图产生工作量证明时创建并计划提交的区块）来考虑交易的改进思路被给予了极大的关注。通过评估替换对下一个区块模板的影响，就有可能在不使用启发式方法的情况下，确定它是否会给下一个区块的矿工带来更多的费用收入。一些开发者在回复中对 Gloria Zhao 的总结和她的建议做出了回复，包括可以采用的额外或替代性的修改建议。
 
   在写这个总结的时候，讨论还在进行。
 
@@ -19,11 +19,11 @@ lang: zh
 
 *在这个每月一次的栏目中，我们总结最近一次的 [Bitcoin Core PR 审核俱乐部会议][Bitcoin Core PR Review Club]，集中展示一些重要的问题和答案。点击具体的问题可看到会议答案的总结。*
 
-[Add usage examples][reviews 748] 是 Elichai Turkel 的一个 PR，用于添加 ECDSA 签名、[schnorr 签名][topic schnorr signatures]和 ECDH 密钥交换的使用实例。这是 libsecp256k1 PR 的第一次审核俱乐部会议。与会者讨论了好的随机源的重要性，通过实例进行了讨论，并提出了关于 libsecp256k1 的常规问题。
+[Add usage examples][reviews 748] 是 Elichai Turkel 的一个 PR，用于添加 ECDSA 签名、[schnorr 签名][topic schnorr signatures]和 ECDH 密钥交换的使用实例。这是针对 libsecp256k1 PR 的第一次审核俱乐部会议。与会者讨论了好的随机源的重要性，通过实例进行了讨论，并提出了关于 libsecp256k1 的常规问题。
 
 <details><summary>为什么例子中会展示如何获得随机性？
 </summary>
-本库中许多加密方案的安全性都依赖于秘密的密钥、nonce 和 salt 的机密性/随机性。如果攻击者能够猜测或影响我们的随机源所返回的值，他们可能会伪造签名，了解我们试图保密的信息，猜测密钥等。因此，实现一个加密方案的挑战往往在于获得随机性。例子也强调了这一事实。<a href="https://bitcoincore.reviews/libsecp256k1-748#l-99">➚</a>
+本库中许多密码方案的安全性都依赖于秘密的密钥、一次性随机数和盐的机密性/随机性。如果攻击者能够猜测或影响我们的随机源所返回的值，他们可能会伪造签名，从我们试图保密的内容中获取信息，猜测密钥等。因此，实现一个加密方案的挑战往往在于获得随机性。例子也强调了这一事实。<a href="https://bitcoincore.reviews/libsecp256k1-748#l-99">➚</a>
 </details>
 
 <details><summary>对如何获得随机性提出建议是个好主意吗？
@@ -33,12 +33,12 @@ libsecp256k1 的主要用户，比特币核心，有自己的随机性算法，�
 
 <details><summary>你能实现 PR 中添加的例子吗？其中有什么遗漏吗？
 </summary>
-与会者讨论了他们编译、运行例子，使用调试器，将例子代码与比特币核心的使用进行比较，以及考虑非 Bitcoin 用户的用户体验。一位与会者指出，在产生 schnorr 签名后不对其进行验证是对比特币核心代码和 <a href="https://github.com/bitcoin/bips/blob/master/bip-0340.mediawiki">BIP340</a> 建议的一种偏离。另一位与会者建议在 <code>secp256k1_ecdsa_sign</code> 之前演示 <code>secp256k1_sha256</code> 的用法，因为忘记对信息进行哈希处理对用户来说可能是一个潜在的坑。<a href="https://bitcoincore.reviews/libsecp256k1-748#l-193">➚</a>
+与会者讨论了他们关于以下事物的经验，包括编译、运行示例，使用调试器，将示例代码与比特币核心的使用进行比较，以及考虑非 Bitcoin 用户的用户体验。一位与会者指出，在产生 schnorr 签名后不对其进行验证是对比特币核心代码和 <a href="https://github.com/bitcoin/bips/blob/master/bip-0340.mediawiki">BIP340</a> 建议的一种偏离。另一位与会者建议在 <code>secp256k1_ecdsa_sign</code> 之前演示 <code>secp256k1_sha256</code> 的用法，因为忘记对信息进行哈希处理对用户来说可能是一个潜在的坑。<a href="https://bitcoincore.reviews/libsecp256k1-748#l-193">➚</a>
 </details>
 
 <details><summary>如果用户忘记做一些事情，比如在签名后验证签名，调用 <code>seckey_verify</code>，或者随机化上下文，会发生什么？
 </summary>
-在最坏的情况下，如果实现中存在缺陷，忘记在签名后验证签名可能意味着意外地给出了一个无效的签名。在随机生成密钥后忘记调用 <code>seckey_verify</code> 意味着存在（可以忽略不计的）无效密钥的概率。随机化上下文的目的是为了防止旁门左道的攻击——它掩盖了对最终结果没有影响的中间值，但可能被利用来获取执行的操作的信息。<a href="https://bitcoincore.reviews/libsecp256k1-748#l-226">➚</a>
+在最坏的情况下，如果实现中存在缺陷，忘记在签名后验证签名可能意味着意外地给出了一个无效的签名。在随机生成密钥后忘记调用 <code>seckey_verify</code> 意味着存在（可以忽略不计的）无效密钥的概率。随机化上下文的目的是为了防止侧信道攻击——它掩盖了对最终结果没有影响的中间值，但可能被利用来获取执行的操作的信息。<a href="https://bitcoincore.reviews/libsecp256k1-748#l-226">➚</a>
 </details>
 
 
