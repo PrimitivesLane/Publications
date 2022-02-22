@@ -10,6 +10,7 @@ lang: zh
 
 本周的周报介绍了关于比特币的限制条款（covenant）实现的继续讨论，也包含了我们的常规部分：客户端软件以及服务的变更总结；流行的比特币基础设施软件的重大变更。
 
+
 ## 新闻
 
 - <a id="simplified-alternative-to-op-txhash" href="#simplified-alternative-to-op-txhash)">●</a>  ` OP_TXHASH ` 的简化替代品：在关于启用[限制条款][covenant]的操作码实现的持续讨论（见[周报 #185][Newsletter #185]）中，Rusty Russel [提出][proposed]  ` OP_TXHASH ` 提供的功能可以由现有的  ` OP_SHA256 ` 操作码加上一个新的 `OP_TX ` 操作码（接受与  ` OP_TXHASH ` 同样才输入）来实现。这个新的操作码将可以从一笔使用 [tapscript][tapscript] 的花费交易中获得序列化的字段。然后，脚本就可以直接测试这些字段（例如，交易的版本号是否大于 1？），或者哈希这些数据、并通过此前提议的 [OP_CHECKSIGFROMSTACK][OP_CHECKSIGFROMSTACK] 操作码来比较这个哈希值和一个签名。
