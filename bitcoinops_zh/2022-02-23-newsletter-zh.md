@@ -15,9 +15,9 @@ lang: zh
 
   这些想法在邮件列表中得到了大量的讨论，许多回复中提到了实施费用赞助的挑战。
 
-- **更新的 LN gossip 的提案：** Rusty Russell 在 Lightning-Dev 邮件列表中[发布][russell gossip]了一套新的 LN gossip 消息的详细提案，和在 [Newsletter #55][news55 gossip] 中介绍的他 2019 年的提案类似。新提案使用 [BIP340][] 风格的 [Schnorr 签名][topic schnorr signatures]和 [x-only][news72 xonly] 公钥。此外，还包括对现有的 LN gossip 协议的一些简化，该协议用于宣传用于路由的公共信道的存在。更新后的协议旨在最大限度地提高效率，特别是在与类 [erlay][topic erlay] 的基于 [minisketch][topic minisketch] 的高效 gossip 协议相结合时。
+- **更新的 LN gossip 的提案：** Rusty Russell 在 Lightning-Dev 邮件列表中[发布][russell gossip]了一套新的 LN gossip 消息的详细提案，和在 [Newsletter #55][news55 gossip] 中介绍的他 2019 年的提案类似。新提案使用 [BIP340][] 风格的 [Schnorr 签名][topic schnorr signatures]和 [x-only][news72 xonly] 公钥。此外，还包括对现有的 LN gossip 协议的一些简化，该协议是为了宣传用于路由的公共信道的存在。更新后的协议旨在最大限度地提高效率，特别是在与类 [erlay][topic erlay] 的基于 [minisketch][topic minisketch] 的高效 gossip 协议相结合时。
 
-- **CTV signet：** Jeremy Rubin [发布][rubin ctv signet]了激活 [OP_CHECKTEMPLATEVERIFY][topic op_checktemplateverify] 的 [signet][topic signet] 的参数和代码。这简化了公众对被提议的操作码的试用，并使使用该代码的不同软件之间的兼容性测试变得更加容易。
+- **CTV signet：** Jeremy Rubin [发布][rubin ctv signet]了激活 [OP_CHECKTEMPLATEVERIFY][topic op_checktemplateverify] 的 [signet][topic signet] 的参数和代码。这简化了公众对被提议的操作码的试用，并让使用该代码的不同软件之间的兼容性测试变得更加容易。
 
 ## Bitcoin Stack Exchange 问答选摘
 *[Bitcoin Stack Exchange](https://bitcoin.stackexchange.com/) 是 Optech 贡献者寻找问题答案，或者当我们有一些空闲时间时帮助好奇或困惑的用户的首选地方之一。在这个月度专题中，我们将重点介绍一些自上次更新以来被投票最多的问题和答案。*
