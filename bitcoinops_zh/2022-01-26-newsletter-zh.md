@@ -1,8 +1,8 @@
 ---
 title: 'Bitcoin Optech Newsletter #184'
-permalink: /en/newsletters/2022/01/26/
-name: 2022-01-26-newsletter
-slug: 2022-01-26-newsletter
+permalink: /zh/newsletters/2022/01/26/
+name: 2022-01-26-newsletter-zh
+slug: 2022-01-26-newsletter-zh
 type: newsletter
 layout: newsletter
 lang: zh

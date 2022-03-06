@@ -1,8 +1,8 @@
 ---
 title: 'Bitcoin Optech Newsletter #180: 2021 Year-in-Review Special'
-permalink: /en/newsletters/2021/12/22/
-name: 2021-12-22-newsletter
-slug: 2021-12-22-newsletter
+permalink: /zh/newsletters/2021/12/22/
+name: 2021-12-22-newsletter-zh 
+slug: 2021-12-22-newsletter-zh 
 type: newsletter
 layout: newsletter
 lang: zh
