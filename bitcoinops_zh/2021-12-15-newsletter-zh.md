@@ -1,8 +1,8 @@
 ---
 title: 'Bitcoin Optech Newsletter #179'
-permalink: /en/newsletters/2021/12/15/
-name: 2021-12-15-newsletter
-slug: 2021-12-15-newsletter
+permalink: /zh/newsletters/2021/12/15/
+name: 2021-12-15-newsletter-zh 
+slug: 2021-12-15-newsletter-zh 
 type: newsletter
 layout: newsletter
 lang: zh
