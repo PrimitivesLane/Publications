@@ -15,7 +15,6 @@
 | zero-conf channel      | 零确认通道   |
 
 
-
 |                               |              |
 | ----------------------------- | ------------ |
 | fee-bumping                   | 手续费加速   |
@@ -23,4 +22,6 @@
 | CPFP（child pays for father） | 子为父付     |
 | spontaneous payments          | 自发支付     |
 | dual-funded channels          | 双方充值通道 |
+
+
 

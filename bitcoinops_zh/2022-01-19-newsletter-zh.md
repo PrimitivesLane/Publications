@@ -18,11 +18,11 @@ lang: zh
 
 - <a id="op-checktemplateverify-discussion" href="#op-checktemplateverify-discussion)">●</a> **OP_CHECKTEMPLATEVERIFY 讨论**：本周内，为比特币加入 [OP_CHECKTEMPLATEVERIFY][OP_CHECKTEMPLATEVERIFY] （CTV）操作码的软分叉提议在 Bitcoin-Dev 邮件组和 IRC 频道中都得到了讨论。
 
-  - <a id="mailing-list-discussion" href="#mailing-list-discussion)">●</a>  *Bitcoin-Dev 邮件组讨论*：Peter Todd [撰文][posted]便是了对该提议的几项担忧，包括：它的好处并非几乎所有比特币用户都能享受（而他声称之前所有的增加功能的软分叉都做到了这一点）、它可能会创造新的拒绝服务式攻击界面、提议可使用 CTV 的应用场景是模糊的，而且（可能）因为过于复杂而不可能在现实中大规模部署。
+  - <a id="mailing-list-discussion" href="#mailing-list-discussion)">●</a>  *Bitcoin-Dev 邮件组讨论*：Peter Todd [撰文][posted]表示了对该提议的几项担忧，包括：它的好处并非几乎所有比特币用户都能享受（而他声称之前所有的增加功能的软分叉都做到了这一点）、它可能会创造新的拒绝服务式攻击界面、提议可使用 CTV 的应用场景是模糊的，而且（可能）因为过于复杂而不可能在现实中大规模部署。
+  - CTV 作者 Jeremy Rubin [引用][referenced]更新后的代码和强化后的文档，表示许多对 DoS 攻击的担忧可以得到解决。他也指出，至少两个钱包（其中一个是广泛使用的）计划使用 CTV 提供的至少一个功能。截至本期通讯截稿，尚不清楚 Rubin 的回复是否完全解决了 Peter Todd 的担忧。
 
-    CTV 作者 Jeremy Rubin [引用][referenced]更新后的代码和强化后的稳定，表示许多对 DoS 攻击的担忧可以得到解决。他也指出，至少两个钱包（其中一个是广泛使用的）计划使用 CTV 提供的至少一个功能。截至本期通讯截稿，尚不清楚 Rubin 的回复是否完全解决了 Peter Todd 的担忧。
 
-  - <a id="irc-meeting" href="#irc-meeting)">●</a> *IRC 频道讨论*：如 [181 期周报][Newsletter #181]所宣布的，Rubin 也主持了 CTV 系列讨论的第一期。Rubin 提供了一份[总结][summary]，作为[该期的会议日志][meeting log]。会议的多位参议者显然支持这个提议，但也有一些人表达了技术上的怀疑，至少在一定程度上与 Peter Todd 更早的时候发布的邮件一致。
+- <a id="irc-meeting" href="#irc-meeting)">●</a> *IRC 频道讨论*：如 [181 期周报][Newsletter #181]所宣布的，Rubin 也主持了 CTV 系列讨论的第一期。Rubin 提供了一份[总结][summary]，作为[该期的会议日志][meeting log]。会议的多位参议者显然支持这个提议，但也有一些人表达了技术上的怀疑，至少在一定程度上与 Peter Todd 更早的时候发布的邮件一致。
 
     下一次会议计划更详细地探讨 CTV 的一些应用，可能会帮助研究它是否能在实质上提供使大部分比特币用户受益的、有说服力的案例。
 
