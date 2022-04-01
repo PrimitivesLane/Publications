@@ -16,7 +16,7 @@ lang: zh
 
   Russell O'Connor [解释][oconnor st]了以前是如何解决这些问题的。Anthony Towns 进一步[描述][towns st]了反对的用户如何抵制使用快速试验的软分叉激活。
 
-- **支付算法的更新：** René Pickhardt 在 Lightning-Dev 邮件列表中[发文称][pickhardt payment delivery]，他发现他和 Stefan Richter 去年发表的寻路算法有一个更有效的计算近似值。有关该算法的早期讨论，请参见 [Newsletter #163][news163 pp]。
+- **支付算法的更新：** René Pickhardt 在 Lightning-Dev 邮件列表中[发文称][pickhardt payment delivery]，他找到了对他和 Stefan Richter 去年发表的寻路算法多的计算近似值的方法。有关该算法的早期讨论，请参见 [Newsletter #163][news163 pp]。
 
   Pickhardt 的邮件还提出了可以改进快速支付成功率的方法，例如通过实施[无滞碍支付][news53 stuckless]和[允许超额支付退款][news86 boomerang]（如[几篇][boomerang]学术[论文][spear]所建议的）。
 
@@ -49,9 +49,9 @@ lang: zh
 
 - [LDK #1286][] 增加了 CLTV（`OP_CHECKLOCKTIMEVERIFY`）值的偏移量，用于 [BOLT7 建议的][bolt7 route rec]路由支付。这使得观察部分付款尝试的人（例如，路由付款的节点之一）更难正确猜测哪个节点可能是预定的接收者。
 
-- [HWI #584][] 增加了对使用 BitBox02 硬件签名设备的最新固件版本时，支付到 [bech32m][topic bech32] 地址的支持。
+- [HWI #584][] 增加了特性，在使用 BitBox02 硬件签名设备的最新固件版本时，可以支付到 [bech32m][topic bech32] 地址。
 
-- [HWI #581][] 在使用带有未来固件版本的 Trezor 时，禁用了对具有外部输入的交易的签名支持（例如，在 [coinjoin][topic coinjoin] 中）。这个 PR 是在固件改变之后，破坏了 HWI 用来实现支持的一个变通方法后被提出的。一个后续的 PR（[HWI #590][]）似乎表明，Trezor 正在考虑在未来给用户提供一种方法来签署此类交易。
+- [HWI #581][] 在使用带有未来固件版本的 Trezor 时，禁用具有外部输入的交易的签名（例如，在 [coinjoin][topic coinjoin] 中）。这个 PR 是在固件改变之后，破坏了 HWI 用来实现支持的一个变通方法后被提出的。一个后续的 PR（[HWI #590][]）似乎表明，Trezor 正在考虑在未来给用户提供一种方法来签署此类交易。
 
 - [BDK #515][] 开始在内部数据库中保留已花费的交易输出。这对创建[替代交易][topic rbf]很有帮助，并简化了 [BIP47][] 可重复使用的支付代码的[正在进行的实现][bdk #549]。
 
