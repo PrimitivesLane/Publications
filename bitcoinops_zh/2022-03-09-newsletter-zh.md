@@ -5,7 +5,7 @@ name: 2022-03-09-newsletter-zh
 slug: 2022-03-09-newsletter-zh
 type: newsletter
 layout: newsletter
-lang: en
+lang: zh
 ---
 
 本周的 Newsletter 介绍了关于未来软分叉应该在多大程度上提高比特币脚本和 Tapscript 语言的表达能力的讨论的多个方面，并总结了一个对转发洋葱消息的带宽收费的建议。此外，还包括我们的常规部分，包括 Bitcoin Core PR 审核俱乐部会议的总结，新版本和候选版本的公告，以及主流的比特币基础设施软件中值得注意的变更。
