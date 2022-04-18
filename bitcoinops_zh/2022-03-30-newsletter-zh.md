@@ -16,8 +16,7 @@ lang: zh
 
   如果现有或者被构想的应用可以从能够替换见证数据的能力中获益，Ruane 也希望探讨：应该容许节约了多少见证数据的交易使用替换？对节约程度的要求越高，能够真正替换的交易也就越少 —— 在最差的情况（被攻击）下节点被浪费的带宽也就越少。但若提出了较为严苛的要求，则又阻止了那些只能获得少量增益的交易使用见证数据替换。
 
-- **关于闪电网络 gossip 协议升级的持续讨论**：如[周报 #188][Newsletter #188]所述，闪电网络的协议开发者们正在讨论如何修正闪电网络用来广告可用支付通道信息的 gossipt 协议。具体来说，本周我们看到了两个活跃的讨论：
-
+- **关于闪电网络 gossip 协议升级的持续讨论**：如[周报 #188][Newsletter #188]所述，闪电网络的协议开发者们正在讨论如何修正闪电网络用来宣传可用支付通道信息的 gossip 协议。具体来说，本周我们看到了两个活跃的讨论：
   - *重大升级*：在[回应][response] Rusty Russell 在上个月提出的的[重大升级][major update]提议时，Olaoluwa Osuntokun 多次表达了对该提议的一个侧面的担忧：该提议将使链上资金和具体的闪电网络通道的链接产生合理推诿属性（plausible deniability）。这种特性将使得非闪电网络的用户更容易宣传一个实际上并不存在的通道，从而降低支付方在网络中发现可用路径、完成支付的能力。
 
   - *小规模升级*：Osuntokun [发帖][posted]提出了一个独立的提案，给 gossip 协议提出了一个小得多的升级，致力于允许基于 taproot 的通道。这个提案使用[MuSig2][MuSig2] 来允许一个签名为相关的所有 4 个公钥（两个节点的标识符公钥、两个通道花费公钥）提供授权，有可能要求使用 MuSig 2 来花费通道创建交易。
@@ -31,8 +30,7 @@ lang: zh
 - [地址重用有哪些好处和坏处？][What are the advantages or disadvantages to address reuse?] RedGrittyBrick 和 Pieter Wuille 列举了地址重用的坏处，包括隐私上的以及关于公钥曝光的有争议的担忧。Wuille 接着指出，虽然生成新的地址没有额外的金融成本，但这会给钱包软件、备份和可用性增加复杂性。
 - [什么是 “block-relay-only” 型连接，它有什么用？][What is a block-relay-only connection and what is it used for?]用户 vnprc 介绍了 “block-realy-only（仅转发区块）” 型连接：对等节点仅转发区块信息，而不会转发交易和潜在对等节点的网络地址信息。这些连接可以帮助对抗网络分区（所谓的 “[日蚀攻击][eclipse]” ，因为它使攻击者更难确定比特币网络的拓扑图。vnrpc 继续介绍了 “锚定连接（anchor connections）”，这是一种在节点重启后依旧维持的仅转发区块连接，可以进一步抵抗日蚀攻击。
 - [除了区块难度调整以外，还有别的地方需要用到时间戳吗？][Is timestamping needed for anything except difficulty adjustment?] Pieter Wuille 解释了关于区块头的 `nTime ` 时间戳字段的限制条件（必须大于[过去中值时间（MTP）][Median Time Past (MTP)]，并且与节点本地时间的超前量不得超过两小时）并指出：区块的时间戳用在了[难度][difficulty]的计算和交易的[时间锁][timelocks]中。
-- [花费被时间锁锁定的 UTXO 是如何被拒绝的？][How are attempts to spend from a timelocked UTXO rejected?] Pieter Wuille 区分了使用交易的 ` nLockTime ` 字段的时间锁，和使用脚本的 [`OP_CHECKLOCKTIMEVERIFY`][`OP_CHECKLOCKTIMEVERIFY`] 实施的时间锁。
-
+- [尝试花费被时间锁锁定的 UTXO 是如何被拒绝的？][How are attempts to spend from a timelocked UTXO rejected?] Pieter Wuille 区分了使用交易的 ` nLockTime ` 字段的时间锁，和使用脚本的 [`OP_CHECKLOCKTIMEVERIFY`][`OP_CHECKLOCKTIMEVERIFY`] 实施的时间锁。
 ## 新版本和候选版本
 
 *流行的比特币基础设施项目的新版本和候选版本。请考虑升级到新版本或帮助测试旧版本*。
@@ -49,7 +47,8 @@ lang: zh
 - [C-Lightning #5103][C-Lightning #5103] 加入了一个新的 ` setchannel ` 命令，可以配置具体一条通道的路由费、最小支付数额，以及最大支付数额。它取代了现在已经弃用的 `setchannelfee` 命令。
 - [C-Lightning #5058][C-Lightning #5058] 移除了对最初的定长洋葱数据格式的支持。这个格式也被提议从闪电网络规范中移除（见[BOLTs #962][BOLTs #962]）。升级后的变长格式已经在差不多三年以前[加入到了规范中][added to the specification]，而且，BOLT #962 提供的网络扫描的结果显示，在超过 17000 个公开节点中，只有 5 个不支持该方法。
 - [LND #5476][LND #5476] 升级了 ` GetTransactions ` 和 ` SubscribeTransactions ` RPC 方法，提供关于被创建的输出的额外的信息，包括数额和锁定脚本以及该地址（脚本）是否属于内部钱包。
-- [LND #6232][LND #6232] 加入了一个配置设定，可以要求所有 [HTLC][HTLCs] 都被在 HTLC 拦截钩子中注册的某个插件处理。这保证了在一个 HTLC 拦截器有时间注册自身之前，不会有 HTLC 被接受或被拒绝。这个 HTLC 连接允许调用一个外部程序来检验一个 HTLC（支付）并确定它是否应该被接受或拒绝。
+- [LND #6232][LND #6232] 加入了一个配置设定，可以要求所有 [HTLC][HTLCs] 都被在 HTLC 拦截钩子中注册的某个插件处理。这保证了在一个 HTLC 拦截器有时间注册自身之前，不会有 HTLC 被接受或被拒绝。这个 HTLC 连接允许调用一个外部程序来检验一个 HTLC（支付）并确定它应该被接受或拒绝。
+
 
 [asked]:https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2022-March/020167.html
 
