@@ -12,7 +12,7 @@ lang: zh
 
 ## 新闻
 
-- **可以转移 token 的方案**：Olaoluwa Osuntokun 在 Bitcoin-Dev 邮件组和 Lightning-Dev 中[发帖][posted]列举了关于 *Taro* 协议的一组 BIP。Taro协议将允许在比特币区块链上记录非比特币的 token的创造和转移。举个例子，Alice 可以发行 100 个 token，转移 50 个给 Bob，然后 Bob 可以拿其中 25 个来跟 Carol 交换 10 BTC。想法上跟以前已经在比特币上实现的类似，但细节有所不同，比如，它复用了来自 [taproot][taproot] 的几种设计元素来减少需要重写的新代码的数量、使用默克尔树来减少证明某些操作已经发生的时候需要传输的数据量。
+- **可以转移 token 的方案**：Olaoluwa Osuntokun 在 Bitcoin-Dev 邮件组和 Lightning-Dev 中[发帖][posted]列举了关于 *Taro* 协议的一组 BIP。Taro协议将允许在比特币区块链上记录非比特币的 token 的创造和转移。举个例子，Alice 可以发行 100 个 token，转移 50 个给 Bob，然后 Bob 可以拿其中 25 个来跟 Carol 交换 10 BTC。想法上跟以前已经在比特币上实现的类似，但细节有所不同，比如，它复用了来自 [taproot][taproot] 的几种设计元素来减少需要重写的新代码的数量、使用默克尔树来减少证明某些操作已经发生的时候需要传输的数据量。
 
   Taro [最初设想][intended]的使用场景是闪电网络的可路由链下转账。跟以往提出的在闪电网络上做跨资产转账的提议相似，只是路由支付的中间节点不需要理解 Taro 协议和被转移的资产的详情 —— 只需跟其他的闪电网络支付使用同样的协议即可。
 
@@ -30,7 +30,7 @@ lang: zh
 	<summary>
 	什么是区块索引？有什么用？
 	</summary>
-	区块索引是放在内存种的索引，用于查找区块头和区块在硬盘中的位置。在区块 “树” 上可能会有多个分支（即它可能保留多个分支，包括陈旧的区块同）来适用区块链重组。<a href="https://bitcoincore.reviews/24571#l-17">➚</a>
+	区块索引是放在内存中的索引，用于查找区块头和区块在硬盘中的位置。在区块 “树” 上可能会有多个分支（即它可能保留多个分支，包括陈旧的区块头）来适用区块链重组。<a href="https://bitcoincore.reviews/24571#l-17">➚</a>
 </details>
 <details>
 	<summary>
