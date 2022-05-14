@@ -18,9 +18,9 @@ lang: zh
 
   - *与脚本路径支出的交互：* 与脚本路径支出一起使用的密钥有一个相关连的问题：为了使用脚本路径，支出者必须知道内部密钥。同样，这就需要实现者返回内部密钥，这样它就可以在其他需要它的代码中使用。
 
-  - *最终签名者的捷径：* Osuntokun 还希望澄清 BIP 中的一个部分，该部分描述了最终签名人（而且只有最终签名人）如何使用确定性随机性或质量较低的随机性来源来生成他们的签名随机数。Brandon Black [回答][black musig2]说，他们有一个签字人，他很难安全地管理一个常规的 MuSig2 签字会话，但他们却能一直将其作为最终签字人。
+  - *最终签名者的捷径：* Osuntokun 还希望澄清 BIP 中的一个部分，该部分描述了最终签名者（而且只有最终签名者）如何使用确定性随机性或质量较低的随机性来源来生成他们的签名随机数。Brandon Black [回答][black musig2]说，他们有一个签名者，他很难安全地管理一个常规的 MuSig2 签字会话，但他们却能一直将其作为最终签名者。
 
-- **衡量用户对共识变更的支持：** Keagan McClelland 在 Bitcoin-Dev 邮件列表中[发布][mcclelland measure]了一个提案，与之前的[提案][bishop signal]类似，通过交易发出信号，表明他们是否[支持][topic soft fork activation]对共识规则的特定改变。在该主题中，还讨论了几个相关的情绪测量想法，但似乎都有问题，如[技术][aronesty signal parse scripts]上的挑战，大大[降低][grant signal chainalysis]了用户的隐私，[有利于][tetrud signal favor]比特币经济的某些部分而不是其他，或[惩罚][ivgi signal hodl voting]早期投票者而不是那些等待参与共识形成的人。
+- **衡量用户对共识变更的支持：** Keagan McClelland 在 Bitcoin-Dev 邮件列表中[发布][mcclelland measure]了一个提案，与之前的[提案][bishop signal]类似，通过交易发出信号，表明他们是否[支持][topic soft fork activation]对共识规则的特定改变。在该主题中，还讨论了几个相关的情绪测量想法，但似乎都有问题，如[技术][aronesty signal parse scripts]上的挑战，大大[降低][grant signal chainalysis]了用户的隐私，[有利于][tetrud signal favor]比特币经济的某些部分压倒了其他，或[惩罚][ivgi signal hodl voting]早期投票者而不是那些等待参与共识形成的人。
 
     就像以前讨论这个话题时一样，当它涉及到改变比特币的共识规则的决定时，似乎任何建议的方法都不会产生一个足以被大多数讨论者赞同的结果。
 
@@ -54,7 +54,7 @@ lang: zh
 
 - [Bitcoin Core #21726][] 增加了保持 coinstats 索引的能力，即使在修剪的节点上。Coinstats 包括每个区块的 UTXO 状态的 MuHash 摘要，这允许验证 [AssumeUTXO][topic assumeutxo] 状态。以前，这只保证在存档的完整节点上可用——那些在区块链上存储每一个区块的节点。当启用 `-coinstatsindex` 配置选项时，这个合并的 PR 也使这些信息对修剪过的完整节点（那些在验证后一段时间内删除区块的节点）可用。
 
-- [BDK #557][] 增加了最老硬币优先选择算法。现在有四种硬币选择算法。分支与边界（BnB），单次随机抽取（SRD），最老优先，和最大优先。默认情况下，如果 BnB 没有找到解决方案，BDK 将使用 BnB 和 SRD 作为退路。
+- [BDK #557][] 增加了最老硬币优先选择算法。现在有四种硬币选择算法。分支与边界（BnB），单次随机抽取（SRD），最老优先，和最大优先。默认情况下，如果 BnB 没有找到解决方案，BDK 将使用 BnB 和 SRD 作为替代。
 
 - [LDK #1425][] 增加了对[大通道][topic large channels]（"wumbo 通道"）的支持，这些通道支持高额支付。
 
