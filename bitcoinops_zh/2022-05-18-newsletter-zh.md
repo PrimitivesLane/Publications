@@ -7,7 +7,7 @@ type: newsletter
 layout: newsletter
 lang: zh
 ---
-本周的 Newsletter 总结了关于为实现递归契约而对比特币脚本语言所做的最小改动的讨论，审查了一个添加 `OP_TX` 操作码的修订提案，并回顾了为硬件签名设备调整输出脚本描述符的研究。还包括我们的常规部分，总结了比特币服务和客户端的最新变更，新版本和候选版本，以及流行的比特币基础设施项目中值得注意的变更。此外，我们庆祝了 Optech 第 200 期定期 Newsletter 的发布。
+本周的 Newsletter 总结了关于为实现递归契约而对比特币脚本语言所做的最小改动的讨论，审查了一个添加 `OP_TX` 操作码的修订提案，并回顾了为硬件签名设备调整输出脚本描述符的研究。还包括我们的常规部分，总结了比特币服务和客户端的最新变更，新版本和候选版本，以及流行的比特币基础设施项目中值得注意的变更。此外，我们庆祝了 Optech 第 200 期常规 Newsletter 的发布。
 
 ## 新闻
 
@@ -17,7 +17,7 @@ lang: zh
 
   如果一个操作码或其他脚本特征被用来确保 prevout 和下一个输出是相同的，那么最简单的递归契约类型就产生了。然而，prevout 并不是交易的直接组成部分——它们必须从区块链上获得——所以必须将 prevout 的副本包含在交易中，以便将 prevout 与下一个输出进行比较。更加复杂的是，在比特币交易的多个部分使用哈希函数，似乎阻止了 prevout 脚本能够直接与下一个输出脚本进行比较；相反，无论是 prevout、下一个输出，还是两者都必须从它们的组成元素中动态构建——这就是被提议的连接操作码（CAT）或类似结构对于递归契约的必要性所在。
 
-  在很多情况下，在 [taproot][topic taproot] 之前，在交易中包含 prevout 副本的最有效方法是将其作为授权数据提供，类似于数字签名。如果 prevout 副本与签名一起提供，就可以通过对交易见证的反省来检查，这就需要一个灵活的反省设施，如 TX 或 CSFS。拟议的 CTV 和 APO 脚本修改也将允许对下一个输出进行反省，但它们对见证的反省能力要差得多，这使得它们似乎无法创建递归契约，即使与 CAT 相结合。
+  在很多情况下，在 [taproot][topic taproot] 之前，在交易中包含 prevout 副本的最有效方法是将其作为授权数据提供，类似于数字签名。如果 prevout 副本与签名一起提供，就可以通过对交易见证的自省来检查，这就需要一个灵活的自省设施，如 TX 或 CSFS。拟议的 CTV 和 APO 脚本修改也将允许对下一个输出进行自省，但它们对见证的自省能力要差得多，这使得它们似乎无法创建递归契约，即使与 CAT 相结合。
 
   Nadav Ivgi [回答][ivgi cat]说，也有可能在 prevout 本身中包含一份用于构建 prevout 的信息（通过在它是下一个输出时添加该信息）。在创建递归契约时，这仍然需要 CAT 来解决哈希的问题，但这意味着诸如 CTV 和 APO 这样专注于输出自省的功能也能与 CAT 结合起来创建递归契约。当与 taproot 的功能一起使用时，Ivgi 还认为通过下一个输出来验证 prevout 使得契约脚本的编写更加简单，他提供了两个有趣的递归契约的例子的链接。
 
@@ -25,9 +25,9 @@ lang: zh
 
   Russell O'Connor 还[引用][oconnor cat]了 Andrew Poelstra 的一篇[文章][poelstra cat]（在 [Newsletter #134][news134 cat] 中提及），描述了 CAT 本身是如何与已有的比特币功能相结合，强大到可以创建非递归契约，而且，从理论上讲，如果它被重新添加到比特币中，也可以自己创建递归的契约。
 
-  所有的讨论都是关于对比特币增加功能提案，所以我们对比特币系统当前部署状态的理解没有改变。
+  所有的讨论都是关于为比特币增加功能提案，所以我们当前所理解的比特币系统部署状态不会改变。
 
-- **更新的 OP_TX 建议：** 如 [Newsletter #187][news187 op_tx] 所述，Rusty Russell 提出了一个 `OP_TX` 操作码（基于之前的提案），允许 [tapscript][topic tapscript] 将执行交易的选定部分推送到堆栈。例如，Alice 可以接收比特币到一个包含 `OP_TX(SELECT_LOCKTIME)` 的脚本，将支出交易的锁定时间推到堆栈。使用 TX 的这种通用交易反省功能，Alice 就可以复制 `OP_CHECKLOCKTIMEVERIFY`（CLTV）的具体反省能力，例如 `OP_TX(SELECT_LOCKTIME) <height> OP_GREATERTHAN OP_VERIFY`。
+- **更新的 OP_TX 建议：** 如 [Newsletter #187][news187 op_tx] 所述，Rusty Russell 提出了一个 `OP_TX` 操作码（基于之前的提案），允许 [tapscript][topic tapscript] 将执行交易的选定部分推送到堆栈。例如，Alice 可以接收比特币到一个包含 `OP_TX(SELECT_LOCKTIME)` 的脚本，将支出交易的锁定时间推到堆栈。使用 TX 的这种通用交易自省功能，Alice 就可以复制 `OP_CHECKLOCKTIMEVERIFY`（CLTV）的具体自省能力，例如 `OP_TX(SELECT_LOCKTIME) <height> OP_GREATERTHAN OP_VERIFY`。
 
   在上面的例子中，使用 CLTV 会比 TX 使用更少的 vbyte，但是 TX 的灵活性允许检查一个交易的许多其他部分，这些部分目前在比特币中无法被自省。TX 也可以检查交易之外的数据，但需要全节点才能验证。按照最初的提案，TX 被[标记][rubin op_tx recursive]为支持递归契约，目前看来是有争议的（见 [Newsletter #190][news190 recov]）。
 
@@ -39,7 +39,7 @@ lang: zh
 
     - *使用事务自省来防止 RBF 钉住：* Gregory Sanders [指出][sanders op_tx]，被提案的 LN 的 [Eltoo][topic eltoo] 层利用 [SIGHASH_ANYPREVOUT][topic sighash_anyprevout] 操作码，作为与 [BIP125][] 规则 #3的互动，可能容易受到交易钉住攻击（见 [Newsletter #27][news27 eltoo]）。Sanders 建议，给 TX 提供将交易重量（大小）推到堆栈的能力，将允许基于 ELTOO 的支付渠道的参与者对交易的最大规模进行限制，消除一种依赖于夸大交易规模的钉住的风险。这在概念上似乎与 [Newsletter #191][news191 pinning] 中提到的防止 [CPFP][topic cpfp] 销账的想法相似。
 
-- **为硬件签名设备调整 miniscript 和输出脚本描述符：** Salvatore Ingala 在 Bitcoin-Dev 邮件列表中[发布][ingala desc]了他为硬件签名设备实现[输出脚本描述符][topic descriptors]和 [miniscript][topic miniscript] 的工作。他指出，签名设备特别注重策略验证——用户需要了解如果他们批准一项交易会发生什么，但他们不应该被提示超过必要的信息以确保他们的资金安全。由于许多签名设备的屏幕尺寸较小，而且在那里验证信息有困难，所以尽可能紧凑地显示信息也很重要。Ingala 建议对描述符进行几项改进以解决这些问题：
+- **为硬件签名设备调整 miniscript 和输出脚本描述符：** Salvatore Ingala 在 Bitcoin-Dev 邮件列表中[发布][ingala desc]了他为硬件签名设备实现[输出脚本描述符][topic descriptors]和 [miniscript][topic miniscript] 的工作。他指出，签名设备特别注重策略验证——用户需要了解如果他们批准一项交易会发生什么，但为确保资金安全，他们不应提供除非必要信息之外的信息。由于许多签名设备的屏幕尺寸较小，而且在那里验证信息有困难，所以尽可能紧凑地显示信息也很重要。Ingala 建议对描述符进行几项改进以解决这些问题：
 
     - *策略注册：* 在签名设备的设置过程中，用户应该使用设备来验证他们的偏好策略。对于有持久性存储的设备，注册的策略应该被保存到设备中。对于没有存储的设备，设备应该返回一个加密安全的注册证明，该证明可以在每次启动设备时与策略一起快速重新加载。该提案没有描述如何在设备上注册策略的细节，但它确实参考了 [BIP129][] 安全多签设置（见 [Newsletter #136][news136 sms]）。
 
@@ -57,7 +57,7 @@ lang: zh
 
 - **Tauros 交易所支持闪电网络：** 墨西哥交易所 [Tauros][] 宣布支持闪电网络存款和提款。
 
-- **闪电网络复用器公布：** 支持 LND 的闪电网络复用器（[lnmux][]）软件，通过允许付款的故障场景，提高了闪电网络支付的可靠性。更多细节可在 [Bottlepay 的博客][lnmux blog]文章中找到。
+- **闪电网络复用器公布：** 支持 LND 的闪电网络复用器（[lnmux][]）软件，通过允许对进行中的付款在故障时重发，提高了闪电网络支付的可靠性。更多细节可在 [Bottlepay 的博客][lnmux blog]文章中找到。
 
 - **Coldcard 增加了 taproot 的发送：** [最新的 Coldcard 固件][coldcard upgrade]（Mk4 5.0.3，Mk3 4.1.5）支持发送至 [bech32m][topic bech32] 地址。
 
@@ -84,7 +84,7 @@ lang: zh
 
 我们不是出于个人的虚荣心而吹嘘，而是因为 Optech 的每个贡献者本身就是其他贡献者的忠粉。与了不起的人在一个团队一起工作是一种美妙的体验，而这些特别的通讯部分通常是我们可以把我们对彼此毫无保留的钦佩之情付诸于文字的地方。
 
-这不是我们今年要做的事。相反，我们想给你，读者，你自己的机会来分享你对 Optech 的贡献者的一些钦佩。在没有征求意见的情况下，我们发现我们的读者在 Twitter 上说了几十条甚至几百条可爱的话。太多令人难以置信的评论让我们无法很好地展示出来，所以我们只展示了在过去四年的Top 50。
+我们今年没这么做。相反，我们想给你，读者，你自己的机会来分享你对 Optech 的贡献者的一些钦佩。在没有征求意见的情况下，我们发现我们的读者在 Twitter 上说了几十条甚至几百条可爱的话。太多令人难以置信的评论让我们无法很好地展示出来，所以我们只展示了在过去四年的Top 50。
 
 你可以在下面看到这些评论，但首先我们要感谢我们过去一年的主要贡献者——Adam Jonas、Carl Dong、David A.
 Harding、Gloria Zhao、John Newbery、Mark Erhardt、Mike Schmidt 和
@@ -94,10 +94,10 @@ Harding、Gloria Zhao、John Newbery、Mark Erhardt、Mike Schmidt 和
 > 第 100 期的 @bitcoinoptech 刚刚出版。[...] 它是比特币领域最好的技术通讯之一。
 <p align="right"><a herf="https://twitter.com/Bitcoin/status/1268171489011998720">@Bitcoin</a></p>
 
-> 关注 @bitcoinoptech 并订阅免费 Newsletter，获取真实信号。 我并不完全理解内容，但无论市场如何，它都让我看涨。
+> 关注 @bitcoinoptech 并订阅免费 Newsletter，获取真实信号。 我并不完全理解内容，但无论市场如何，它都让我看好。
 <p align="right"><a herf="https://twitter.com/ChartsBtc/status/1466071392449818629">@ChartsBTC</a></p>
 
-> Bitcoin Optech @bitcoinoptech 对目前比特币领域正在进行的工作有一个很好的概述。它真正显示了在比特币领域实际发生了多少事情，并打破了比特币是 "陈旧的老技术 "的概念。https://bitcoinops.org/en/topic-dates/
+> Bitcoin Optech @bitcoinoptech 对目前比特币领域正在进行的工作有一个很好的概述。它真正显示了在比特币领域实际发生了多少事情，并打破了比特币是 "陈旧的老技术 "的观念。https://bitcoinops.org/en/topic-dates/
 <p align="right"><a herf="https://twitter.com/softsimon_/status/1296739713286459398">@softsimon</a></p>
 <p align="right">Mempool.Space 创造者</p>
 
@@ -124,7 +124,7 @@ Harding、Gloria Zhao、John Newbery、Mark Erhardt、Mike Schmidt 和
 > Bitcoin Optech（@bitcoinoptech）成立于2018年，旨在为开源开发和公司的世界搭建桥梁。自成立以来，他们已经走过了很长一段路。
 <p align="right"><a herf="https://twitter.com/BitcoinMagazine/status/1229834232861724672">比特币杂志</a></p>
 
-> 优秀的 @bitcoinoptech Newsletter 对 2018 年期间比特币和闪电网络的所有主要发展进行了令人难以置信的综述。一个月又一个月的工作，成就了一个不错的周末阅读清单。
+> 优秀的 @bitcoinoptech Newsletter 对 2018 年期间比特币和闪电网络的所有主要发展进行了令人难以置信的综述。月耕不辍，成就了一个不错的周末阅读清单。
 <p align="right"><a herf="https://twitter.com/BuckPerley/status/1078791035864707079">Buck Perley</a></p>
 <p align="right">Unchained Capital 的工程师</p>
 
@@ -139,7 +139,7 @@ Harding、Gloria Zhao、John Newbery、Mark Erhardt、Mike Schmidt 和
 <p align="right"><a herf="https://twitter.com/actuallyCarlaKC/status/1473660532959985669">Carla Kirk-Cohen</a></p>
 <p align="right">独立闪电网络开发者，Brink、₿trust 和 Qala 董事会成员</p>
 
-> 在 Taproot 上有点落后？还有时间，幸运的是 @bitcoinoptech 有一个很棒的研讨会，可以让你赶上进度：https://github.com/bitcoinops/taproot-workshop/  <br> 我强烈推荐。它涵盖了你所需要的所有模块。去做吧💪#比特币#taproot
+> 已经跟不上 Taproot 了？还有时间，幸运的是 @bitcoinoptech 有一个很棒的研讨会，可以让你赶上进度：https://github.com/bitcoinops/taproot-workshop/  <br> 我强烈推荐。它涵盖了你所需要的所有模块。去做吧💪#比特币#taproot
 <p align="right"><a herf="https://twitter.com/ElleMouton/status/1418108253096095745">Elle Mouton</a></p>
 <p align="right">工程师，闪电实验室</p>
 
@@ -177,7 +177,7 @@ Harding、Gloria Zhao、John Newbery、Mark Erhardt、Mike Schmidt 和
 <p align="right"><a herf="https://twitter.com/jlppfeffer/status/1324761477694267393">John Pfeffer</a></p>
 <p align="right">企业家和投资者</p>
 
-> 向 Bitcoin Optech 喊话，他们记录了比特币的技术发展。没有炒作，没有戏剧性，只有关于使用和部署比特币的进展的了不起的信息。@bitcoinoptech
+> 为 Bitcoin Optech 欢呼，他们记录了比特币的技术发展。没有炒作，没有戏剧性，只有关于使用和部署比特币的进展的了不起的信息。@bitcoinoptech
 <p align="right"><a herf="https://twitter.com/jmcorgan/status/1217480526006644736">Johnathan Corgan</a></p>
 
 > @bitcoinoptech 的话题是一个很好的开始。
@@ -191,14 +191,14 @@ Harding、Gloria Zhao、John Newbery、Mark Erhardt、Mike Schmidt 和
 <p align="right"><a herf="https://twitter.com/kallerosenbaum/status/1429793328623755265">Kalle Rosenbaum</a></p>
 <p align="right">Grokking Bitcoin 的作者</p>
 
-> 有很多关于加密货币的新闻简报可以让你了解最新情况。<br>我一直在关注的是 @bitcoinoptech。<br>如果你持有一些比特币，并希望看到一些真正的工作在使协议更好，强烈推荐。
+> 有很多关于加密货币的新闻简报可以让你了解最新情况。<br>我一直在关注的是 @bitcoinoptech。<br>如果你持有一些比特币，并希望看到在使协议更好的工作，强烈推荐。
 <p align="right"><a herf="https://twitter.com/Kristian_Kho/status/1452201573799632896">Kristian Kho</a></p>
 
 > @bitcoinoptech 的重要文章，总结了值得注意的编码发展并进行了编目。
 <p align="right"><a herf="https://twitter.com/LeahWald/status/1215464602214883329">Leah Wald</a></p>
 <p align="right">Valkyrie 投资公司 CEO</p>
 
-> 你难道不喜欢突然发现惊人的教育资源吗？<br>我本周末的首要项目是我最近才发现的 @bitcoinoptech 关于 taproot 的研讨会。
+> 你难道不喜欢突然发现惊人的教育资源吗？<br>本周末的最佳项目是我最近才发现的 @bitcoinoptech 关于 taproot 的研讨会。
 <p align="right"><a herf="https://twitter.com/LucasNuzzi/status/1228417230989340673">Lucas Nuzzi</a></p>
 <p align="right">CoinMetrics.io 研发主管</p>
 
@@ -231,7 +231,7 @@ Harding、Gloria Zhao、John Newbery、Mark Erhardt、Mike Schmidt 和
 <p align="right"><a herf="https://twitter.com/RobertSpigler/status/1058780917685239810"> Robert Spigler</a></p>
 <p align="right">OpSec 顾问</p>
 
-> 关注 @bitcoinoptech 并注册订阅他们的通讯，5-9 个信号。<br>很少有比特币技术信息的来源有这么好的总结和解释。<br>现在就做吧，这样你就不会忘记了😉
+> 关注 @bitcoinoptech 并注册订阅他们的通讯，强烈的信号。<br>很少有比特币技术信息的来源有这么好的总结和解释。<br>现在就关注吧，这样你就不会忘记了😉
 <p align="right"><a herf="https://twitter.com/nvk/status/1455681554047545352">Rodolfo Novak</a></p>
 <p align="right">Coinkite CEO 和联合创始人</p>
 
@@ -239,7 +239,7 @@ Harding、Gloria Zhao、John Newbery、Mark Erhardt、Mike Schmidt 和
 <p align="right"><a herf="https://twitter.com/SomsenRuben/status/1511679367688200193">Ruben Somsen</a></p>
 <p align="right">Bitcoin Sorcerer 和 The Unhashed Podcast 联合主持人</p>
 
-> 尝试少读微博，多读 @bitcoinoptech
+> 尝试少读推特，多读 @bitcoinoptech
 <p align="right"><a herf="https://twitter.com/SahilC0/status/1501703542393946115">Sahil Chaturvedi</a></p>
 <p align="right">Unchained Capital 产品设计师</p>
 
@@ -247,14 +247,14 @@ Harding、Gloria Zhao、John Newbery、Mark Erhardt、Mike Schmidt 和
 <p align="right"><a herf="https://twitter.com/SDWouters/status/1082930342053462016">Sam Wouters</a></p>
 <p align="right">比特币教育者</p>
 
-> 感谢 @bitcoinoptech 团队在兼容性矩阵方面所做的全面工作。
+> 感谢 @bitcoinoptech 团队通过兼容性矩阵所做的全面工作。
 <p align="right"><a herf="https://twitter.com/SamouraiWallet/status/1163877643932065793">Samourai Wallet</a></p>
 
 > 写得不错，@bitcoinoptech。👍
 <p align="right"><a herf="https://twitter.com/Excellion/status/1211075163732631553">Samson Mow</a></p>
 <p align="right">Jan3 CEO</p>
 
-> Taproot 系列是一个非常宝贵的资源，不仅可以了解大局，还可以了解技术细节。感谢所有为此做出贡献的人!
+> Taproot 系列是一个非常宝贵的资源，不仅可以了解全局，还可以了解技术细节。感谢所有为此做出贡献的人!
 <p align="right"><a herf="https://twitter.com/satsie/status/1458436050091745286">Stacie Waleyko</a></p>
 <p align="right">Casa 的工程师</p>
 
