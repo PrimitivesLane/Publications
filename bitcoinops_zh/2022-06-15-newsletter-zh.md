@@ -118,3 +118,6 @@ lang: zh
 [rust bitcoin]: https://github.com/rust-bitcoin/rust-bitcoin
 [taproot]: https://bitcoinops.org/en/topics/taproot/
 [output script descriptors]: https://bitcoinops.org/en/topics/output-script-descriptors/
+
+[BDK #593]: https://github.com/bitcoindevkit/bdk/issues/593
+[Bitcoin Core #24171]: https://github.com/bitcoin/bitcoin/issues/24171
